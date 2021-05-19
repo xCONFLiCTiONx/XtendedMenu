@@ -1,8 +1,8 @@
-# xMenuTools
+# XtendedMenu
 
 Extended context menu tools  
 
-[![All Releases](https://img.shields.io/github/downloads/xCONFLiCTiONx/xMenuTools/total)](https://github.com/xCONFLiCTiONx/xMenuTools/releases) [![LICENSE](https://img.shields.io/github/license/xCONFLiCTiONx/xMenuTools)](https://github.com/xCONFLiCTiONx/xMenuTools/blob/master/LICENSE) [![Stars](https://img.shields.io/github/stars/xCONFLiCTiONx/xMenuTools)](https://github.com/xCONFLiCTiONx/xMenuTools/stargazers) [![Issues](https://img.shields.io/github/issues/xCONFLiCTiONx/xMenuTools)](https://github.com/xCONFLiCTiONx/xMenuTools/issues)
+[![All Releases](https://img.shields.io/github/downloads/xCONFLiCTiONx/XtendedMenu/total)](https://github.com/xCONFLiCTiONx/XtendedMenu/releases) [![LICENSE](https://img.shields.io/github/license/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/blob/master/LICENSE) [![Stars](https://img.shields.io/github/stars/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/stargazers) [![Issues](https://img.shields.io/github/issues/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/issues)
 
 ## Requirements
 
@@ -10,19 +10,19 @@ Extended context menu tools
 
 ## Notes
 
-*Contrary to what other websites are saying, xMenuTools is not portable by definition and should be installed to a non-removable drive.*
+*Contrary to what other websites are saying, XtendedMenu is not portable by definition and should be installed to a non-removable drive.*
 
 ## Language
 
-*xMenuTools is English only so if you want to use it and have a different language on your computer you should be able to install the English Language pack in Windows and it should run however you will likely have to set it as the default language due to using directory names as strings within the program.*
+*XtendedMenu is English only so if you want to use it and have a different language on your computer you should be able to install the English Language pack in Windows and it should run however you will likely have to set it as the default language due to using directory names as strings within the program.*
 
 ## Support
 
 *Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft and Windows 8/.1 is just a joke.*
 
-![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/xMenuTools/master/Screenshots/All_Files.jpg) ![Shortcuts](https://raw.githubusercontent.com/xCONFLiCTiONx/xMenuTools/master/Screenshots/Shortcuts.jpg)  
-![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/xMenuTools/master/Screenshots/Directories.jpg) ![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/xMenuTools/master/Screenshots/Background.jpg)  
-![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/xMenuTools/master/Screenshots/Attributes.jpg)
+![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/All_Files.jpg) ![Shortcuts](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Shortcuts.jpg)  
+![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.jpg) ![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.jpg)  
+![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.jpg)
 
 ## SharpShell Credits
 
@@ -59,10 +59,10 @@ Extended context menu tools
   * Only Windows 10 is supported
   * GUI's are lighter
 * Version 7.3.0:
-  * Default Installation path is now SystemDrive\Program Files\xMenuTools (https://github.com/xCONFLiCTiONx/xMenuTools/issues/2#issuecomment-731805475)
+  * Default Installation path is now SystemDrive\Program Files\XtendedMenu (https://github.com/xCONFLiCTiONx/XtendedMenu/issues/2#issuecomment-731805475)
 * Version 7.4.0:
   * Updated EasyLogger
 * Version 7.5.0:
-  * Logged error if right click on broken shortcut; added return if path doesn't exist in xMenuTools.Methods.AttributesInfo.GetFileAttributes
+  * Logged error if right click on broken shortcut; added return if path doesn't exist in XtendedMenu.Methods.AttributesInfo.GetFileAttributes
 * Version 7.6.0:
   * Added copy long path and copy as url. Fixed some minor issues. Fixed path name when opening file in text editor.
