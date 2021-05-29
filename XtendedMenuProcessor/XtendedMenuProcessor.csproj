@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>SharedAssemblyInfo.cs</Link>
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ArchitectureCheck.cs" />
     <Compile Include="AttributesMenu.cs">
@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="AttributesMenu.Designer.cs">
       <DependentUpon>AttributesMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomEntries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomEntries.Designer.cs">
+      <DependentUpon>CustomEntries.cs</DependentUpon>
     </Compile>
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
@@ -104,6 +110,9 @@
     <Compile Include="NativeMethods.cs" />
     <EmbeddedResource Include="AttributesMenu.resx">
       <DependentUpon>AttributesMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomEntries.resx">
+      <DependentUpon>CustomEntries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>

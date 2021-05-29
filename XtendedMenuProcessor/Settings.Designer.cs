@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CopyLongPathFilesCheckBox = new System.Windows.Forms.CheckBox();
+            this.CopyURLFilesCheckBox = new System.Windows.Forms.CheckBox();
             this.AllFilesSelectAllCheckbox = new System.Windows.Forms.CheckBox();
             this.TakeOwnershipFileCheckBox = new System.Windows.Forms.CheckBox();
             this.FileSymLinkCheckBox = new System.Windows.Forms.CheckBox();
@@ -40,12 +42,16 @@
             this.BlockWithFirewallCheckBox = new System.Windows.Forms.CheckBox();
             this.NotepadCheckBox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CopyURLShortCheckbox = new System.Windows.Forms.CheckBox();
+            this.CopyLongPathShortCheckbox = new System.Windows.Forms.CheckBox();
             this.AttributesShortCheckbox = new System.Windows.Forms.CheckBox();
             this.ShortNotepadCheckbox = new System.Windows.Forms.CheckBox();
             this.ShortSelectAllCheckbox = new System.Windows.Forms.CheckBox();
             this.CopyNameShortCheckbox = new System.Windows.Forms.CheckBox();
             this.CopyPathShortCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.CopyURLDirectoryCheckbox = new System.Windows.Forms.CheckBox();
+            this.CopyLongPathDirectoryCheckbox = new System.Windows.Forms.CheckBox();
             this.DirSelectAllCheckbox = new System.Windows.Forms.CheckBox();
             this.TakeOwnershipDirectoryCheckbox = new System.Windows.Forms.CheckBox();
             this.SymLinkDirectoryCheckbox = new System.Windows.Forms.CheckBox();
@@ -61,12 +67,7 @@
             this.DirBackComLinesCheckbox = new System.Windows.Forms.CheckBox();
             this.DirBackAttributesCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.CopyURLFilesCheckBox = new System.Windows.Forms.CheckBox();
-            this.CopyLongPathFilesCheckBox = new System.Windows.Forms.CheckBox();
-            this.CopyURLShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyLongPathShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyURLDirectoryCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyLongPathDirectoryCheckbox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -107,6 +108,30 @@
             this.tabPage1.Size = new System.Drawing.Size(298, 243);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "All Files";
+            // 
+            // CopyLongPathFilesCheckBox
+            // 
+            this.CopyLongPathFilesCheckBox.AutoSize = true;
+            this.CopyLongPathFilesCheckBox.Location = new System.Drawing.Point(34, 150);
+            this.CopyLongPathFilesCheckBox.Name = "CopyLongPathFilesCheckBox";
+            this.CopyLongPathFilesCheckBox.Size = new System.Drawing.Size(122, 17);
+            this.CopyLongPathFilesCheckBox.TabIndex = 22;
+            this.CopyLongPathFilesCheckBox.TabStop = false;
+            this.CopyLongPathFilesCheckBox.Text = "Copy Long Filename";
+            this.CopyLongPathFilesCheckBox.UseVisualStyleBackColor = true;
+            this.CopyLongPathFilesCheckBox.CheckedChanged += new System.EventHandler(this.CopyLongPathFiles_CheckedChanged);
+            // 
+            // CopyURLFilesCheckBox
+            // 
+            this.CopyURLFilesCheckBox.AutoSize = true;
+            this.CopyURLFilesCheckBox.Location = new System.Drawing.Point(34, 127);
+            this.CopyURLFilesCheckBox.Name = "CopyURLFilesCheckBox";
+            this.CopyURLFilesCheckBox.Size = new System.Drawing.Size(89, 17);
+            this.CopyURLFilesCheckBox.TabIndex = 21;
+            this.CopyURLFilesCheckBox.TabStop = false;
+            this.CopyURLFilesCheckBox.Text = "Copy as URL";
+            this.CopyURLFilesCheckBox.UseVisualStyleBackColor = true;
+            this.CopyURLFilesCheckBox.CheckedChanged += new System.EventHandler(this.CopyURLFilesCheckBox_CheckedChanged);
             // 
             // AllFilesSelectAllCheckbox
             // 
@@ -219,7 +244,31 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(298, 243);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Short";
+            this.tabPage2.Text = "Shortcuts";
+            // 
+            // CopyURLShortCheckbox
+            // 
+            this.CopyURLShortCheckbox.AutoSize = true;
+            this.CopyURLShortCheckbox.Location = new System.Drawing.Point(33, 127);
+            this.CopyURLShortCheckbox.Name = "CopyURLShortCheckbox";
+            this.CopyURLShortCheckbox.Size = new System.Drawing.Size(89, 17);
+            this.CopyURLShortCheckbox.TabIndex = 21;
+            this.CopyURLShortCheckbox.TabStop = false;
+            this.CopyURLShortCheckbox.Text = "Copy as URL";
+            this.CopyURLShortCheckbox.UseVisualStyleBackColor = true;
+            this.CopyURLShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyURLShortCheckbox_CheckedChanged);
+            // 
+            // CopyLongPathShortCheckbox
+            // 
+            this.CopyLongPathShortCheckbox.AutoSize = true;
+            this.CopyLongPathShortCheckbox.Location = new System.Drawing.Point(33, 150);
+            this.CopyLongPathShortCheckbox.Name = "CopyLongPathShortCheckbox";
+            this.CopyLongPathShortCheckbox.Size = new System.Drawing.Size(122, 17);
+            this.CopyLongPathShortCheckbox.TabIndex = 20;
+            this.CopyLongPathShortCheckbox.TabStop = false;
+            this.CopyLongPathShortCheckbox.Text = "Copy Long Filename";
+            this.CopyLongPathShortCheckbox.UseVisualStyleBackColor = true;
+            this.CopyLongPathShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyLongPathShortCheckbox_CheckedChanged);
             // 
             // AttributesShortCheckbox
             // 
@@ -299,6 +348,30 @@
             this.tabPage3.Size = new System.Drawing.Size(298, 243);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Directories";
+            // 
+            // CopyURLDirectoryCheckbox
+            // 
+            this.CopyURLDirectoryCheckbox.AutoSize = true;
+            this.CopyURLDirectoryCheckbox.Location = new System.Drawing.Point(34, 104);
+            this.CopyURLDirectoryCheckbox.Name = "CopyURLDirectoryCheckbox";
+            this.CopyURLDirectoryCheckbox.Size = new System.Drawing.Size(89, 17);
+            this.CopyURLDirectoryCheckbox.TabIndex = 30;
+            this.CopyURLDirectoryCheckbox.TabStop = false;
+            this.CopyURLDirectoryCheckbox.Text = "Copy as URL";
+            this.CopyURLDirectoryCheckbox.UseVisualStyleBackColor = true;
+            this.CopyURLDirectoryCheckbox.CheckedChanged += new System.EventHandler(this.CopyURLDirectoryCheckbox_CheckedChanged);
+            // 
+            // CopyLongPathDirectoryCheckbox
+            // 
+            this.CopyLongPathDirectoryCheckbox.AutoSize = true;
+            this.CopyLongPathDirectoryCheckbox.Location = new System.Drawing.Point(34, 127);
+            this.CopyLongPathDirectoryCheckbox.Name = "CopyLongPathDirectoryCheckbox";
+            this.CopyLongPathDirectoryCheckbox.Size = new System.Drawing.Size(122, 17);
+            this.CopyLongPathDirectoryCheckbox.TabIndex = 29;
+            this.CopyLongPathDirectoryCheckbox.TabStop = false;
+            this.CopyLongPathDirectoryCheckbox.Text = "Copy Long Filename";
+            this.CopyLongPathDirectoryCheckbox.UseVisualStyleBackColor = true;
+            this.CopyLongPathDirectoryCheckbox.CheckedChanged += new System.EventHandler(this.CopyLongPathDirectoryCheckbox_CheckedChanged);
             // 
             // DirSelectAllCheckbox
             // 
@@ -474,90 +547,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 277);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 292);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(25, 9);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
-            // CopyURLFilesCheckBox
+            // button1
             // 
-            this.CopyURLFilesCheckBox.AutoSize = true;
-            this.CopyURLFilesCheckBox.Location = new System.Drawing.Point(34, 127);
-            this.CopyURLFilesCheckBox.Name = "CopyURLFilesCheckBox";
-            this.CopyURLFilesCheckBox.Size = new System.Drawing.Size(89, 17);
-            this.CopyURLFilesCheckBox.TabIndex = 21;
-            this.CopyURLFilesCheckBox.TabStop = false;
-            this.CopyURLFilesCheckBox.Text = "Copy as URL";
-            this.CopyURLFilesCheckBox.UseVisualStyleBackColor = true;
-            this.CopyURLFilesCheckBox.CheckedChanged += new System.EventHandler(this.CopyURLFilesCheckBox_CheckedChanged);
-            // 
-            // CopyLongPathFilesCheckBox
-            // 
-            this.CopyLongPathFilesCheckBox.AutoSize = true;
-            this.CopyLongPathFilesCheckBox.Location = new System.Drawing.Point(34, 150);
-            this.CopyLongPathFilesCheckBox.Name = "CopyLongPathFilesCheckBox";
-            this.CopyLongPathFilesCheckBox.Size = new System.Drawing.Size(122, 17);
-            this.CopyLongPathFilesCheckBox.TabIndex = 22;
-            this.CopyLongPathFilesCheckBox.TabStop = false;
-            this.CopyLongPathFilesCheckBox.Text = "Copy Long Filename";
-            this.CopyLongPathFilesCheckBox.UseVisualStyleBackColor = true;
-            this.CopyLongPathFilesCheckBox.CheckedChanged += new System.EventHandler(this.CopyLongPathFiles_CheckedChanged);
-            // 
-            // CopyURLShortCheckbox
-            // 
-            this.CopyURLShortCheckbox.AutoSize = true;
-            this.CopyURLShortCheckbox.Location = new System.Drawing.Point(33, 127);
-            this.CopyURLShortCheckbox.Name = "CopyURLShortCheckbox";
-            this.CopyURLShortCheckbox.Size = new System.Drawing.Size(89, 17);
-            this.CopyURLShortCheckbox.TabIndex = 21;
-            this.CopyURLShortCheckbox.TabStop = false;
-            this.CopyURLShortCheckbox.Text = "Copy as URL";
-            this.CopyURLShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyURLShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyURLShortCheckbox_CheckedChanged);
-            // 
-            // CopyLongPathShortCheckbox
-            // 
-            this.CopyLongPathShortCheckbox.AutoSize = true;
-            this.CopyLongPathShortCheckbox.Location = new System.Drawing.Point(33, 150);
-            this.CopyLongPathShortCheckbox.Name = "CopyLongPathShortCheckbox";
-            this.CopyLongPathShortCheckbox.Size = new System.Drawing.Size(122, 17);
-            this.CopyLongPathShortCheckbox.TabIndex = 20;
-            this.CopyLongPathShortCheckbox.TabStop = false;
-            this.CopyLongPathShortCheckbox.Text = "Copy Long Filename";
-            this.CopyLongPathShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyLongPathShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyLongPathShortCheckbox_CheckedChanged);
-            // 
-            // CopyURLDirectoryCheckbox
-            // 
-            this.CopyURLDirectoryCheckbox.AutoSize = true;
-            this.CopyURLDirectoryCheckbox.Location = new System.Drawing.Point(34, 104);
-            this.CopyURLDirectoryCheckbox.Name = "CopyURLDirectoryCheckbox";
-            this.CopyURLDirectoryCheckbox.Size = new System.Drawing.Size(89, 17);
-            this.CopyURLDirectoryCheckbox.TabIndex = 30;
-            this.CopyURLDirectoryCheckbox.TabStop = false;
-            this.CopyURLDirectoryCheckbox.Text = "Copy as URL";
-            this.CopyURLDirectoryCheckbox.UseVisualStyleBackColor = true;
-            this.CopyURLDirectoryCheckbox.CheckedChanged += new System.EventHandler(this.CopyURLDirectoryCheckbox_CheckedChanged);
-            // 
-            // CopyLongPathDirectoryCheckbox
-            // 
-            this.CopyLongPathDirectoryCheckbox.AutoSize = true;
-            this.CopyLongPathDirectoryCheckbox.Location = new System.Drawing.Point(34, 127);
-            this.CopyLongPathDirectoryCheckbox.Name = "CopyLongPathDirectoryCheckbox";
-            this.CopyLongPathDirectoryCheckbox.Size = new System.Drawing.Size(122, 17);
-            this.CopyLongPathDirectoryCheckbox.TabIndex = 29;
-            this.CopyLongPathDirectoryCheckbox.TabStop = false;
-            this.CopyLongPathDirectoryCheckbox.Text = "Copy Long Filename";
-            this.CopyLongPathDirectoryCheckbox.UseVisualStyleBackColor = true;
-            this.CopyLongPathDirectoryCheckbox.CheckedChanged += new System.EventHandler(this.CopyLongPathDirectoryCheckbox_CheckedChanged);
+            this.button1.Location = new System.Drawing.Point(207, 277);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Custom Entries";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(311, 296);
+            this.ClientSize = new System.Drawing.Size(311, 307);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -620,5 +633,6 @@
         private System.Windows.Forms.CheckBox CopyLongPathShortCheckbox;
         private System.Windows.Forms.CheckBox CopyURLDirectoryCheckbox;
         private System.Windows.Forms.CheckBox CopyLongPathDirectoryCheckbox;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -51,6 +51,8 @@
       <HintPath>..\packages\SharpShell.2.7.2\lib\net40-client\SharpShell.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,7 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>SharedAssemblyInfo.cs</Link>
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\XtendedMenuProcessor\Properties\Settings.Designer.cs">
+      <Link>Properties\Settings.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SetRegistryItems.cs" />
     <Compile Include="XtendedMenuDirectory.cs" />
@@ -142,6 +150,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\XtendedMenuProcessor\Properties\Settings.settings">
+      <Link>Properties\Settings.settings</Link>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="app.config" />
     <None Include="KeyFile.snk" />
     <None Include="packages.config" />
     <None Include="Resources\terminal.ico" />

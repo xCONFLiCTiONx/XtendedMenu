@@ -800,5 +800,11 @@ namespace XtendedMenu
                 PasteContentsCheckbox.Checked = false;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CustomEntries customEntries = new CustomEntries();
+            customEntries.ShowDialog();
+        }
     }
 }

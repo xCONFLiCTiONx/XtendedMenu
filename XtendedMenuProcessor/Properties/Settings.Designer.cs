@@ -22,5 +22,44 @@ namespace XtendedMenu.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" />")]
+        public global::System.Collections.Specialized.StringCollection CustomEntry {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CustomEntry"]));
+            }
+            set {
+                this["CustomEntry"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" />")]
+        public global::System.Collections.Specialized.StringCollection CustomEntryProcess {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CustomEntryProcess"]));
+            }
+            set {
+                this["CustomEntryProcess"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" />")]
+        public global::System.Collections.Specialized.StringCollection CustonEntryIcon {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CustonEntryIcon"]));
+            }
+            set {
+                this["CustonEntryIcon"] = value;
+            }
+        }
     }
 }

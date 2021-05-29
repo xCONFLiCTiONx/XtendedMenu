@@ -102,7 +102,7 @@ namespace XtendedMenu
                 RegistrySoftware.DeleteSubKey("XtendedMenu", false);
 
                 // Restart Explorer
-                DialogResult dialog = SendMessage.MessageForm(Resources.UninstallComplete, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialog = MessageForm(Resources.UninstallComplete, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
                     foreach (Process proc in Process.GetProcessesByName("explorer"))
@@ -203,32 +203,8 @@ namespace XtendedMenu
         {
             try
             {
-                RegistryKey subKey = null;
-                if (ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    subKey = Registry.LocalMachine.OpenSubKey(Resources.RegUninstallKey64String);
-                }
-                else
-                {
-                    subKey = Registry.LocalMachine.OpenSubKey(Resources.RegUninstallKey32String);
-                }
-                if (subKey == null)
-                {
-                    DialogResult results = MessageForm(Resources.InstallQuestion + Resources.XtendedMenu + Resources.InstallNotice, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    if (results == DialogResult.Yes)
-                    {
-                        StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-install", false, true);
-                        Environment.Exit(0);
-                    }
-                }
-                else
-                {
-                    DialogResult results = MessageForm(Resources.UninstallQuestion + Resources.XtendedMenu + Resources.UninstallNotice, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (results == DialogResult.Yes)
-                    {
-                        StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-uninstall", false, true);
-                    }
-                }
+                StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-install", false, true);
+                Environment.Exit(0);
             }
             catch (Exception ex)
             {

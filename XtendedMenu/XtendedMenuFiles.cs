@@ -2,6 +2,7 @@
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace XtendedMenu
     {
         private static readonly RegistryKey XtendedMenuSettings = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", true);
         private ContextMenuStrip Menu;
-        private ToolStripMenuItem XtendedMenuMenu, OpenNotepad, BlockFirewall, CopyName, CopyPath, CopyPathURL, CopyLONGPath, Attributes, SymLink, TakeOwnership;
+        private ToolStripMenuItem XtendedMenuMenu, Attributes, OpenNotepad, CopyName, CopyPath, CopyPathURL, CopyLONGPath, SymLink, BlockFirewall, TakeOwnership;
         private ToolStripMenuItem AttributesMenu, HiddenAttributes, SystemAttributes, ReadOnlyAttributes;
         protected override bool CanShowMenu()
         {
@@ -42,42 +43,6 @@ namespace XtendedMenu
                 {
                     XtendedMenuMenu.Name = "XtendedMenuMenu";
 
-                    // OpenNotepad
-                    using (OpenNotepad = new ToolStripMenuItem())
-                    {
-                        OpenNotepad.Text = Resources.OpenNotepad;
-                        OpenNotepad.Name = "OpenNotepad";
-                    }
-                    // BlockFirewall
-                    using (BlockFirewall = new ToolStripMenuItem())
-                    {
-                        BlockFirewall.Text = Resources.BlockText;
-                        BlockFirewall.Name = "BlockFirewall";
-                    }
-                    // CopyName
-                    using (CopyName = new ToolStripMenuItem())
-                    {
-                        CopyName.Text = Resources.CopyNameText;
-                        CopyName.Name = "CopyName";
-                    }
-                    // CopyPath
-                    using (CopyPath = new ToolStripMenuItem())
-                    {
-                        CopyPath.Text = Resources.CopyPathText;
-                        CopyPath.Name = "CopyPath";
-                    }
-                    // CopyPathURL
-                    using (CopyPathURL = new ToolStripMenuItem())
-                    {
-                        CopyPathURL.Text = Resources.CopyPathURLText;
-                        CopyPathURL.Name = "CopyPathURL";
-                    }
-                    // CopyLONGPath
-                    using (CopyLONGPath = new ToolStripMenuItem())
-                    {
-                        CopyLONGPath.Text = Resources.CopyLONGPathText;
-                        CopyLONGPath.Name = "CopyLONGPath";
-                    }
                     // Attributes
                     using (Attributes = new ToolStripMenuItem())
                     {
@@ -119,11 +84,47 @@ namespace XtendedMenu
                         }
                         SetFileAttributes();
                     }
+                    // OpenNotepad
+                    using (OpenNotepad = new ToolStripMenuItem())
+                    {
+                        OpenNotepad.Text = Resources.OpenNotepad;
+                        OpenNotepad.Name = "OpenNotepad";
+                    }
+                    // CopyName
+                    using (CopyName = new ToolStripMenuItem())
+                    {
+                        CopyName.Text = Resources.CopyNameText;
+                        CopyName.Name = "CopyName";
+                    }
+                    // CopyPath
+                    using (CopyPath = new ToolStripMenuItem())
+                    {
+                        CopyPath.Text = Resources.CopyPathText;
+                        CopyPath.Name = "CopyPath";
+                    }
+                    // CopyPathURL
+                    using (CopyPathURL = new ToolStripMenuItem())
+                    {
+                        CopyPathURL.Text = Resources.CopyPathURLText;
+                        CopyPathURL.Name = "CopyPathURL";
+                    }
+                    // CopyLONGPath
+                    using (CopyLONGPath = new ToolStripMenuItem())
+                    {
+                        CopyLONGPath.Text = Resources.CopyLONGPathText;
+                        CopyLONGPath.Name = "CopyLONGPath";
+                    }
                     // SymLink
                     using (SymLink = new ToolStripMenuItem())
                     {
                         SymLink.Text = Resources.CreateSymbolicLink;
                         SymLink.Name = "SymLink";
+                    }
+                    // BlockFirewall
+                    using (BlockFirewall = new ToolStripMenuItem())
+                    {
+                        BlockFirewall.Text = Resources.BlockText;
+                        BlockFirewall.Name = "BlockFirewall";
                     }
                     // TakeOwnership
                     using (TakeOwnership = new ToolStripMenuItem())
@@ -137,6 +138,7 @@ namespace XtendedMenu
 
             return Menu;
         }
+
         private static void CheckUserSettings()
         {
             if (XtendedMenuSettings == null)
@@ -157,34 +159,69 @@ namespace XtendedMenu
 
             // Icons
             XtendedMenuMenu.Image = Resources.MAIN_ICON.ToBitmap();
+            Attributes.Image = Resources.FileAttributes.ToBitmap();
+            AttributesMenu.Image = Resources.MAIN_ICON.ToBitmap();
             OpenNotepad.Image = Resources.notepad.ToBitmap();
-            BlockFirewall.Image = Resources.Firewall.ToBitmap();
             CopyPath.Image = Resources.CopyPath.ToBitmap();
             CopyPathURL.Image = Resources.CopyPath.ToBitmap();
             CopyLONGPath.Image = Resources.CopyPath.ToBitmap();
             CopyName.Image = Resources.CopyName.ToBitmap();
-            Attributes.Image = Resources.FileAttributes.ToBitmap();
-            AttributesMenu.Image = Resources.MAIN_ICON.ToBitmap();
-
             SymLink.Image = Resources.SymLink.ToBitmap();
+            BlockFirewall.Image = Resources.Firewall.ToBitmap();
             TakeOwnership.Image = Resources.TakeOwnership.ToBitmap();
 
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             AddMenuItems(array);
 
+            try
+            {
+                // Custom Entries
+                string[] CustomEntry = Properties.Settings.Default.CustomEntry.Cast<string>().ToArray();
+                int itemCount = 0;
+                Properties.Settings.Default.CustomEntry.Add("TEST");
+                var path = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+                MessageBox.Show(path);
+                foreach (string item in CustomEntry)
+                {
+                    MessageBox.Show(item);
+
+
+
+                    ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
+
+                    using (CustomMenuItem = new ToolStripMenuItem())
+                    {
+                        CustomMenuItem.Text = item;
+                        CustomMenuItem.Name = itemCount.ToString();
+                    }
+
+                    Menu.Items.Add(CustomMenuItem);
+
+                    CustomMenuItem.Image = Resources.notepad.ToBitmap();
+                    CustomMenuItem.Click += CustomMenuItem_Click;
+                    XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                    itemCount++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+
             // Subscriptions
+            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
             OpenNotepad.Click += (sender, args) => OpenNotepadMethod();
-            BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
             CopyPath.Click += (sender, args) => CopyPathMethod();
             CopyPathURL.Click += (sender, args) => CopyPathURLMethod();
             CopyLONGPath.Click += (sender, args) => CopyLONGPathMethod();
             CopyName.Click += (sender, args) => CopyNameMethod();
-            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
-
             HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
             SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
             ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
             SymLink.Click += (sender, args) => SymLinkMethod();
+            BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
             TakeOwnership.Click += (sender, args) => TakeOwnershipMethod();
         }
 
@@ -222,20 +259,25 @@ namespace XtendedMenu
                         continue;
                     }
                 }
+                object AttributesFiles = XtendedMenuSettings.GetValue("AttributesFiles");
+                if (AttributesFiles != null)
+                {
+                    if (AttributesFiles.ToString() == "1")
+                    {
+                        XtendedMenuMenu.DropDownItems.Add(Attributes);
+                        Attributes.DropDownItems.Add(AttributesMenu);
+                        Attributes.DropDownItems.Add(new ToolStripSeparator());
+                        Attributes.DropDownItems.Add(HiddenAttributes);
+                        Attributes.DropDownItems.Add(SystemAttributes);
+                        Attributes.DropDownItems.Add(ReadOnlyAttributes);
+                    }
+                }
                 object OpenNotepadFiles = XtendedMenuSettings.GetValue("OpenNotepadFiles");
                 if (OpenNotepadFiles != null)
                 {
                     if (OpenNotepadFiles.ToString() == "1")
                     {
                         XtendedMenuMenu.DropDownItems.Add(OpenNotepad);
-                    }
-                }
-                object BlockWithFirewallFiles = XtendedMenuSettings.GetValue("BlockWithFirewallFiles");
-                if (BlockWithFirewallFiles != null)
-                {
-                    if (BlockWithFirewallFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(BlockFirewall);
                     }
                 }
                 object CopyNameFiles = XtendedMenuSettings.GetValue("CopyNameFiles");
@@ -270,33 +312,12 @@ namespace XtendedMenu
                         XtendedMenuMenu.DropDownItems.Add(CopyLONGPath);
                     }
                 }
-                object AttributesFiles = XtendedMenuSettings.GetValue("AttributesFiles");
-                if (AttributesFiles != null)
-                {
-                    if (AttributesFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(Attributes);
-                        Attributes.DropDownItems.Add(AttributesMenu);
-                        Attributes.DropDownItems.Add(new ToolStripSeparator());
-                        Attributes.DropDownItems.Add(HiddenAttributes);
-                        Attributes.DropDownItems.Add(SystemAttributes);
-                        Attributes.DropDownItems.Add(ReadOnlyAttributes);
-                    }
-                }
                 object SymlinkFiles = XtendedMenuSettings.GetValue("SymlinkFiles");
                 if (SymlinkFiles != null)
                 {
                     if (SymlinkFiles.ToString() == "1")
                     {
                         XtendedMenuMenu.DropDownItems.Add(SymLink);
-                    }
-                }
-                object TakeOwnershipFiles = XtendedMenuSettings.GetValue("TakeOwnershipFiles");
-                if (TakeOwnershipFiles != null)
-                {
-                    if (TakeOwnershipFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(TakeOwnership);
                     }
                 }
                 object AttributesShort = XtendedMenuSettings.GetValue("AttributesShort");
@@ -353,6 +374,22 @@ namespace XtendedMenu
                     if (CopyLONGPathShortFiles.ToString() == "1")
                     {
                         XtendedMenuMenu.DropDownItems.Add(CopyLONGPath);
+                    }
+                }
+                object BlockWithFirewallFiles = XtendedMenuSettings.GetValue("BlockWithFirewallFiles");
+                if (BlockWithFirewallFiles != null)
+                {
+                    if (BlockWithFirewallFiles.ToString() == "1")
+                    {
+                        XtendedMenuMenu.DropDownItems.Add(BlockFirewall);
+                    }
+                }
+                object TakeOwnershipFiles = XtendedMenuSettings.GetValue("TakeOwnershipFiles");
+                if (TakeOwnershipFiles != null)
+                {
+                    if (TakeOwnershipFiles.ToString() == "1")
+                    {
+                        XtendedMenuMenu.DropDownItems.Add(TakeOwnership);
                     }
                 }
 
@@ -606,6 +643,32 @@ namespace XtendedMenu
         {
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\"" + " -ownership", false, true);
+        }
+
+        private void CustomMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
+
+                string[] CustomEntryProcess = Properties.Settings.Default.CustomEntryProcess.Cast<string>().ToArray();
+
+
+
+
+                MessageBox.Show(CustomEntryProcess[itemName]);
+
+
+
+
+                Process.Start(CustomEntryProcess[itemName]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                EasyLogger.Error(ex);
+                throw;
+            }
         }
     }
 }
