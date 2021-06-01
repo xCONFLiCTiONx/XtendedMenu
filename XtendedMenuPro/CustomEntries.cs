@@ -63,54 +63,61 @@ namespace XtendedMenu
                     {
                         CustomNameArray = CustomNameArray.Where(w => w != value).ToArray();
                         key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
+
+                        var CustomArgumentsList = new List<string>();
+                        CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
+                        CustomArgumentsList.RemoveAt(index);
+                        string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+                        key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
+
+
+                        var CustomDirectoryList = new List<string>();
+                        CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
+                        CustomDirectoryList.RemoveAt(index);
+                        string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+                        key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
+
+
+                        var CustomProcessList = new List<string>();
+                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                        CustomProcessList.RemoveAt(index);
+                        string[] CustomProcessArray = CustomProcessList.ToArray();
+                        key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
+
+
+                        var CustomIconList = new List<string>();
+                        CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                        CustomIconList.RemoveAt(index);
+                        string[] CustomIconArray = CustomIconList.ToArray();
+                        key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
+
+
+                        var CustomLocationList = new List<string>();
+                        CustomLocationList.AddRange((string[])key.GetValue("CustomLocation"));
+                        CustomLocationList.RemoveAt(index);
+                        string[] CustomLocationArray = CustomLocationList.ToArray();
+                        key.SetValue("CustomLocation", CustomLocationArray, RegistryValueKind.MultiString);
                     }
+
                     index++;
-
-
-                    var CustomArgumentsList = new List<string>();
-                    CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
-                    string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
-
-                    CustomArgumentsArray = CustomArgumentsArray.Where(w => w != CustomArgumentsArray[index]).ToArray();
-                    key.SetValue("CustomName", CustomArgumentsArray, RegistryValueKind.MultiString);
-
-
-                    var CustomDirectoryList = new List<string>();
-                    CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
-                    string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
-
-                    CustomDirectoryArray = CustomDirectoryArray.Where(w => w != CustomDirectoryArray[index]).ToArray();
-                    key.SetValue("CustomName", CustomDirectoryArray, RegistryValueKind.MultiString);
-
-
-                    var CustomProcessList = new List<string>();
-                    CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
-                    string[] CustomProcessArray = CustomProcessList.ToArray();
-
-                    CustomProcessArray = CustomProcessArray.Where(w => w != CustomProcessArray[index]).ToArray();
-                    key.SetValue("CustomName", CustomProcessArray, RegistryValueKind.MultiString);
-
-
-                    var CustomIconList = new List<string>();
-                    CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
-                    string[] CustomIconArray = CustomIconList.ToArray();
-
-                    CustomIconArray = CustomIconArray.Where(w => w != CustomIconArray[index]).ToArray();
-                    key.SetValue("CustomName", CustomIconArray, RegistryValueKind.MultiString);
-
-
-                    var CustomLocationList = new List<string>();
-                    CustomLocationList.AddRange((string[])key.GetValue("CustomLocation"));
-                    string[] CustomLocationArray = CustomLocationList.ToArray();
-
-                    CustomLocationArray = CustomLocationArray.Where(w => w != CustomLocationArray[index]).ToArray();
-                    key.SetValue("CustomName", CustomLocationArray, RegistryValueKind.MultiString);
-
                 }
             }
-
-
-            
+            EntryBox.Text = "";
+            EntryBox.Items.Clear();
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            {
+                if (key.GetValue("CustomName") != null)
+                {
+                    if (key.GetValue("CustomName") is string)
+                    {
+                        EntryBox.Items.Add((string)key.GetValue("CustomName"));
+                    }
+                    else
+                    {
+                        EntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
+                    }
+                }
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -355,6 +362,7 @@ namespace XtendedMenu
                 }
             }
 
+            EntryBox.Text = "";
             EntryBox.Items.Clear();
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
             {
