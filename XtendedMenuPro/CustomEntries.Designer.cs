@@ -51,20 +51,22 @@ namespace XtendedMenu
             this.label6 = new System.Windows.Forms.Label();
             this.IconBox = new System.Windows.Forms.TextBox();
             this.DirectoryBrowseButton = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // EntryBox
             // 
-            this.EntryBox.Location = new System.Drawing.Point(70, 189);
+            this.EntryBox.Location = new System.Drawing.Point(70, 185);
             this.EntryBox.Name = "EntryBox";
-            this.EntryBox.Size = new System.Drawing.Size(228, 21);
-            this.EntryBox.TabIndex = 10;
+            this.EntryBox.Size = new System.Drawing.Size(323, 21);
+            this.EntryBox.TabIndex = 12;
+            this.EntryBox.SelectedIndexChanged += new System.EventHandler(this.EntryBox_SelectedIndexChanged);
             // 
             // NameBox
             // 
             this.NameBox.Location = new System.Drawing.Point(70, 12);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(309, 20);
+            this.NameBox.Size = new System.Drawing.Size(323, 20);
             this.NameBox.TabIndex = 0;
             // 
             // ProcessBox
@@ -77,7 +79,7 @@ namespace XtendedMenu
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(29, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 12;
@@ -86,7 +88,7 @@ namespace XtendedMenu
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.Location = new System.Drawing.Point(19, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 13;
@@ -95,7 +97,7 @@ namespace XtendedMenu
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 192);
+            this.label3.Location = new System.Drawing.Point(33, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 16;
@@ -103,10 +105,10 @@ namespace XtendedMenu
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(304, 187);
+            this.RemoveButton.Location = new System.Drawing.Point(209, 216);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(75, 23);
-            this.RemoveButton.TabIndex = 11;
+            this.RemoveButton.Size = new System.Drawing.Size(89, 23);
+            this.RemoveButton.TabIndex = 14;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
@@ -115,7 +117,7 @@ namespace XtendedMenu
             // 
             this.ProcessBrowseButton.Location = new System.Drawing.Point(304, 35);
             this.ProcessBrowseButton.Name = "ProcessBrowseButton";
-            this.ProcessBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.ProcessBrowseButton.Size = new System.Drawing.Size(89, 23);
             this.ProcessBrowseButton.TabIndex = 2;
             this.ProcessBrowseButton.Text = "Browse";
             this.ProcessBrowseButton.UseVisualStyleBackColor = true;
@@ -124,7 +126,7 @@ namespace XtendedMenu
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 67);
+            this.label4.Location = new System.Drawing.Point(7, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 14;
@@ -134,13 +136,13 @@ namespace XtendedMenu
             // 
             this.ArgumentsBox.Location = new System.Drawing.Point(70, 64);
             this.ArgumentsBox.Name = "ArgumentsBox";
-            this.ArgumentsBox.Size = new System.Drawing.Size(309, 20);
+            this.ArgumentsBox.Size = new System.Drawing.Size(323, 20);
             this.ArgumentsBox.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 93);
+            this.label5.Location = new System.Drawing.Point(15, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
             this.label5.TabIndex = 15;
@@ -155,10 +157,10 @@ namespace XtendedMenu
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(304, 145);
+            this.AddButton.Location = new System.Drawing.Point(304, 216);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 9;
+            this.AddButton.Size = new System.Drawing.Size(89, 23);
+            this.AddButton.TabIndex = 13;
             this.AddButton.Text = "Add Entry";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -168,10 +170,10 @@ namespace XtendedMenu
             this.AllFilesCB.AutoSize = true;
             this.AllFilesCB.Checked = true;
             this.AllFilesCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AllFilesCB.Location = new System.Drawing.Point(15, 151);
+            this.AllFilesCB.Location = new System.Drawing.Point(83, 149);
             this.AllFilesCB.Name = "AllFilesCB";
             this.AllFilesCB.Size = new System.Drawing.Size(61, 17);
-            this.AllFilesCB.TabIndex = 5;
+            this.AllFilesCB.TabIndex = 8;
             this.AllFilesCB.Text = "All Files";
             this.AllFilesCB.UseVisualStyleBackColor = true;
             // 
@@ -180,10 +182,10 @@ namespace XtendedMenu
             this.ShortcutsCB.AutoSize = true;
             this.ShortcutsCB.Checked = true;
             this.ShortcutsCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShortcutsCB.Location = new System.Drawing.Point(76, 151);
+            this.ShortcutsCB.Location = new System.Drawing.Point(150, 149);
             this.ShortcutsCB.Name = "ShortcutsCB";
             this.ShortcutsCB.Size = new System.Drawing.Size(71, 17);
-            this.ShortcutsCB.TabIndex = 6;
+            this.ShortcutsCB.TabIndex = 9;
             this.ShortcutsCB.Text = "Shortcuts";
             this.ShortcutsCB.UseVisualStyleBackColor = true;
             // 
@@ -192,10 +194,10 @@ namespace XtendedMenu
             this.DirectoriesCB.AutoSize = true;
             this.DirectoriesCB.Checked = true;
             this.DirectoriesCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DirectoriesCB.Location = new System.Drawing.Point(146, 151);
+            this.DirectoriesCB.Location = new System.Drawing.Point(227, 149);
             this.DirectoriesCB.Name = "DirectoriesCB";
             this.DirectoriesCB.Size = new System.Drawing.Size(76, 17);
-            this.DirectoriesCB.TabIndex = 7;
+            this.DirectoriesCB.TabIndex = 10;
             this.DirectoriesCB.Text = "Directories";
             this.DirectoriesCB.UseVisualStyleBackColor = true;
             // 
@@ -204,10 +206,10 @@ namespace XtendedMenu
             this.BackgroundCB.AutoSize = true;
             this.BackgroundCB.Checked = true;
             this.BackgroundCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.BackgroundCB.Location = new System.Drawing.Point(220, 151);
+            this.BackgroundCB.Location = new System.Drawing.Point(309, 149);
             this.BackgroundCB.Name = "BackgroundCB";
             this.BackgroundCB.Size = new System.Drawing.Size(84, 17);
-            this.BackgroundCB.TabIndex = 8;
+            this.BackgroundCB.TabIndex = 11;
             this.BackgroundCB.Text = "Background";
             this.BackgroundCB.UseVisualStyleBackColor = true;
             // 
@@ -215,8 +217,8 @@ namespace XtendedMenu
             // 
             this.IconBrowseButton.Location = new System.Drawing.Point(304, 116);
             this.IconBrowseButton.Name = "IconBrowseButton";
-            this.IconBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.IconBrowseButton.TabIndex = 18;
+            this.IconBrowseButton.Size = new System.Drawing.Size(89, 23);
+            this.IconBrowseButton.TabIndex = 7;
             this.IconBrowseButton.Text = "Browse";
             this.IconBrowseButton.UseVisualStyleBackColor = true;
             this.IconBrowseButton.Click += new System.EventHandler(this.IconBrowseButton_Click);
@@ -224,7 +226,7 @@ namespace XtendedMenu
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 122);
+            this.label6.Location = new System.Drawing.Point(36, 121);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 19;
@@ -235,23 +237,34 @@ namespace XtendedMenu
             this.IconBox.Location = new System.Drawing.Point(70, 119);
             this.IconBox.Name = "IconBox";
             this.IconBox.Size = new System.Drawing.Size(228, 20);
-            this.IconBox.TabIndex = 17;
+            this.IconBox.TabIndex = 6;
             // 
             // DirectoryBrowseButton
             // 
             this.DirectoryBrowseButton.Location = new System.Drawing.Point(304, 90);
             this.DirectoryBrowseButton.Name = "DirectoryBrowseButton";
-            this.DirectoryBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.DirectoryBrowseButton.TabIndex = 20;
+            this.DirectoryBrowseButton.Size = new System.Drawing.Size(89, 23);
+            this.DirectoryBrowseButton.TabIndex = 5;
             this.DirectoryBrowseButton.Text = "Browse";
             this.DirectoryBrowseButton.UseVisualStyleBackColor = true;
             this.DirectoryBrowseButton.Click += new System.EventHandler(this.DirectoryBrowseButton_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(114, 216);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(89, 23);
+            this.ClearButton.TabIndex = 15;
+            this.ClearButton.Text = "Clear All";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // CustomEntries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 223);
+            this.ClientSize = new System.Drawing.Size(404, 249);
+            this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.DirectoryBrowseButton);
             this.Controls.Add(this.IconBrowseButton);
             this.Controls.Add(this.label6);
@@ -307,5 +320,6 @@ namespace XtendedMenu
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox IconBox;
         private System.Windows.Forms.Button DirectoryBrowseButton;
+        private System.Windows.Forms.Button ClearButton;
     }
 }

@@ -51,6 +51,11 @@ namespace XtendedMenu
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            RemoveEntry();
+        }
+
+        private void RemoveEntry()
+        {
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
             {
                 int index = 0;
@@ -64,6 +69,13 @@ namespace XtendedMenu
                         CustomNameArray = CustomNameArray.Where(w => w != value).ToArray();
                         key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
 
+
+                        var CustomProcessList = new List<string>();
+                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                        CustomProcessList.RemoveAt(index);
+                        string[] CustomProcessArray = CustomProcessList.ToArray();
+                        key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
+
                         var CustomArgumentsList = new List<string>();
                         CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                         CustomArgumentsList.RemoveAt(index);
@@ -76,13 +88,6 @@ namespace XtendedMenu
                         CustomDirectoryList.RemoveAt(index);
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                         key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
-
-
-                        var CustomProcessList = new List<string>();
-                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
-                        CustomProcessList.RemoveAt(index);
-                        string[] CustomProcessArray = CustomProcessList.ToArray();
-                        key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
 
 
                         var CustomIconList = new List<string>();
@@ -122,6 +127,11 @@ namespace XtendedMenu
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(EntryBox.Text))
+            {
+                RemoveEntry();
+            }
+
             if (string.IsNullOrEmpty(NameBox.Text))
             {
                 MessageBox.Show("Make sure there is a Name before adding an entry.");
@@ -390,6 +400,9 @@ namespace XtendedMenu
             DirectoriesCB.Checked = true;
             BackgroundCB.Checked = true;
 
+            EntryBox.Text = "";
+            AddButton.Text = "Add Entry";
+
             NameBox.Select();
         }
 
@@ -423,6 +436,72 @@ namespace XtendedMenu
                     DirectoryBox.Text = folderBrowserDialog.SelectedPath;
                 }
             }
+        }
+
+        private void EntryBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(EntryBox.Text))
+            {
+                AddButton.Text = "Update Entry";
+            }
+            else
+            {
+                AddButton.Text = "Add Entry";
+            }
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            {
+                int index = 0;
+                var CustomNameList = new List<string>();
+                CustomNameList.AddRange((string[])key.GetValue("CustomName"));
+                string[] CustomNameArray = CustomNameList.ToArray();
+                foreach (string value in CustomNameArray)
+                {
+                    if (value == (string)EntryBox.SelectedItem)
+                    {
+                        NameBox.Text = (string)EntryBox.SelectedItem;
+
+                        var CustomProcessList = new List<string>();
+                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                        ProcessBox.Text = CustomProcessList[index];
+
+                        var CustomArgumentsList = new List<string>();
+                        CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
+                        string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+                        ArgumentsBox.Text = CustomArgumentsArray[index];
+
+                        var CustomDirectoryList = new List<string>();
+                        CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
+                        string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+                        DirectoryBox.Text = CustomDirectoryArray[index];
+
+                        var CustomIconList = new List<string>();
+                        CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                        string[] CustomIconArray = CustomIconList.ToArray();
+                        IconBox.Text = CustomIconArray[index];
+                    }
+
+                    index++;
+                }
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            NameBox.Clear();
+            ProcessBox.Clear();
+            ArgumentsBox.Clear();
+            DirectoryBox.Clear();
+            IconBox.Clear();
+
+            AllFilesCB.Checked = true;
+            ShortcutsCB.Checked = true;
+            DirectoriesCB.Checked = true;
+            BackgroundCB.Checked = true;
+
+            EntryBox.Text = "";
+            AddButton.Text = "Add Entry";
+
+            NameBox.Select();
         }
     }
 }

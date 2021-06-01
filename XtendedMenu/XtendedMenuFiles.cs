@@ -2,7 +2,9 @@
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -171,39 +173,37 @@ namespace XtendedMenu
             try
             {
                 // Custom Entries
-                //string[] before = new string[] { "Hello", "World", "Wo" };
-                //string[] after;
-                //using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
-                //{
-                //    key.SetValue("Test", before);
-                //    after = (string[])key.GetValue("Test");
-                //    foreach (string str in after)
-                //    {
-                //        MessageBox.Show(str);
-                //    }
-                //}
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+                {
+                    int index = 0;
+                    var CustomNameList = new List<string>();
+                    CustomNameList.AddRange((string[])key.GetValue("CustomName"));
+                    string[] CustomNameArray = CustomNameList.ToArray();
+                    foreach (string value in CustomNameArray)
+                    {
+                        ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
 
-                //foreach (string item in CustomEntry)
-                //{
-                //    MessageBox.Show(item);
+                        using (CustomMenuItem = new ToolStripMenuItem())
+                        {
+                            CustomMenuItem.Text = value;
+                            CustomMenuItem.Name = index.ToString();
+                        }
 
+                        Menu.Items.Add(CustomMenuItem);
 
+                        var CustomIconList = new List<string>();
+                        CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                        string[] IconListArray = CustomIconList.ToArray();
 
-                //    ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
-
-                //    using (CustomMenuItem = new ToolStripMenuItem())
-                //    {
-                //        CustomMenuItem.Text = item;
-                //        CustomMenuItem.Name = itemCount.ToString();
-                //    }
-
-                //    Menu.Items.Add(CustomMenuItem);
-
-                //    CustomMenuItem.Image = Properties.Resources.notepad.ToBitmap();
-                //    CustomMenuItem.Click += CustomMenuItem_Click;
-                //    XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
-                //    itemCount++;
-                //}
+                        if (!string.IsNullOrEmpty(IconListArray[index]))
+                        {
+                            CustomMenuItem.Image = Image.FromFile(IconListArray[index]);
+                        }
+                        CustomMenuItem.Click += CustomMenuItem_Click;
+                        XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                        index++;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -651,19 +651,16 @@ namespace XtendedMenu
         {
             try
             {
-                int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+                {
+                    int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
 
-                //string[] CustomEntryProcess = XtendedMenu.Properties.Settings.Default.CustomEntryProcess.Cast<string>().ToArray();
+                    var CustomNameList = new List<string>();
+                    CustomNameList.AddRange((string[])key.GetValue("CustomProcess"));
+                    string[] CustomEntryProcess = CustomNameList.ToArray();
 
-
-
-
-                //MessageBox.Show(CustomEntryProcess[itemName]);
-
-
-
-
-                //Process.Start(CustomEntryProcess[itemName]);
+                    Process.Start(CustomEntryProcess[itemName]);
+                }
             }
             catch (Exception ex)
             {
