@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -408,21 +409,73 @@ namespace XtendedMenu
 
         private void IconBrowseButton_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "ico files (*.ico)|*.ico|All files (*.*)|*.*";
-
-                openFileDialog.RestoreDirectory = true;
-                openFileDialog.Title = "Icon to show";
-                openFileDialog.CheckFileExists = true;
-                openFileDialog.CheckPathExists = true;
-
-                DialogResult dr = openFileDialog.ShowDialog();
-                if (dr == DialogResult.OK)
+                if (string.IsNullOrEmpty(NameBox.Text))
                 {
-                    IconBox.Text = openFileDialog.FileName;
+                    MessageBox.Show("Make sure there is a Name before adding an Icon.");
+                    return;
                 }
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = "c:\\";
+                    openFileDialog.Filter = "Icon (*.ico;*.exe;*.dll)|*.ico;*.exe;*.dll";
+
+                    openFileDialog.RestoreDirectory = true;
+                    openFileDialog.Title = "Icon to show";
+                    openFileDialog.CheckFileExists = true;
+                    openFileDialog.CheckPathExists = true;
+
+                    DialogResult dr = openFileDialog.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        IconBox.Text = openFileDialog.FileName;
+
+                        string IconPath = AppDomain.CurrentDomain.BaseDirectory + "ICONS\\";
+                        Directory.CreateDirectory(IconPath);
+
+                        string executablePath = openFileDialog.FileName;
+
+                        if (Path.GetExtension(openFileDialog.FileName) == "exe" || Path.GetExtension(openFileDialog.FileName) == "exe")
+                        {
+                            Icon theIcon = ExtractIcon.ExtractIconFromFilePath(executablePath);
+
+                            if (theIcon != null)
+                            {
+                                if (File.Exists(IconPath + NameBox.Text + ".ico"))
+                                {
+                                    DialogResult dialogResult = MessageBox.Show(IconPath + NameBox.Text + ".ico" + " already exists! Do you want to overwrite this file?", "ICON", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    if (dialogResult == DialogResult.OK)
+                                    {
+                                        using (FileStream stream = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.CreateNew))
+                                        {
+                                            theIcon.Save(stream);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    using (FileStream stream = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.CreateNew))
+                                    {
+                                        theIcon.Save(stream);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            File.Copy(openFileDialog.FileName, IconPath + NameBox.Text + ".ico", true);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

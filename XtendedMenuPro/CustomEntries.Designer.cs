@@ -52,6 +52,7 @@ namespace XtendedMenu
             this.IconBox = new System.Windows.Forms.TextBox();
             this.DirectoryBrowseButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // EntryBox
@@ -108,7 +109,7 @@ namespace XtendedMenu
             this.RemoveButton.Location = new System.Drawing.Point(209, 216);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(89, 23);
-            this.RemoveButton.TabIndex = 14;
+            this.RemoveButton.TabIndex = 15;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
@@ -160,7 +161,7 @@ namespace XtendedMenu
             this.AddButton.Location = new System.Drawing.Point(304, 216);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(89, 23);
-            this.AddButton.TabIndex = 13;
+            this.AddButton.TabIndex = 14;
             this.AddButton.Text = "Add Entry";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -254,16 +255,27 @@ namespace XtendedMenu
             this.ClearButton.Location = new System.Drawing.Point(114, 216);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(89, 23);
-            this.ClearButton.TabIndex = 15;
+            this.ClearButton.TabIndex = 16;
             this.ClearButton.Text = "Clear All";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 222);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(55, 17);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "Admin";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // CustomEntries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 249);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.DirectoryBrowseButton);
             this.Controls.Add(this.IconBrowseButton);
@@ -321,5 +333,6 @@ namespace XtendedMenu
         private System.Windows.Forms.TextBox IconBox;
         private System.Windows.Forms.Button DirectoryBrowseButton;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

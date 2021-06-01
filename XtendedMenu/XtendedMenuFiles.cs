@@ -176,32 +176,59 @@ namespace XtendedMenu
                 using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
                 {
                     int index = 0;
-                    var CustomNameList = new List<string>();
-                    CustomNameList.AddRange((string[])key.GetValue("CustomName"));
-                    string[] CustomNameArray = CustomNameList.ToArray();
-                    foreach (string value in CustomNameArray)
+                    if (key.GetValue("CustomName") is string)
                     {
                         ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
 
                         using (CustomMenuItem = new ToolStripMenuItem())
                         {
-                            CustomMenuItem.Text = value;
+                            CustomMenuItem.Text = (string)key.GetValue("CustomName");
                             CustomMenuItem.Name = index.ToString();
+                        }
+
+                        if (File.Exists((string)key.GetValue("CustomIcon")))
+                        {
+                            CustomMenuItem.Image = Image.FromFile((string)key.GetValue("CustomIcon"));
                         }
 
                         Menu.Items.Add(CustomMenuItem);
 
-                        var CustomIconList = new List<string>();
-                        CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
-                        string[] IconListArray = CustomIconList.ToArray();
-
-                        if (!string.IsNullOrEmpty(IconListArray[index]))
-                        {
-                            CustomMenuItem.Image = Image.FromFile(IconListArray[index]);
-                        }
                         CustomMenuItem.Click += CustomMenuItem_Click;
                         XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
-                        index++;
+                    }
+                    else
+                    {
+                        var CustomNameList = new List<string>();
+                        CustomNameList.AddRange((string[])key.GetValue("CustomName"));
+                        string[] CustomNameArray = CustomNameList.ToArray();
+                        foreach (string value in CustomNameArray)
+                        {
+                            ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
+
+                            using (CustomMenuItem = new ToolStripMenuItem())
+                            {
+                                CustomMenuItem.Text = value;
+                                CustomMenuItem.Name = index.ToString();
+                            }
+
+                            var CustomIconList = new List<string>();
+                            CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                            string[] IconListArray = CustomIconList.ToArray();
+
+                            if (!string.IsNullOrEmpty(IconListArray[index]))
+                            {
+                                if (File.Exists(IconListArray[index]))
+                                {
+                                    CustomMenuItem.Image = Image.FromFile(IconListArray[index]);
+                                }
+                            }
+
+                            Menu.Items.Add(CustomMenuItem);
+
+                            CustomMenuItem.Click += CustomMenuItem_Click;
+                            XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                            index++;
+                        }
                     }
                 }
             }
@@ -655,11 +682,41 @@ namespace XtendedMenu
                 {
                     int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
 
-                    var CustomNameList = new List<string>();
-                    CustomNameList.AddRange((string[])key.GetValue("CustomProcess"));
-                    string[] CustomEntryProcess = CustomNameList.ToArray();
 
-                    Process.Start(CustomEntryProcess[itemName]);
+                    if (key.GetValue("CustomProcess") is string)
+                    {
+                        using (Process process = new Process())
+                        {
+                            process.StartInfo.FileName = (string)key.GetValue("CustomProcess");
+                            process.StartInfo.Arguments = (string)key.GetValue("CustomArguments");
+                            process.StartInfo.WorkingDirectory = (string)key.GetValue("CustomProcess");
+                            //process.StartInfo.Verb = "runas";
+                            process.Start();
+                        }
+                    }
+                    else
+                    {
+                        var CustomProcessList = new List<string>();
+                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                        string[] CustomProcessArray = CustomProcessList.ToArray();
+
+                        var CustomArgumentsList = new List<string>();
+                        CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
+                        string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+
+                        var CustomDirectoryList = new List<string>();
+                        CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
+                        string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+
+                        using (Process process = new Process())
+                        {
+                            process.StartInfo.FileName = CustomProcessArray[itemName];
+                            process.StartInfo.Arguments = CustomArgumentsArray[itemName];
+                            process.StartInfo.WorkingDirectory = CustomDirectoryArray[itemName];
+                            //process.StartInfo.Verb = "runas";
+                            process.Start();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
