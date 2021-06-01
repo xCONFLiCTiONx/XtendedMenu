@@ -145,130 +145,34 @@
   <data name="FolderAttributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderAttributes.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="notepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\notepad.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SymLink" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SymLink.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TakeOwnership" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TakeOwnership.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AttributesText" xml:space="preserve">
-    <value>Attributes</value>
-  </data>
-  <data name="BlockAllText" xml:space="preserve">
-    <value>Block all with Firewall</value>
-  </data>
-  <data name="BlockText" xml:space="preserve">
-    <value>Block with Firewall</value>
-  </data>
-  <data name="CommandLines" xml:space="preserve">
-    <value>Command Lines</value>
-  </data>
-  <data name="CommandPrompt" xml:space="preserve">
-    <value>Command Prompt</value>
-  </data>
-  <data name="CommandPromptElevated" xml:space="preserve">
-    <value>Command Prompt (Admin)</value>
-  </data>
-  <data name="CopyNameText" xml:space="preserve">
-    <value>Copy Name</value>
-  </data>
-  <data name="CopyPathText" xml:space="preserve">
-    <value>Copy Path</value>
-  </data>
-  <data name="CreateSymbolicLink" xml:space="preserve">
-    <value>Create Symbolic Link (Junction)</value>
-  </data>
-  <data name="FindWallpaperText" xml:space="preserve">
-    <value>Find Wallpaper</value>
-  </data>
-  <data name="HiddenAttributes" xml:space="preserve">
-    <value>Set Hidden Attribute</value>
-  </data>
-  <data name="HideHidden" xml:space="preserve">
-    <value>Hide Hidden</value>
-  </data>
-  <data name="HideSystem" xml:space="preserve">
-    <value>Hide System</value>
-  </data>
-  <data name="XtendedMenuName" xml:space="preserve">
-    <value>XtendedMenu</value>
-  </data>
-  <data name="OpenNotepad" xml:space="preserve">
-    <value>Open with text editor</value>
-  </data>
-  <data name="ReadOnlyAttributes" xml:space="preserve">
-    <value>Set Read-only Attribute</value>
-  </data>
-  <data name="SetAttributes" xml:space="preserve">
-    <value>Set Attributes</value>
-  </data>
-  <data name="ShowHidden" xml:space="preserve">
-    <value>Show Hidden</value>
-  </data>
-  <data name="ShowSystem" xml:space="preserve">
-    <value>Show System</value>
-  </data>
-  <data name="SystemAttributes" xml:space="preserve">
-    <value>Set System Attribute</value>
-  </data>
-  <data name="ErrorTitle" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="OpenGitAsAdmin" xml:space="preserve">
-    <value>Git-cmd (Admin)</value>
-  </data>
-  <data name="OpenGitAsUser" xml:space="preserve">
-    <value>Git-cmd</value>
-  </data>
-  <data name="OpenPSAsAdmin" xml:space="preserve">
-    <value>Powershell (Admin)</value>
-  </data>
-  <data name="OpenPSAsUser" xml:space="preserve">
-    <value>Powershell</value>
-  </data>
-  <data name="PS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PS.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FolderIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FolderIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GitCmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GitCmd.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AttributesMenu" xml:space="preserve">
-    <value>Attributes Menu</value>
-  </data>
-  <data name="TakeOwnershipText" xml:space="preserve">
-    <value>Take Ownership</value>
-  </data>
-  <data name="FolderIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FolderIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MAIN_ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MAIN_ICON.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SystemIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SystemIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MAIN_ICON_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MAIN_ICON_256.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenTerminal" xml:space="preserve">
-    <value>Terminal</value>
+  <data name="notepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\notepad.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenTerminalElevated" xml:space="preserve">
-    <value>Terminal (Admin)</value>
+  <data name="PS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SymLink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SymLink.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SystemIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SystemIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TakeOwnership" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TakeOwnership.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="terminal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\terminal.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CopyLONGPathText" xml:space="preserve">
-    <value>Copy Long Path</value>
-  </data>
-  <data name="CopyPathURLText" xml:space="preserve">
-    <value>Copy Path as URL</value>
-  </data>
-  <data name="CopySHORTPathText" xml:space="preserve">
-    <value>Copy Short Path</value>
   </data>
 </root>

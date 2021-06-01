@@ -71,48 +71,12 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attributes Menu.
-        /// </summary>
-        internal static string AttributesMenu {
-            get {
-                return ResourceManager.GetString("AttributesMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon AttributesShow {
             get {
                 object obj = ResourceManager.GetObject("AttributesShow", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Attributes.
-        /// </summary>
-        internal static string AttributesText {
-            get {
-                return ResourceManager.GetString("AttributesText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Block all with Firewall.
-        /// </summary>
-        internal static string BlockAllText {
-            get {
-                return ResourceManager.GetString("BlockAllText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Block with Firewall.
-        /// </summary>
-        internal static string BlockText {
-            get {
-                return ResourceManager.GetString("BlockText", resourceCulture);
             }
         }
         
@@ -127,42 +91,6 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Command Lines.
-        /// </summary>
-        internal static string CommandLines {
-            get {
-                return ResourceManager.GetString("CommandLines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Command Prompt.
-        /// </summary>
-        internal static string CommandPrompt {
-            get {
-                return ResourceManager.GetString("CommandPrompt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Command Prompt (Admin).
-        /// </summary>
-        internal static string CommandPromptElevated {
-            get {
-                return ResourceManager.GetString("CommandPromptElevated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Long Path.
-        /// </summary>
-        internal static string CopyLONGPathText {
-            get {
-                return ResourceManager.GetString("CopyLONGPathText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon CopyName {
@@ -173,66 +101,12 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Name.
-        /// </summary>
-        internal static string CopyNameText {
-            get {
-                return ResourceManager.GetString("CopyNameText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon CopyPath {
             get {
                 object obj = ResourceManager.GetObject("CopyPath", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Path.
-        /// </summary>
-        internal static string CopyPathText {
-            get {
-                return ResourceManager.GetString("CopyPathText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Path as URL.
-        /// </summary>
-        internal static string CopyPathURLText {
-            get {
-                return ResourceManager.GetString("CopyPathURLText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Short Path.
-        /// </summary>
-        internal static string CopySHORTPathText {
-            get {
-                return ResourceManager.GetString("CopySHORTPathText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create Symbolic Link (Junction).
-        /// </summary>
-        internal static string CreateSymbolicLink {
-            get {
-                return ResourceManager.GetString("CreateSymbolicLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        internal static string ErrorTitle {
-            get {
-                return ResourceManager.GetString("ErrorTitle", resourceCulture);
             }
         }
         
@@ -253,15 +127,6 @@ namespace XtendedMenu.Properties {
             get {
                 object obj = ResourceManager.GetObject("FindWallpaper", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Find Wallpaper.
-        /// </summary>
-        internal static string FindWallpaperText {
-            get {
-                return ResourceManager.GetString("FindWallpaperText", resourceCulture);
             }
         }
         
@@ -306,33 +171,6 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Hidden Attribute.
-        /// </summary>
-        internal static string HiddenAttributes {
-            get {
-                return ResourceManager.GetString("HiddenAttributes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide Hidden.
-        /// </summary>
-        internal static string HideHidden {
-            get {
-                return ResourceManager.GetString("HideHidden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide System.
-        /// </summary>
-        internal static string HideSystem {
-            get {
-                return ResourceManager.GetString("HideSystem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon MAIN_ICON {
@@ -363,69 +201,6 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Git-cmd (Admin).
-        /// </summary>
-        internal static string OpenGitAsAdmin {
-            get {
-                return ResourceManager.GetString("OpenGitAsAdmin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Git-cmd.
-        /// </summary>
-        internal static string OpenGitAsUser {
-            get {
-                return ResourceManager.GetString("OpenGitAsUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open with text editor.
-        /// </summary>
-        internal static string OpenNotepad {
-            get {
-                return ResourceManager.GetString("OpenNotepad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Powershell (Admin).
-        /// </summary>
-        internal static string OpenPSAsAdmin {
-            get {
-                return ResourceManager.GetString("OpenPSAsAdmin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Powershell.
-        /// </summary>
-        internal static string OpenPSAsUser {
-            get {
-                return ResourceManager.GetString("OpenPSAsUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Terminal.
-        /// </summary>
-        internal static string OpenTerminal {
-            get {
-                return ResourceManager.GetString("OpenTerminal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Terminal (Admin).
-        /// </summary>
-        internal static string OpenTerminalElevated {
-            get {
-                return ResourceManager.GetString("OpenTerminalElevated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon PS {
@@ -436,57 +211,12 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Read-only Attribute.
-        /// </summary>
-        internal static string ReadOnlyAttributes {
-            get {
-                return ResourceManager.GetString("ReadOnlyAttributes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set Attributes.
-        /// </summary>
-        internal static string SetAttributes {
-            get {
-                return ResourceManager.GetString("SetAttributes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show Hidden.
-        /// </summary>
-        internal static string ShowHidden {
-            get {
-                return ResourceManager.GetString("ShowHidden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show System.
-        /// </summary>
-        internal static string ShowSystem {
-            get {
-                return ResourceManager.GetString("ShowSystem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon SymLink {
             get {
                 object obj = ResourceManager.GetObject("SymLink", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set System Attribute.
-        /// </summary>
-        internal static string SystemAttributes {
-            get {
-                return ResourceManager.GetString("SystemAttributes", resourceCulture);
             }
         }
         
@@ -511,30 +241,12 @@ namespace XtendedMenu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take Ownership.
-        /// </summary>
-        internal static string TakeOwnershipText {
-            get {
-                return ResourceManager.GetString("TakeOwnershipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon terminal {
             get {
                 object obj = ResourceManager.GetObject("terminal", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to XtendedMenu.
-        /// </summary>
-        internal static string XtendedMenuName {
-            get {
-                return ResourceManager.GetString("XtendedMenuName", resourceCulture);
             }
         }
     }

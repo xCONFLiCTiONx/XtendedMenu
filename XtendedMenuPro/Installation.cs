@@ -98,6 +98,7 @@ namespace XtendedMenu
                 StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
 
                 UninstallInfo.DeleteSubKeyTree("XtendedMenu", false);
+                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\CustomEntries", false);
                 RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings", false);
                 RegistrySoftware.DeleteSubKey("XtendedMenu", false);
 

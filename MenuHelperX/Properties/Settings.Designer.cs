@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MenuTools.Properties {
+namespace MenuHelperX.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,25 +25,13 @@ namespace MenuTools.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("04/10/2017 16:04:00")]
-        public global::System.DateTime Time {
+        [global::System.Configuration.DefaultSettingValueAttribute("No")]
+        public string Help {
             get {
-                return ((global::System.DateTime)(this["Time"]));
+                return ((string)(this["Help"]));
             }
             set {
-                this["Time"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool OpenNotepadFile {
-            get {
-                return ((bool)(this["OpenNotepadFile"]));
-            }
-            set {
-                this["OpenNotepadFile"] = value;
+                this["Help"] = value;
             }
         }
     }

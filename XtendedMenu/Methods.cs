@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace XtendedMenu.Methods
+namespace XtendedMenu
 {
     internal static class ShortcutHandler
     {

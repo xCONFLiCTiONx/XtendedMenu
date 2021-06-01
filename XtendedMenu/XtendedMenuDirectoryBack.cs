@@ -7,7 +7,6 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using XtendedMenu.Methods;
 using XtendedMenu.Properties;
 
 namespace XtendedMenu
@@ -15,9 +14,7 @@ namespace XtendedMenu
     [ComVisible(true)]
     [COMServerAssociation(AssociationType.Class, @"Directory\Background")]
     [DisplayName("XtendedMenu")]
-#pragma warning disable IDE1006 // Naming Styles
     public class XtendedMenuDirectoryBack : SharpContextMenu
-#pragma warning restore IDE1006 // Naming Styles
     {
         private static readonly RegistryKey ExplorerAdvanced = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", true);
         private readonly CultureInfo culture = CultureInfo.CurrentCulture;
@@ -50,70 +47,70 @@ namespace XtendedMenu
                     // CommandLine
                     using (CommandLine = new ToolStripMenuItem())
                     {
-                        CommandLine.Text = Resources.CommandLines;
+                        CommandLine.Text = "Command Lines";
                         CommandLine.Name = "CommandLine";
 
                         // OpenTerminalAsUser
                         using (OpenTerminalAsUser = new ToolStripMenuItem())
                         {
-                            OpenTerminalAsUser.Text = Resources.OpenTerminal;
+                            OpenTerminalAsUser.Text = "Terminal";
                             OpenTerminalAsUser.Name = "OpenTerminalAsUser";
                         }
                         // OpenTerminalAsAdmin
                         using (OpenTerminalAsAdmin = new ToolStripMenuItem())
                         {
-                            OpenTerminalAsAdmin.Text = Resources.OpenTerminalElevated;
+                            OpenTerminalAsAdmin.Text = "Terminal (Admin)";
                             OpenTerminalAsAdmin.Name = "OpenTerminalAsAdmin";
                         }
 
                         // OpenCmdAsUser
                         using (OpenCmdAsUser = new ToolStripMenuItem())
                         {
-                            OpenCmdAsUser.Text = Resources.CommandPrompt;
+                            OpenCmdAsUser.Text = "Command Prompt";
                             OpenCmdAsUser.Name = "OpenCmdAsUser";
                         }
                         // OpenCmdAsAdmin
                         using (OpenCmdAsAdmin = new ToolStripMenuItem())
                         {
-                            OpenCmdAsAdmin.Text = Resources.CommandPromptElevated;
+                            OpenCmdAsAdmin.Text = "Command Prompt (Admin)";
                             OpenCmdAsAdmin.Name = "OpenCmdAsAdmin";
                         }
 
                         // OpenGitAsUser
                         using (OpenGitAsUser = new ToolStripMenuItem())
                         {
-                            OpenGitAsUser.Text = Resources.OpenGitAsUser;
+                            OpenGitAsUser.Text = "Git-cmd";
                             OpenGitAsUser.Name = "OpenGitAsUser";
                         }
                         // OpenGitAsAdmin
                         using (OpenGitAsAdmin = new ToolStripMenuItem())
                         {
-                            OpenGitAsAdmin.Text = Resources.OpenGitAsAdmin;
+                            OpenGitAsAdmin.Text = "Git-cmd (Admin)";
                             OpenGitAsAdmin.Name = "OpenGitAsAdmin";
                         }
 
                         // OpenPSAsUser
                         using (OpenPSAsUser = new ToolStripMenuItem())
                         {
-                            OpenPSAsUser.Text = Resources.OpenPSAsUser;
+                            OpenPSAsUser.Text = "Powershell";
                             OpenPSAsUser.Name = "OpenPSAsUser";
                         }
                         // OpenPSAsAdmin
                         using (OpenPSAsAdmin = new ToolStripMenuItem())
                         {
-                            OpenPSAsAdmin.Text = Resources.OpenPSAsAdmin;
+                            OpenPSAsAdmin.Text = "Powershell (Admin)";
                             OpenPSAsAdmin.Name = "OpenPSAsAdmin";
                         }
                     }
                     // Attributes
                     using (Attributes = new ToolStripMenuItem())
                     {
-                        Attributes.Text = Resources.AttributesText;
+                        Attributes.Text = "Attributes";
                         Attributes.Name = "Attributes";
 
                         using (AttributesMenu = new ToolStripMenuItem())
                         {
-                            AttributesMenu.Text = Resources.AttributesMenu;
+                            AttributesMenu.Text = "Attributes Menu";
                             AttributesMenu.Name = "AttributesMenu";
                         }
                         try
@@ -161,7 +158,7 @@ namespace XtendedMenu
                     // FindWallpaper
                     using (FindWallpaper = new ToolStripMenuItem())
                     {
-                        FindWallpaper.Text = Resources.FindWallpaperText;
+                        FindWallpaper.Text = "Find Wallpaper";
                         FindWallpaper.Name = "FindWallpaper";
                     }
                     // Paste Contents
@@ -192,7 +189,7 @@ namespace XtendedMenu
         {
             // Main Menu
             Menu.Items.Add(XtendedMenuMenu);
-            XtendedMenuMenu.Text = Resources.XtendedMenuName;
+            XtendedMenuMenu.Text = "XtendedMenu";
 
             // Icons
             XtendedMenuMenu.Image = Resources.MAIN_ICON.ToBitmap();
@@ -353,12 +350,12 @@ namespace XtendedMenu
         {
             using (ShowHidden = new ToolStripMenuItem())
             {
-                ShowHidden.Text = Resources.ShowHidden;
+                ShowHidden.Text = "Show Hidden";
                 ShowHidden.Name = "ShowHidden";
             }
             using (HideHidden = new ToolStripMenuItem())
             {
-                HideHidden.Text = Resources.HideHidden;
+                HideHidden.Text = "Hide Hidden";
                 HideHidden.Name = "HideHidden";
             }
             if (AttributesInfo.HiddenFilesShowing)
@@ -371,12 +368,12 @@ namespace XtendedMenu
             }
             using (ShowSystem = new ToolStripMenuItem())
             {
-                ShowSystem.Text = Resources.ShowSystem;
+                ShowSystem.Text = "Show System";
                 ShowSystem.Name = "ShowSystem";
             }
             using (HideSystem = new ToolStripMenuItem())
             {
-                HideSystem.Text = Resources.HideSystem;
+                HideSystem.Text = "Hide System";
                 HideSystem.Name = "HideSystem";
             }
             if (AttributesInfo.SystemFilesShowing)

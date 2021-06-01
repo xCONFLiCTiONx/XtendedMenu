@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using XtendedMenu.Methods;
 using XtendedMenu.Properties;
 
 namespace XtendedMenu
@@ -15,9 +14,7 @@ namespace XtendedMenu
     [ComVisible(true)]
     [COMServerAssociation(AssociationType.Directory)]
     [DisplayName("XtendedMenu")]
-#pragma warning disable IDE1006 // Naming Styles
     public class XtendedMenuDirectory : SharpContextMenu
-#pragma warning restore IDE1006 // Naming Styles
     {
         private static readonly RegistryKey ExplorerAdvanced = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", true);
         private readonly CultureInfo culture = CultureInfo.CurrentCulture;
@@ -45,43 +42,43 @@ namespace XtendedMenu
                     // BlockFirewall
                     using (BlockFirewall = new ToolStripMenuItem())
                     {
-                        BlockFirewall.Text = Resources.BlockAllText;
+                        BlockFirewall.Text = "Block all with Firewall";
                         BlockFirewall.Name = "BlockFirewall";
                     }
                     // CopyName
                     using (CopyName = new ToolStripMenuItem())
                     {
-                        CopyName.Text = Resources.CopyNameText;
+                        CopyName.Text = "Copy Name";
                         CopyName.Name = "CopyName";
                     }
                     // CopyPath
                     using (CopyPath = new ToolStripMenuItem())
                     {
-                        CopyPath.Text = Resources.CopyPathText;
+                        CopyPath.Text = "Copy Path";
                         CopyPath.Name = "CopyPath";
                     }
                     // CopyPathURL
                     using (CopyPathURL = new ToolStripMenuItem())
                     {
-                        CopyPathURL.Text = Resources.CopyPathURLText;
+                        CopyPathURL.Text = "Copy Path as URL";
                         CopyPathURL.Name = "CopyPathURL";
                     }
                     // CopyLONGPath
                     using (CopyLONGPath = new ToolStripMenuItem())
                     {
-                        CopyLONGPath.Text = Resources.CopyLONGPathText;
+                        CopyLONGPath.Text = "Copy Long Path";
                         CopyLONGPath.Name = "CopyLONGPath";
                     }
                     // Attributes
                     using (Attributes = new ToolStripMenuItem())
                     {
-                        Attributes.Text = Resources.AttributesText;
+                        Attributes.Text = "Attributes";
                         Attributes.Name = "Attributes";
 
                         // AttributesMenu
                         using (AttributesMenu = new ToolStripMenuItem())
                         {
-                            AttributesMenu.Text = Resources.AttributesMenu;
+                            AttributesMenu.Text = "Attributes Menu";
                             AttributesMenu.Name = "AttributesMenu";
                         }
                         // Get : Set Attributes
@@ -116,13 +113,13 @@ namespace XtendedMenu
                     // SymLink
                     using (SymLink = new ToolStripMenuItem())
                     {
-                        SymLink.Text = Resources.CreateSymbolicLink;
+                        SymLink.Text = "Create Symbolic Link (Junction)";
                         SymLink.Name = "SymLink";
                     }
                     // TakeOwnership
                     using (TakeOwnership = new ToolStripMenuItem())
                     {
-                        TakeOwnership.Text = Resources.TakeOwnershipText;
+                        TakeOwnership.Text = "Take Ownership";
                         TakeOwnership.Name = "TakeOwnership";
                     }
                 }
@@ -143,7 +140,7 @@ namespace XtendedMenu
         {
             // Main Menu
             Menu.Items.Add(XtendedMenuMenu);
-            XtendedMenuMenu.Text = Resources.XtendedMenuName;
+            XtendedMenuMenu.Text = "XtendedMenu";
 
             // Icons
             XtendedMenuMenu.Image = Resources.MAIN_ICON.ToBitmap();
@@ -273,7 +270,7 @@ namespace XtendedMenu
         {
             using (HiddenAttributes = new ToolStripMenuItem())
             {
-                HiddenAttributes.Text = Resources.HiddenAttributes;
+                HiddenAttributes.Text = "Set Hidden Attribute";
                 HiddenAttributes.Name = "HiddenAttributes";
             }
             if (AttributesInfo.hidden)
@@ -283,7 +280,7 @@ namespace XtendedMenu
             // SystemAttributes
             using (SystemAttributes = new ToolStripMenuItem())
             {
-                SystemAttributes.Text = Resources.SystemAttributes;
+                SystemAttributes.Text = "Set Attributes";
                 SystemAttributes.Name = "SystemAttributes";
             }
             if (AttributesInfo.system)
@@ -293,7 +290,7 @@ namespace XtendedMenu
             // ReadOnlyAttributes
             using (ReadOnlyAttributes = new ToolStripMenuItem())
             {
-                ReadOnlyAttributes.Text = Resources.ReadOnlyAttributes;
+                ReadOnlyAttributes.Text = "Set Read-only Attribute";
                 ReadOnlyAttributes.Name = "ReadOnlyAttributes";
             }
             if (AttributesInfo.readOnly)
@@ -306,12 +303,12 @@ namespace XtendedMenu
         {
             using (ShowHidden = new ToolStripMenuItem())
             {
-                ShowHidden.Text = Resources.ShowHidden;
+                ShowHidden.Text = "Show Hidden";
                 ShowHidden.Name = "ShowHidden";
             }
             using (HideHidden = new ToolStripMenuItem())
             {
-                HideHidden.Text = Resources.HideHidden;
+                HideHidden.Text = "Hide Hidden";
                 HideHidden.Name = "HideHidden";
             }
             if (AttributesInfo.HiddenFilesShowing)
@@ -324,12 +321,12 @@ namespace XtendedMenu
             }
             using (ShowSystem = new ToolStripMenuItem())
             {
-                ShowSystem.Text = Resources.ShowSystem;
+                ShowSystem.Text = "Show System";
                 ShowSystem.Name = "ShowSystem";
             }
             using (HideSystem = new ToolStripMenuItem())
             {
-                HideSystem.Text = Resources.HideSystem;
+                HideSystem.Text = "Hide System";
                 HideSystem.Name = "HideSystem";
             }
             if (AttributesInfo.SystemFilesShowing)

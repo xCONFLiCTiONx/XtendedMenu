@@ -2,15 +2,12 @@
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using XtendedMenu.Methods;
-using XtendedMenu.Properties;
 
 [assembly: CLSCompliant(false)]
 namespace XtendedMenu
@@ -19,9 +16,7 @@ namespace XtendedMenu
     [COMServerAssociation(AssociationType.AllFiles)]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".lnk")]
     [DisplayName("XtendedMenu")]
-#pragma warning disable IDE1006 // Naming Styles
     public class XtendedMenuFiles : SharpContextMenu
-#pragma warning restore IDE1006 // Naming Styles
     {
         private static readonly RegistryKey XtendedMenuSettings = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", true);
         private ContextMenuStrip Menu;
@@ -48,11 +43,11 @@ namespace XtendedMenu
                     {
                         Attributes.Name = "Attributes";
 
-                        Attributes.Text = Resources.AttributesText;
+                        Attributes.Text = "Attributes";
                         // AttributesMenu
                         using (AttributesMenu = new ToolStripMenuItem())
                         {
-                            AttributesMenu.Text = Resources.AttributesMenu;
+                            AttributesMenu.Text = "Attributes Menu";
                             AttributesMenu.Name = "AttributesMenu";
                         }
                         // Get : Set Attributes
@@ -87,49 +82,49 @@ namespace XtendedMenu
                     // OpenNotepad
                     using (OpenNotepad = new ToolStripMenuItem())
                     {
-                        OpenNotepad.Text = Resources.OpenNotepad;
+                        OpenNotepad.Text = "Open with text editor";
                         OpenNotepad.Name = "OpenNotepad";
                     }
                     // CopyName
                     using (CopyName = new ToolStripMenuItem())
                     {
-                        CopyName.Text = Resources.CopyNameText;
+                        CopyName.Text = "Copy Name";
                         CopyName.Name = "CopyName";
                     }
                     // CopyPath
                     using (CopyPath = new ToolStripMenuItem())
                     {
-                        CopyPath.Text = Resources.CopyPathText;
+                        CopyPath.Text = "Copy Path";
                         CopyPath.Name = "CopyPath";
                     }
                     // CopyPathURL
                     using (CopyPathURL = new ToolStripMenuItem())
                     {
-                        CopyPathURL.Text = Resources.CopyPathURLText;
+                        CopyPathURL.Text = "Copy Path as URL";
                         CopyPathURL.Name = "CopyPathURL";
                     }
                     // CopyLONGPath
                     using (CopyLONGPath = new ToolStripMenuItem())
                     {
-                        CopyLONGPath.Text = Resources.CopyLONGPathText;
+                        CopyLONGPath.Text = "Copy Long Path";
                         CopyLONGPath.Name = "CopyLONGPath";
                     }
                     // SymLink
                     using (SymLink = new ToolStripMenuItem())
                     {
-                        SymLink.Text = Resources.CreateSymbolicLink;
+                        SymLink.Text = "Create Symbolic Link (Junction)";
                         SymLink.Name = "SymLink";
                     }
                     // BlockFirewall
                     using (BlockFirewall = new ToolStripMenuItem())
                     {
-                        BlockFirewall.Text = Resources.BlockText;
+                        BlockFirewall.Text = "Block with Firewall";
                         BlockFirewall.Name = "BlockFirewall";
                     }
                     // TakeOwnership
                     using (TakeOwnership = new ToolStripMenuItem())
                     {
-                        TakeOwnership.Text = Resources.TakeOwnershipText;
+                        TakeOwnership.Text = "Take Ownership";
                         TakeOwnership.Name = "TakeOwnership";
                     }
                 }
@@ -155,20 +150,20 @@ namespace XtendedMenu
         {
             // Main Menu
             Menu.Items.Add(XtendedMenuMenu);
-            XtendedMenuMenu.Text = Resources.XtendedMenuName;
+            XtendedMenuMenu.Text = "XtendedMenu";
 
             // Icons
-            XtendedMenuMenu.Image = Resources.MAIN_ICON.ToBitmap();
-            Attributes.Image = Resources.FileAttributes.ToBitmap();
-            AttributesMenu.Image = Resources.MAIN_ICON.ToBitmap();
-            OpenNotepad.Image = Resources.notepad.ToBitmap();
-            CopyPath.Image = Resources.CopyPath.ToBitmap();
-            CopyPathURL.Image = Resources.CopyPath.ToBitmap();
-            CopyLONGPath.Image = Resources.CopyPath.ToBitmap();
-            CopyName.Image = Resources.CopyName.ToBitmap();
-            SymLink.Image = Resources.SymLink.ToBitmap();
-            BlockFirewall.Image = Resources.Firewall.ToBitmap();
-            TakeOwnership.Image = Resources.TakeOwnership.ToBitmap();
+            XtendedMenuMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
+            Attributes.Image = Properties.Resources.FileAttributes.ToBitmap();
+            AttributesMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
+            OpenNotepad.Image = Properties.Resources.notepad.ToBitmap();
+            CopyPath.Image = Properties.Resources.CopyPath.ToBitmap();
+            CopyPathURL.Image = Properties.Resources.CopyPath.ToBitmap();
+            CopyLONGPath.Image = Properties.Resources.CopyPath.ToBitmap();
+            CopyName.Image = Properties.Resources.CopyName.ToBitmap();
+            SymLink.Image = Properties.Resources.SymLink.ToBitmap();
+            BlockFirewall.Image = Properties.Resources.Firewall.ToBitmap();
+            TakeOwnership.Image = Properties.Resources.TakeOwnership.ToBitmap();
 
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             AddMenuItems(array);
@@ -176,32 +171,39 @@ namespace XtendedMenu
             try
             {
                 // Custom Entries
-                string[] CustomEntry = Properties.Settings.Default.CustomEntry.Cast<string>().ToArray();
-                int itemCount = 0;
-                Properties.Settings.Default.CustomEntry.Add("TEST");
-                var path = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
-                MessageBox.Show(path);
-                foreach (string item in CustomEntry)
-                {
-                    MessageBox.Show(item);
+                //string[] before = new string[] { "Hello", "World", "Wo" };
+                //string[] after;
+                //using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+                //{
+                //    key.SetValue("Test", before);
+                //    after = (string[])key.GetValue("Test");
+                //    foreach (string str in after)
+                //    {
+                //        MessageBox.Show(str);
+                //    }
+                //}
+
+                //foreach (string item in CustomEntry)
+                //{
+                //    MessageBox.Show(item);
 
 
 
-                    ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
+                //    ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
 
-                    using (CustomMenuItem = new ToolStripMenuItem())
-                    {
-                        CustomMenuItem.Text = item;
-                        CustomMenuItem.Name = itemCount.ToString();
-                    }
+                //    using (CustomMenuItem = new ToolStripMenuItem())
+                //    {
+                //        CustomMenuItem.Text = item;
+                //        CustomMenuItem.Name = itemCount.ToString();
+                //    }
 
-                    Menu.Items.Add(CustomMenuItem);
+                //    Menu.Items.Add(CustomMenuItem);
 
-                    CustomMenuItem.Image = Resources.notepad.ToBitmap();
-                    CustomMenuItem.Click += CustomMenuItem_Click;
-                    XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
-                    itemCount++;
-                }
+                //    CustomMenuItem.Image = Properties.Resources.notepad.ToBitmap();
+                //    CustomMenuItem.Click += CustomMenuItem_Click;
+                //    XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                //    itemCount++;
+                //}
             }
             catch (Exception ex)
             {
@@ -451,45 +453,45 @@ namespace XtendedMenu
         {
             using (HiddenAttributes = new ToolStripMenuItem())
             {
-                HiddenAttributes.Text = Resources.HiddenAttributes;
+                HiddenAttributes.Text = "Set Hidden Attribute";
                 HiddenAttributes.Name = "HiddenAttributes";
             }
             if (AttributesInfo.hidden)
             {
-                HiddenAttributes.Image = Resources.AttributesShow.ToBitmap();
+                HiddenAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
             }
             // SystemAttributes
             using (SystemAttributes = new ToolStripMenuItem())
             {
-                SystemAttributes.Text = Resources.SystemAttributes;
+                SystemAttributes.Text = "Set System Attribute";
                 SystemAttributes.Name = "SystemAttributes";
             }
             if (AttributesInfo.system)
             {
-                SystemAttributes.Image = Resources.AttributesShow.ToBitmap();
+                SystemAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
             }
             // ReadOnlyAttributes
             using (ReadOnlyAttributes = new ToolStripMenuItem())
             {
-                ReadOnlyAttributes.Text = Resources.ReadOnlyAttributes;
+                ReadOnlyAttributes.Text = "Set Read-only Attribute";
                 ReadOnlyAttributes.Name = "ReadOnlyAttributes";
             }
             if (AttributesInfo.readOnly)
             {
-                ReadOnlyAttributes.Image = Resources.AttributesShow.ToBitmap();
+                ReadOnlyAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
             }
         }
         // Methods
 
         public static bool HasExecutable(string path)
         {
-            var executable = FindExecutable(path);
+            string executable = FindExecutable(path);
             return !string.IsNullOrEmpty(executable);
         }
 
         private static string FindExecutable(string path)
         {
-            var executable = new StringBuilder(1024);
+            StringBuilder executable = new StringBuilder(1024);
             FindExecutable(path, string.Empty, executable);
             return executable.ToString();
         }
@@ -651,17 +653,17 @@ namespace XtendedMenu
             {
                 int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
 
-                string[] CustomEntryProcess = Properties.Settings.Default.CustomEntryProcess.Cast<string>().ToArray();
+                //string[] CustomEntryProcess = XtendedMenu.Properties.Settings.Default.CustomEntryProcess.Cast<string>().ToArray();
 
 
 
 
-                MessageBox.Show(CustomEntryProcess[itemName]);
+                //MessageBox.Show(CustomEntryProcess[itemName]);
 
 
 
 
-                Process.Start(CustomEntryProcess[itemName]);
+                //Process.Start(CustomEntryProcess[itemName]);
             }
             catch (Exception ex)
             {

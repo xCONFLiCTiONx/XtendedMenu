@@ -43,10 +43,10 @@ namespace XtendedMenu
             this.label5 = new System.Windows.Forms.Label();
             this.DirectoryBox = new System.Windows.Forms.TextBox();
             this.AddButton = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.AllFilesCB = new System.Windows.Forms.CheckBox();
+            this.ShortcutsCB = new System.Windows.Forms.CheckBox();
+            this.DirectoriesCB = new System.Windows.Forms.CheckBox();
+            this.BackgroundCB = new System.Windows.Forms.CheckBox();
             this.IconBrowseButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.IconBox = new System.Windows.Forms.TextBox();
@@ -163,53 +163,53 @@ namespace XtendedMenu
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // checkBox1
+            // AllFilesCB
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(15, 151);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(61, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "All Files";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.AllFilesCB.AutoSize = true;
+            this.AllFilesCB.Checked = true;
+            this.AllFilesCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AllFilesCB.Location = new System.Drawing.Point(15, 151);
+            this.AllFilesCB.Name = "AllFilesCB";
+            this.AllFilesCB.Size = new System.Drawing.Size(61, 17);
+            this.AllFilesCB.TabIndex = 5;
+            this.AllFilesCB.Text = "All Files";
+            this.AllFilesCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ShortcutsCB
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(76, 151);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(71, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Shortcuts";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ShortcutsCB.AutoSize = true;
+            this.ShortcutsCB.Checked = true;
+            this.ShortcutsCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShortcutsCB.Location = new System.Drawing.Point(76, 151);
+            this.ShortcutsCB.Name = "ShortcutsCB";
+            this.ShortcutsCB.Size = new System.Drawing.Size(71, 17);
+            this.ShortcutsCB.TabIndex = 6;
+            this.ShortcutsCB.Text = "Shortcuts";
+            this.ShortcutsCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // DirectoriesCB
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(146, 151);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(76, 17);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "Directories";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.DirectoriesCB.AutoSize = true;
+            this.DirectoriesCB.Checked = true;
+            this.DirectoriesCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DirectoriesCB.Location = new System.Drawing.Point(146, 151);
+            this.DirectoriesCB.Name = "DirectoriesCB";
+            this.DirectoriesCB.Size = new System.Drawing.Size(76, 17);
+            this.DirectoriesCB.TabIndex = 7;
+            this.DirectoriesCB.Text = "Directories";
+            this.DirectoriesCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // BackgroundCB
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(220, 151);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(84, 17);
-            this.checkBox4.TabIndex = 8;
-            this.checkBox4.Text = "Background";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.BackgroundCB.AutoSize = true;
+            this.BackgroundCB.Checked = true;
+            this.BackgroundCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BackgroundCB.Location = new System.Drawing.Point(220, 151);
+            this.BackgroundCB.Name = "BackgroundCB";
+            this.BackgroundCB.Size = new System.Drawing.Size(84, 17);
+            this.BackgroundCB.TabIndex = 8;
+            this.BackgroundCB.Text = "Background";
+            this.BackgroundCB.UseVisualStyleBackColor = true;
             // 
             // IconBrowseButton
             // 
@@ -256,10 +256,10 @@ namespace XtendedMenu
             this.Controls.Add(this.IconBrowseButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.IconBox);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.BackgroundCB);
+            this.Controls.Add(this.DirectoriesCB);
+            this.Controls.Add(this.ShortcutsCB);
+            this.Controls.Add(this.AllFilesCB);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DirectoryBox);
@@ -299,10 +299,10 @@ namespace XtendedMenu
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox DirectoryBox;
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox AllFilesCB;
+        private System.Windows.Forms.CheckBox ShortcutsCB;
+        private System.Windows.Forms.CheckBox DirectoriesCB;
+        private System.Windows.Forms.CheckBox BackgroundCB;
         private System.Windows.Forms.Button IconBrowseButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox IconBox;

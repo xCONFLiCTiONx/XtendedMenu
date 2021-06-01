@@ -2,9 +2,9 @@
 
 namespace XtendedMenu
 {
-    class SetRegistryItems
+    internal class SetRegistryItems
     {
-        static readonly RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
+        private static readonly RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
         internal static void SetItems()
         {
             // All Files
