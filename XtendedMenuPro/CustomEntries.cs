@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace XtendedMenu
@@ -50,7 +51,66 @@ namespace XtendedMenu
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            {
+                int index = 0;
+                var CustomNameList = new List<string>();
+                CustomNameList.AddRange((string[])key.GetValue("CustomName"));
+                string[] CustomNameArray = CustomNameList.ToArray();
+                foreach (string value in CustomNameArray)
+                {
+                    if (value == (string)EntryBox.SelectedItem)
+                    {
+                        CustomNameArray = CustomNameArray.Where(w => w != value).ToArray();
+                        key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
+                    }
+                    index++;
 
+
+                    var CustomArgumentsList = new List<string>();
+                    CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
+                    string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+
+                    CustomArgumentsArray = CustomArgumentsArray.Where(w => w != CustomArgumentsArray[index]).ToArray();
+                    key.SetValue("CustomName", CustomArgumentsArray, RegistryValueKind.MultiString);
+
+
+                    var CustomDirectoryList = new List<string>();
+                    CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
+                    string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+
+                    CustomDirectoryArray = CustomDirectoryArray.Where(w => w != CustomDirectoryArray[index]).ToArray();
+                    key.SetValue("CustomName", CustomDirectoryArray, RegistryValueKind.MultiString);
+
+
+                    var CustomProcessList = new List<string>();
+                    CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                    string[] CustomProcessArray = CustomProcessList.ToArray();
+
+                    CustomProcessArray = CustomProcessArray.Where(w => w != CustomProcessArray[index]).ToArray();
+                    key.SetValue("CustomName", CustomProcessArray, RegistryValueKind.MultiString);
+
+
+                    var CustomIconList = new List<string>();
+                    CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                    string[] CustomIconArray = CustomIconList.ToArray();
+
+                    CustomIconArray = CustomIconArray.Where(w => w != CustomIconArray[index]).ToArray();
+                    key.SetValue("CustomName", CustomIconArray, RegistryValueKind.MultiString);
+
+
+                    var CustomLocationList = new List<string>();
+                    CustomLocationList.AddRange((string[])key.GetValue("CustomLocation"));
+                    string[] CustomLocationArray = CustomLocationList.ToArray();
+
+                    CustomLocationArray = CustomLocationArray.Where(w => w != CustomLocationArray[index]).ToArray();
+                    key.SetValue("CustomName", CustomLocationArray, RegistryValueKind.MultiString);
+
+                }
+            }
+
+
+            
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -99,7 +159,6 @@ namespace XtendedMenu
                         string[] newArrayCheck = myListCheck.ToArray();
                         foreach (string value in newArrayCheck)
                         {
-                            MessageBox.Show(value);
                             if (value == NameBox.Text)
                             {
                                 MessageBox.Show("This Name already exists.");
@@ -246,7 +305,6 @@ namespace XtendedMenu
                     }
                 }
                 // CustomLocation
-
                 string checkedLocations = string.Empty;
                 if (AllFilesCB.Checked)
                 {
