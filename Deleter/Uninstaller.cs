@@ -18,13 +18,17 @@ namespace Deleter
                 {
                     Process[] chrome = Process.GetProcessesByName("chrome");
                     Process[] OUTLOOK = Process.GetProcessesByName("OUTLOOK");
-                    if (chrome.Length > 0)
+                    if (chrome.Length > 0 && OUTLOOK.Length > 0)
                     {
-                        MessageBox.Show("It appears that Chrome is currently running and may lock some files. Please close Chrome and then press OK to continue.", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("It appears that Chrome and Outlook are currently running and may lock some files. Please close them and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    if (OUTLOOK.Length > 0)
+                    else if (chrome.Length > 0)
                     {
-                        MessageBox.Show("It appears that Outlook is currently running and may lock some files. Please close Outlook and then press OK to continue.", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("It appears that Chrome is currently running and may lock some files. Please close Chrome and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (OUTLOOK.Length > 0)
+                    {
+                        MessageBox.Show("It appears that Outlook is currently running and may lock some files. Please close Outlook and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 catch

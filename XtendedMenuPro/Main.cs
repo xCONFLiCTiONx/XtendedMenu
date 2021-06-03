@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -17,7 +18,7 @@ namespace XtendedMenu
         public static string JunctionName = string.Empty;
         private static bool CountingFilesOperation = true;
         private static int FilesCount = 0;
-        private static readonly string Operation = Resources.CountingFiles;
+        private static readonly string Operation = "Counting Files";
         private bool PauseOperation = false;
         private string MainFolderName;
         private static bool ThreadRunning = false;
@@ -28,8 +29,7 @@ namespace XtendedMenu
         private readonly string CurrentUser = Environment.UserDomainName + "\\" + Environment.UserName;
         private bool NoErrors;
         private bool Ready = false;
-        private static bool IsElevated => WindowsIdentity.GetCurrent().Owner
-                  .IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid);
+        internal static bool IsElevated => WindowsIdentity.GetCurrent().Owner.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid);
 
         public Main(string[] args)
         {
@@ -39,35 +39,22 @@ namespace XtendedMenu
 
                 Shown += Main_Shown;
 
-                if (args.Length == 0)
+                RegistryKey InstallInfo = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", false);
+
+                if (InstallInfo == null)
                 {
-                    Settings settings = new Settings();
-                    using (settings)
+                    if (args.Length > 0)
                     {
-                        settings.ShowDialog();
+                        Installation.InstallerClass(args[0]);
+                    }
+                    else
+                    {
+                        Installation.InstallerClass("-install");
                     }
                 }
-                if (args.Length > 0)
+                else
                 {
-                    // Refresh Explorer
-                    if (args[0] == Resources.RefreshArgs)
-                    {
-                        ExplorerRefresh.RefreshWindowsExplorer();
-                    }
-                    // Installer
-                    if (args[0] == Resources.InstallArgs || args[0] == Resources.InstallArgsShort || args[0] == Resources.UninstallArgs || args[0] == Resources.UninstallArgsShort)
-                    {
-                        if (IsElevated)
-                        {
-                            Installation.InstallerElevated();
-                        }
-                        else
-                        {
-                            Installation.InstallerUnelevated();
-                        }
-                    }
-                    // Settings
-                    if (args[0] == Resources.SettingArgs || args[0] == Resources.SettingArgsShort)
+                    if (args.Length == 0)
                     {
                         Settings settings = new Settings();
                         using (settings)
@@ -75,14 +62,40 @@ namespace XtendedMenu
                             settings.ShowDialog();
                         }
                     }
-                }
-                if (args.Length > 1)
-                {
-                    ExecuteCommands(args);
-                }
-                if (!KeepAlive)
-                {
-                    Environment.Exit(0);
+                    if (args.Length > 0)
+                    {
+                        if (args[0] == "-install" || args[0] == "-i")
+                        {
+                            Installation.InstallerClass("-install");
+                        }
+                        if (args[0] == "-uninstall" || args[0] == "-u")
+                        {
+                            Installation.InstallerClass("-uninstall");
+                        }
+                        // Refresh Explorer
+                        if (args[0] == "-refresh")
+                        {
+                            ExplorerRefresh.RefreshWindowsExplorer();
+                        }
+
+                        // Settings
+                        if (args[0] == "-settings" || args[0] == "-s")
+                        {
+                            Settings settings = new Settings();
+                            using (settings)
+                            {
+                                settings.ShowDialog();
+                            }
+                        }
+                    }
+                    if (args.Length > 1)
+                    {
+                        ExecuteCommands(args);
+                    }
+                    if (!KeepAlive)
+                    {
+                        Environment.Exit(0);
+                    }
                 }
             }
             catch (Exception ex)
@@ -102,7 +115,7 @@ namespace XtendedMenu
         {
             try
             {
-                if (args[1] == Resources.MakeLink)
+                if (args[1] == "-makelink")
                 {
                     string[] selectPaths = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     int items = 0;
@@ -148,11 +161,11 @@ namespace XtendedMenu
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                if (args[1] == Resources.CatchHandlerArgs)
+                if (args[1] == "-catchhandler")
                 {
                     MessageLogging(args[0], MessageBoxIcon.Error);
                 }
-                if (args[1] == Resources.AttributesMenuArgs)
+                if (args[1] == "-attributesmenu")
                 {
                     string[] array = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     AttributesMenu menu = new AttributesMenu(array);
@@ -162,7 +175,7 @@ namespace XtendedMenu
                     }
                     Environment.Exit(0);
                 }
-                if (args[1] == Resources.FirewallFilesArgs)
+                if (args[1] == "-firewallfiles")
                 {
                     try
                     {
@@ -181,17 +194,17 @@ namespace XtendedMenu
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                if (args[1] == Resources.FirewallFolderArgs)
+                if (args[1] == "-firewallfolder")
                 {
                     KeepAlive = true;
-                    Text = Resources.BlockingFilesTitle;
-                    Thread thread = new Thread(() => FirewallDirectory(args[0], Resources.FirewallArgs))
+                    Text = "Blocking Files";
+                    Thread thread = new Thread(() => FirewallDirectory(args[0], "-firewall"))
                     {
                         IsBackground = true
                     };
                     thread.Start();
                 }
-                if (args[1] == Resources.OwnershipArgs)
+                if (args[1] == "-ownership")
                 {
                     string[] array = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     foreach (string item in array)
@@ -293,7 +306,8 @@ namespace XtendedMenu
                         Hide();
                         if (NoErrors)
                         {
-                            DialogResult results = MessageForm(Resources.DialogMessageBlockFiles, Resources.DialogTitleSuccess, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                            DialogResult results = MessageForm("File(s) added to Windows Defender Firewall successfully." + Environment.NewLine +
+                                "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                             if (results == DialogResult.Yes)
                             {
                                 StartProcess.StartInfo("wf.msc");
@@ -322,7 +336,7 @@ namespace XtendedMenu
                 int threads = 0;
                 int ThreadsCount = 0;
                 string[] array = args.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                label1.Text = Resources.FileCount;
+                label1.Text = "Please wait while file count is enumerated...";
                 foreach (string item in array)
                 {
                     threads++;
@@ -331,12 +345,12 @@ namespace XtendedMenu
                 {
                     MainFolderName = Path.GetFileName(item);
                     // Firewall Operation
-                    if (operation == Resources.FirewallArgs)
+                    if (operation == "-firewall")
                     {
-                        label1.Text = Resources.Blocking;
+                        label1.Text = "Adding Files to Windows Firewall";
                         RootPath = Directory.EnumerateFiles(item, "*.*", SearchOption.AllDirectories)
                                  .Where(s => s.EndsWith(".exe", StringComparison.CurrentCulture) || s.EndsWith(".dll", StringComparison.CurrentCulture));
-                        Thread thread = new Thread(() => AddToFirewall(Resources.FirewallArgs))
+                        Thread thread = new Thread(() => AddToFirewall("-firewall"))
                         {
                             IsBackground = true
                         };
@@ -364,7 +378,7 @@ namespace XtendedMenu
         TryAgain:;
             try
             {
-                label2.Text = Resources.FileCount;
+                label2.Text = "Please wait while file count is enumerated...";
                 if (RootPath != null)
                 {
                     foreach (string file in RootPath)
@@ -401,7 +415,7 @@ namespace XtendedMenu
                 progressBar1.Value = 0;
                 current = 0;
 
-                if (operation == Resources.FirewallArgs && RootPath != null)
+                if (operation == "-firewall" && RootPath != null)
                 {
                     while (CountingFilesOperation)
                     {
@@ -429,7 +443,7 @@ namespace XtendedMenu
                         }
                         Application.DoEvents();
                     }
-                    label1.Text = Resources.Blocking + Resources.outbound;
+                    label1.Text = "Adding Files to Windows Firewall (outbound)";
                     foreach (string item in RootPath)
                     {
                         try
@@ -446,7 +460,7 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = Resources.BlockingFilesTitle + progressBar1.Value + Resources.Percentage;
+                                Text = "Blocking Files" + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {
@@ -465,7 +479,7 @@ namespace XtendedMenu
                     }
                     current = 0;
                     progressBar1.Value = 0;
-                    label1.Text = Resources.Blocking + Resources.inbound;
+                    label1.Text = "Adding Files to Windows Firewall (inbound)";
                     foreach (string item in RootPath)
                     {
                         try
@@ -482,7 +496,7 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = Resources.BlockingFilesTitle + progressBar1.Value + Resources.Percentage;
+                                Text = "Blocking Files" + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {
@@ -504,7 +518,8 @@ namespace XtendedMenu
                     {
                         Hide();
 
-                        DialogResult results = MessageForm(Resources.DialogMessageBlockFolder, Resources.DialogTitleSuccess, MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                        DialogResult results = MessageForm("All Files with extension exe and dll have been added to the Windows Defender Firewall." + Environment.NewLine +
+                            "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                         if (results == DialogResult.Yes)
                         {
                             StartProcess.StartInfo("wf.msc");
@@ -514,7 +529,7 @@ namespace XtendedMenu
                     {
                         Hide();
 
-                        MessageForm(Resources.DialogMessageFail, Resources.DialogTitleFail, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageForm("No .exe or .dll files were found in the given directory.", "Task Completed with Errors", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 ThreadRunning = false;

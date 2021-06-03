@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using XtendedMenu.Properties;
 using static XtendedMenu.SendMessage;
 
 namespace XtendedMenu
@@ -13,7 +12,6 @@ namespace XtendedMenu
         private static RegistryKey key;
         private const string SoftwareXtendedMenu = "SOFTWARE\\XtendedMenu\\Settings";
         private bool AllFilesCheckBoxesChecked = true;
-        private bool ShortCheckBoxesChecked = true;
         private bool DirectoriesCheckBoxesChecked = true;
         private bool DirBackgroundCheckBoxesChecked = true;
         private object OpenNotepadFiles;
@@ -25,13 +23,7 @@ namespace XtendedMenu
         private object AttributesFiles;
         private object SymlinkFiles;
         private object TakeOwnershipFiles;
-        private object AttributesShort;
-        private object OpenNotepadShort;
         private object SystemFoldersDirectoryBack;
-        private object CopyNameShortFiles;
-        private object CopyPathShortFiles;
-        private object CopyURLShortFiles;
-        private object CopyLongPathShortFiles;
         private object BlockWithFirewallDirectory;
         private object CopyNameDirectory;
         private object CopyPathDirectory;
@@ -54,7 +46,7 @@ namespace XtendedMenu
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
-            label1.Text = Resources.Version + version;
+            label1.Text = "xCONFLiCTiONx  |  XtendedMenu " + version;
 
             RegistryKey subKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\XtendedMenu");
             if (subKey == null)
@@ -79,13 +71,7 @@ namespace XtendedMenu
                     AttributesFiles = key.GetValue("AttributesFiles");
                     SymlinkFiles = key.GetValue("SymlinkFiles");
                     TakeOwnershipFiles = key.GetValue("TakeOwnershipFiles");
-                    AttributesShort = key.GetValue("AttributesShort");
-                    OpenNotepadShort = key.GetValue("OpenNotepadShort");
                     SystemFoldersDirectoryBack = key.GetValue("SystemFoldersDirectoryBack");
-                    CopyNameShortFiles = key.GetValue("CopyNameShortFiles");
-                    CopyPathShortFiles = key.GetValue("CopyPathShortFiles");
-                    CopyURLShortFiles = key.GetValue("CopyURLShortFiles");
-                    CopyLongPathShortFiles = key.GetValue("CopyLongPathShortFiles");
                     PasteContentsDirectoryBack = key.GetValue("PasteContentsDirectoryBack");
 
                     if (OpenNotepadFiles != null)
@@ -149,48 +135,6 @@ namespace XtendedMenu
                         if (TakeOwnershipFiles.ToString() == "1")
                         {
                             TakeOwnershipFileCheckBox.Checked = true;
-                        }
-                    }
-                    if (AttributesShort != null)
-                    {
-                        if (AttributesShort.ToString() == "1")
-                        {
-                            AttributesShortCheckbox.Checked = true;
-                        }
-                    }
-                    if (OpenNotepadShort != null)
-                    {
-                        if (OpenNotepadShort.ToString() == "1")
-                        {
-                            ShortNotepadCheckbox.Checked = true;
-                        }
-                    }
-                    if (CopyNameShortFiles != null)
-                    {
-                        if (CopyNameShortFiles.ToString() == "1")
-                        {
-                            CopyNameShortCheckbox.Checked = true;
-                        }
-                    }
-                    if (CopyPathShortFiles != null)
-                    {
-                        if (CopyPathShortFiles.ToString() == "1")
-                        {
-                            CopyPathShortCheckbox.Checked = true;
-                        }
-                    }
-                    if (CopyURLShortFiles != null)
-                    {
-                        if (CopyURLShortFiles.ToString() == "1")
-                        {
-                            CopyURLShortCheckbox.Checked = true;
-                        }
-                    }
-                    if (CopyLongPathShortFiles != null)
-                    {
-                        if (CopyLongPathShortFiles.ToString() == "1")
-                        {
-                            CopyLongPathShortCheckbox.Checked = true;
                         }
                     }
                     GetSettingsFinal(key);
@@ -317,28 +261,21 @@ namespace XtendedMenu
         {
             foreach (CheckBox checkbox in tabPage1.Controls)
             {
-                if (!checkbox.Checked && checkbox.Text != Resources.SelectAll)
+                if (!checkbox.Checked && checkbox.Text != "Select All")
                 {
                     AllFilesCheckBoxesChecked = false;
                 }
             }
-            foreach (CheckBox checkbox in tabPage2.Controls)
-            {
-                if (!checkbox.Checked && checkbox.Text != Resources.SelectAll)
-                {
-                    ShortCheckBoxesChecked = false;
-                }
-            }
             foreach (CheckBox checkbox in tabPage3.Controls)
             {
-                if (!checkbox.Checked && checkbox.Text != Resources.SelectAll)
+                if (!checkbox.Checked && checkbox.Text != "Select All")
                 {
                     DirectoriesCheckBoxesChecked = false;
                 }
             }
             foreach (CheckBox checkbox in tabPage4.Controls)
             {
-                if (!checkbox.Checked && checkbox.Text != Resources.SelectAll)
+                if (!checkbox.Checked && checkbox.Text != "Select All")
                 {
                     DirBackgroundCheckBoxesChecked = false;
                 }
@@ -346,10 +283,6 @@ namespace XtendedMenu
             if (AllFilesCheckBoxesChecked)
             {
                 AllFilesSelectAllCheckbox.Checked = true;
-            }
-            if (ShortCheckBoxesChecked)
-            {
-                ShortSelectAllCheckbox.Checked = true;
             }
             if (DirectoriesCheckBoxesChecked)
             {
@@ -468,78 +401,7 @@ namespace XtendedMenu
                 key.SetValue("TakeOwnershipFiles", 0x00000000, RegistryValueKind.DWord);
             }
         }
-        // All Files Short
-        private void AttributesShortCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (AttributesShortCheckbox.Checked)
-            {
-                key.SetValue("AttributesShort", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("AttributesShort", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
 
-        private void ShortNotepadCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ShortNotepadCheckbox.Checked)
-            {
-                key.SetValue("OpenNotepadShort", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("OpenNotepadShort", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
-
-        private void CopyNameShortCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CopyNameShortCheckbox.Checked)
-            {
-                key.SetValue("CopyNameShortFiles", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("CopyNameShortFiles", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
-
-        private void CopyPathShortCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CopyPathShortCheckbox.Checked)
-            {
-                key.SetValue("CopyPathShortFiles", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("CopyPathShortFiles", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
-
-        private void CopyURLShortCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CopyURLShortCheckbox.Checked)
-            {
-                key.SetValue("CopyURLShortFiles", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("CopyURLShortFiles", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
-
-        private void CopyLongPathShortCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CopyLongPathShortCheckbox.Checked)
-            {
-                key.SetValue("CopyLongPathShortFiles", 0x00000001, RegistryValueKind.DWord);
-            }
-            else
-            {
-                key.SetValue("CopyLongPathShortFiles", 0x00000000, RegistryValueKind.DWord);
-            }
-        }
         // Directories
         private void BlockFirewallDirectoryCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -701,7 +563,7 @@ namespace XtendedMenu
         {
             if (AllFilesSelectAllCheckbox.Checked)
             {
-                AllFilesSelectAllCheckbox.Text = Resources.SelectNone;
+                AllFilesSelectAllCheckbox.Text = "Select None";
                 NotepadCheckBox.Checked = true;
                 BlockWithFirewallCheckBox.Checked = true;
                 CopyFileNameCheckBox.Checked = true;
@@ -714,7 +576,7 @@ namespace XtendedMenu
             }
             else
             {
-                AllFilesSelectAllCheckbox.Text = Resources.SelectAll;
+                AllFilesSelectAllCheckbox.Text = "Select All";
                 NotepadCheckBox.Checked = false;
                 BlockWithFirewallCheckBox.Checked = false;
                 CopyFileNameCheckBox.Checked = false;
@@ -731,7 +593,7 @@ namespace XtendedMenu
         {
             if (DirSelectAllCheckbox.Checked)
             {
-                DirSelectAllCheckbox.Text = Resources.SelectNone;
+                DirSelectAllCheckbox.Text = "Select None";
                 AttributesDirectoryCheckbox.Checked = true;
                 BlockFirewallDirectoryCheckBox.Checked = true;
                 CopyNameDirectoryCheckbox.Checked = true;
@@ -743,7 +605,7 @@ namespace XtendedMenu
             }
             else
             {
-                DirSelectAllCheckbox.Text = Resources.SelectAll;
+                DirSelectAllCheckbox.Text = "Select All";
                 AttributesDirectoryCheckbox.Checked = false;
                 BlockFirewallDirectoryCheckBox.Checked = false;
                 CopyNameDirectoryCheckbox.Checked = false;
@@ -755,35 +617,11 @@ namespace XtendedMenu
             }
         }
 
-        private void ShortSelectAllCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ShortSelectAllCheckbox.Checked)
-            {
-                ShortSelectAllCheckbox.Text = Resources.SelectNone;
-                AttributesShortCheckbox.Checked = true;
-                ShortNotepadCheckbox.Checked = true;
-                CopyNameShortCheckbox.Checked = true;
-                CopyPathShortCheckbox.Checked = true;
-                CopyURLShortCheckbox.Checked = true;
-                CopyLongPathShortCheckbox.Checked = true;
-            }
-            else
-            {
-                ShortSelectAllCheckbox.Text = Resources.SelectAll;
-                AttributesShortCheckbox.Checked = false;
-                ShortNotepadCheckbox.Checked = false;
-                CopyNameShortCheckbox.Checked = false;
-                CopyPathShortCheckbox.Checked = false;
-                CopyURLShortCheckbox.Checked = false;
-                CopyLongPathShortCheckbox.Checked = false;
-            }
-        }
-
         private void DirBackSelectAllCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (DirBackSelectAllCheckbox.Checked)
             {
-                DirBackSelectAllCheckbox.Text = Resources.SelectNone;
+                DirBackSelectAllCheckbox.Text = "Select None";
                 DirBackAttributesCheckbox.Checked = true;
                 DirBackComLinesCheckbox.Checked = true;
                 SystemFoldersCheckbox.Checked = true;
@@ -792,7 +630,7 @@ namespace XtendedMenu
             }
             else
             {
-                DirBackSelectAllCheckbox.Text = Resources.SelectAll;
+                DirBackSelectAllCheckbox.Text = "Select All";
                 DirBackAttributesCheckbox.Checked = false;
                 DirBackComLinesCheckbox.Checked = false;
                 SystemFoldersCheckbox.Checked = false;

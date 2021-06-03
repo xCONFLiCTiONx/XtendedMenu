@@ -62,22 +62,22 @@ namespace XtendedMenu
                     }
                     if (File.Exists(arg) && args.Length < 2)
                     {
-                        Text = Resources.labelFileName + FolderPathName;
+                        Text = "File: " + FolderPathName;
                     }
                     else if (Directory.Exists(arg) && args.Length < 2)
                     {
-                        Text = Resources.labelFolderName + FolderPathName;
+                        Text = "Folder: " + FolderPathName;
                     }
                     else
                     {
-                        Text = Resources.MultipleFiles;
+                        Text = "Multiple Files/Folders Selected";
                     }
                     SetFileAttributes();
                 }
             }
             else
             {
-                throw new ArgumentNullException(Resources.ErrorTitle);
+                throw new ArgumentNullException("Error");
             }
         }
 
@@ -219,7 +219,7 @@ namespace XtendedMenu
                 catch (UnauthorizedAccessException)
                 {
                     HiddenCheckBox.Enabled = false;
-                    HiddenCheckBox.Text = Resources.SetHiddenUnauthorized;
+                    HiddenCheckBox.Text = "Set as Hidden (Unauthorized)";
                 }
             }
         }
@@ -244,7 +244,7 @@ namespace XtendedMenu
                 catch (UnauthorizedAccessException)
                 {
                     SystemCheckBox.Enabled = false;
-                    SystemCheckBox.Text = Resources.SetSystemUnauthorized;
+                    SystemCheckBox.Text = "Set as System (Unauthorized)";
                 }
             }
         }
@@ -269,7 +269,7 @@ namespace XtendedMenu
                 catch (UnauthorizedAccessException)
                 {
                     ReadOnlyCheckBox.Enabled = false;
-                    ReadOnlyCheckBox.Text = Resources.SetReadOnlyUnauthorized;
+                    ReadOnlyCheckBox.Text = "Set as Read-only (Unauthorized)";
                 }
             }
         }

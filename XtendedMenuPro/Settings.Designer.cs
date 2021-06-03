@@ -41,14 +41,6 @@
             this.CopyFilePathCheckBox = new System.Windows.Forms.CheckBox();
             this.BlockWithFirewallCheckBox = new System.Windows.Forms.CheckBox();
             this.NotepadCheckBox = new System.Windows.Forms.CheckBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.CopyURLShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyLongPathShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.AttributesShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.ShortNotepadCheckbox = new System.Windows.Forms.CheckBox();
-            this.ShortSelectAllCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyNameShortCheckbox = new System.Windows.Forms.CheckBox();
-            this.CopyPathShortCheckbox = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.CopyURLDirectoryCheckbox = new System.Windows.Forms.CheckBox();
             this.CopyLongPathDirectoryCheckbox = new System.Windows.Forms.CheckBox();
@@ -70,7 +62,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +69,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.ItemSize = new System.Drawing.Size(75, 18);
@@ -228,107 +218,6 @@
             this.NotepadCheckBox.Text = "Open with text editor";
             this.NotepadCheckBox.UseVisualStyleBackColor = true;
             this.NotepadCheckBox.CheckedChanged += new System.EventHandler(this.NotepadCheckBox_CheckedChanged);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.CopyURLShortCheckbox);
-            this.tabPage2.Controls.Add(this.CopyLongPathShortCheckbox);
-            this.tabPage2.Controls.Add(this.AttributesShortCheckbox);
-            this.tabPage2.Controls.Add(this.ShortNotepadCheckbox);
-            this.tabPage2.Controls.Add(this.ShortSelectAllCheckbox);
-            this.tabPage2.Controls.Add(this.CopyNameShortCheckbox);
-            this.tabPage2.Controls.Add(this.CopyPathShortCheckbox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(298, 243);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Shortcuts";
-            // 
-            // CopyURLShortCheckbox
-            // 
-            this.CopyURLShortCheckbox.AutoSize = true;
-            this.CopyURLShortCheckbox.Location = new System.Drawing.Point(33, 127);
-            this.CopyURLShortCheckbox.Name = "CopyURLShortCheckbox";
-            this.CopyURLShortCheckbox.Size = new System.Drawing.Size(89, 17);
-            this.CopyURLShortCheckbox.TabIndex = 21;
-            this.CopyURLShortCheckbox.TabStop = false;
-            this.CopyURLShortCheckbox.Text = "Copy as URL";
-            this.CopyURLShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyURLShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyURLShortCheckbox_CheckedChanged);
-            // 
-            // CopyLongPathShortCheckbox
-            // 
-            this.CopyLongPathShortCheckbox.AutoSize = true;
-            this.CopyLongPathShortCheckbox.Location = new System.Drawing.Point(33, 150);
-            this.CopyLongPathShortCheckbox.Name = "CopyLongPathShortCheckbox";
-            this.CopyLongPathShortCheckbox.Size = new System.Drawing.Size(122, 17);
-            this.CopyLongPathShortCheckbox.TabIndex = 20;
-            this.CopyLongPathShortCheckbox.TabStop = false;
-            this.CopyLongPathShortCheckbox.Text = "Copy Long Filename";
-            this.CopyLongPathShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyLongPathShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyLongPathShortCheckbox_CheckedChanged);
-            // 
-            // AttributesShortCheckbox
-            // 
-            this.AttributesShortCheckbox.AutoSize = true;
-            this.AttributesShortCheckbox.Location = new System.Drawing.Point(33, 35);
-            this.AttributesShortCheckbox.Name = "AttributesShortCheckbox";
-            this.AttributesShortCheckbox.Size = new System.Drawing.Size(70, 17);
-            this.AttributesShortCheckbox.TabIndex = 19;
-            this.AttributesShortCheckbox.TabStop = false;
-            this.AttributesShortCheckbox.Text = "Attributes";
-            this.AttributesShortCheckbox.UseVisualStyleBackColor = true;
-            this.AttributesShortCheckbox.CheckedChanged += new System.EventHandler(this.AttributesShortCheckbox_CheckedChanged);
-            // 
-            // ShortNotepadCheckbox
-            // 
-            this.ShortNotepadCheckbox.AutoSize = true;
-            this.ShortNotepadCheckbox.Location = new System.Drawing.Point(33, 58);
-            this.ShortNotepadCheckbox.Name = "ShortNotepadCheckbox";
-            this.ShortNotepadCheckbox.Size = new System.Drawing.Size(123, 17);
-            this.ShortNotepadCheckbox.TabIndex = 18;
-            this.ShortNotepadCheckbox.TabStop = false;
-            this.ShortNotepadCheckbox.Text = "Open with text editor";
-            this.ShortNotepadCheckbox.UseVisualStyleBackColor = true;
-            this.ShortNotepadCheckbox.CheckedChanged += new System.EventHandler(this.ShortNotepadCheckbox_CheckedChanged);
-            // 
-            // ShortSelectAllCheckbox
-            // 
-            this.ShortSelectAllCheckbox.AutoSize = true;
-            this.ShortSelectAllCheckbox.Location = new System.Drawing.Point(19, 12);
-            this.ShortSelectAllCheckbox.Name = "ShortSelectAllCheckbox";
-            this.ShortSelectAllCheckbox.Size = new System.Drawing.Size(70, 17);
-            this.ShortSelectAllCheckbox.TabIndex = 17;
-            this.ShortSelectAllCheckbox.TabStop = false;
-            this.ShortSelectAllCheckbox.Text = "Select All";
-            this.ShortSelectAllCheckbox.UseVisualStyleBackColor = true;
-            this.ShortSelectAllCheckbox.CheckedChanged += new System.EventHandler(this.ShortSelectAllCheckbox_CheckedChanged);
-            // 
-            // CopyNameShortCheckbox
-            // 
-            this.CopyNameShortCheckbox.AutoSize = true;
-            this.CopyNameShortCheckbox.Location = new System.Drawing.Point(33, 81);
-            this.CopyNameShortCheckbox.Name = "CopyNameShortCheckbox";
-            this.CopyNameShortCheckbox.Size = new System.Drawing.Size(81, 17);
-            this.CopyNameShortCheckbox.TabIndex = 16;
-            this.CopyNameShortCheckbox.TabStop = false;
-            this.CopyNameShortCheckbox.Text = "Copy Name";
-            this.CopyNameShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyNameShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyNameShortCheckbox_CheckedChanged);
-            // 
-            // CopyPathShortCheckbox
-            // 
-            this.CopyPathShortCheckbox.AutoSize = true;
-            this.CopyPathShortCheckbox.Location = new System.Drawing.Point(33, 104);
-            this.CopyPathShortCheckbox.Name = "CopyPathShortCheckbox";
-            this.CopyPathShortCheckbox.Size = new System.Drawing.Size(75, 17);
-            this.CopyPathShortCheckbox.TabIndex = 15;
-            this.CopyPathShortCheckbox.TabStop = false;
-            this.CopyPathShortCheckbox.Text = "Copy Path";
-            this.CopyPathShortCheckbox.UseVisualStyleBackColor = true;
-            this.CopyPathShortCheckbox.CheckedChanged += new System.EventHandler(this.CopyPathShortCheckbox_CheckedChanged);
             // 
             // tabPage3
             // 
@@ -582,8 +471,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -597,7 +484,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.CheckBox DirSelectAllCheckbox;
@@ -619,18 +505,11 @@
         private System.Windows.Forms.CheckBox DirBackWallpaperCheckbox;
         private System.Windows.Forms.CheckBox DirBackComLinesCheckbox;
         private System.Windows.Forms.CheckBox DirBackAttributesCheckbox;
-        private System.Windows.Forms.CheckBox ShortNotepadCheckbox;
-        private System.Windows.Forms.CheckBox ShortSelectAllCheckbox;
-        private System.Windows.Forms.CheckBox CopyNameShortCheckbox;
-        private System.Windows.Forms.CheckBox CopyPathShortCheckbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox SystemFoldersCheckbox;
         private System.Windows.Forms.CheckBox PasteContentsCheckbox;
-        private System.Windows.Forms.CheckBox AttributesShortCheckbox;
         private System.Windows.Forms.CheckBox CopyLongPathFilesCheckBox;
         private System.Windows.Forms.CheckBox CopyURLFilesCheckBox;
-        private System.Windows.Forms.CheckBox CopyURLShortCheckbox;
-        private System.Windows.Forms.CheckBox CopyLongPathShortCheckbox;
         private System.Windows.Forms.CheckBox CopyURLDirectoryCheckbox;
         private System.Windows.Forms.CheckBox CopyLongPathDirectoryCheckbox;
         private System.Windows.Forms.Button button1;

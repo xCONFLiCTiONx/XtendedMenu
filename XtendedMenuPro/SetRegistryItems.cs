@@ -17,13 +17,6 @@ namespace XtendedMenu
             XtendedMenuSettings.SetValue("AttributesFiles", 0x00000001, RegistryValueKind.DWord);
             XtendedMenuSettings.SetValue("SymlinkFiles", 0x00000001, RegistryValueKind.DWord);
             XtendedMenuSettings.SetValue("TakeOwnershipFiles", 0x00000001, RegistryValueKind.DWord);
-            // All Files Shorcuts
-            XtendedMenuSettings.SetValue("AttributesShort", 0x00000001, RegistryValueKind.DWord);
-            XtendedMenuSettings.SetValue("OpenNotepadShort", 0x00000001, RegistryValueKind.DWord);
-            XtendedMenuSettings.SetValue("CopyNameShortFiles", 0x00000001, RegistryValueKind.DWord);
-            XtendedMenuSettings.SetValue("CopyPathShortFiles", 0x00000001, RegistryValueKind.DWord);
-            XtendedMenuSettings.SetValue("CopyURLShortFiles", 0x00000001, RegistryValueKind.DWord);
-            XtendedMenuSettings.SetValue("CopyLONGPathShortFiles", 0x00000001, RegistryValueKind.DWord);
             // Directories
             XtendedMenuSettings.SetValue("BlockWithFirewallDirectory", 0x00000001, RegistryValueKind.DWord);
             XtendedMenuSettings.SetValue("CopyNameDirectory", 0x00000001, RegistryValueKind.DWord);

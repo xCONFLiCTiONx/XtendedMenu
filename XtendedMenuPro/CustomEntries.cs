@@ -14,17 +14,50 @@ namespace XtendedMenu
         {
             InitializeComponent();
 
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            PopulateEntryBoxes();
+        }
+
+        private void PopulateEntryBoxes()
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\AllFiles", true))
             {
                 if (key.GetValue("CustomName") != null)
                 {
                     if (key.GetValue("CustomName") is string)
                     {
-                        EntryBox.Items.Add((string)key.GetValue("CustomName"));
+                        AllFilesEntryBox.Items.Add((string)key.GetValue("CustomName"));
                     }
                     else
                     {
-                        EntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
+                        AllFilesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
+                    }
+                }
+            }
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\Directories", true))
+            {
+                if (key.GetValue("CustomName") != null)
+                {
+                    if (key.GetValue("CustomName") is string)
+                    {
+                        DirectoriesEntryBox.Items.Add((string)key.GetValue("CustomName"));
+                    }
+                    else
+                    {
+                        DirectoriesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
+                    }
+                }
+            }
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background", true))
+            {
+                if (key.GetValue("CustomName") != null)
+                {
+                    if (key.GetValue("CustomName") is string)
+                    {
+                        BackgroundEntryBox.Items.Add((string)key.GetValue("CustomName"));
+                    }
+                    else
+                    {
+                        BackgroundEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
                     }
                 }
             }
@@ -52,12 +85,23 @@ namespace XtendedMenu
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveEntry();
+            if (AllFilesCB.Checked)
+            {
+                RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles");
+            }
+            if (DirectoriesCB.Checked)
+            {
+                RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Directories");
+            }
+            if (BackgroundCB.Checked)
+            {
+                RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Background");
+            }
         }
 
-        private void RemoveEntry()
+        private void RemoveEntry(string RegistryLocation)
         {
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryLocation, true))
             {
                 int index = 0;
                 var CustomNameList = new List<string>();
@@ -65,7 +109,7 @@ namespace XtendedMenu
                 string[] CustomNameArray = CustomNameList.ToArray();
                 foreach (string value in CustomNameArray)
                 {
-                    if (value == (string)EntryBox.SelectedItem)
+                    if (value == (string)AllFilesEntryBox.SelectedItem)
                     {
                         CustomNameArray = CustomNameArray.Where(w => w != value).ToArray();
                         key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
@@ -103,47 +147,26 @@ namespace XtendedMenu
                         CustomLocationList.RemoveAt(index);
                         string[] CustomLocationArray = CustomLocationList.ToArray();
                         key.SetValue("CustomLocation", CustomLocationArray, RegistryValueKind.MultiString);
+
+
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        RunAsAdminList.RemoveAt(index);
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                        key.SetValue("RunAsAdmin", RunAsAdminArray, RegistryValueKind.MultiString);
                     }
 
                     index++;
                 }
             }
-            EntryBox.Text = "";
-            EntryBox.Items.Clear();
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
-            {
-                if (key.GetValue("CustomName") != null)
-                {
-                    if (key.GetValue("CustomName") is string)
-                    {
-                        EntryBox.Items.Add((string)key.GetValue("CustomName"));
-                    }
-                    else
-                    {
-                        EntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
-                    }
-                }
-            }
+            AllFilesEntryBox.Text = "";
+            AllFilesEntryBox.Items.Clear();
+            PopulateEntryBoxes();
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void AddEntry(string RegistryLocation)
         {
-            if (!string.IsNullOrEmpty(EntryBox.Text))
-            {
-                RemoveEntry();
-            }
-
-            if (string.IsNullOrEmpty(NameBox.Text))
-            {
-                MessageBox.Show("Make sure there is a Name before adding an entry.");
-                return;
-            }
-            if (string.IsNullOrEmpty(ProcessBox.Text))
-            {
-                MessageBox.Show("Make sure there is a Process before adding an entry.");
-                return;
-            }
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryLocation, true))
             {
                 // CustomName
                 if (key.GetValue("CustomName") == null)
@@ -328,10 +351,6 @@ namespace XtendedMenu
                 {
                     checkedLocations += 1;
                 }
-                if (ShortcutsCB.Checked)
-                {
-                    checkedLocations += 2;
-                }
                 if (DirectoriesCB.Checked)
                 {
                     checkedLocations += 3;
@@ -371,37 +390,112 @@ namespace XtendedMenu
                         key.SetValue("CustomLocation", newArray, RegistryValueKind.MultiString);
                     }
                 }
-            }
 
-            EntryBox.Text = "";
-            EntryBox.Items.Clear();
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
-            {
-                if (key.GetValue("CustomName") != null)
+                // Admin
+                if (key.GetValue("RunAsAdmin") == null)
                 {
-                    if (key.GetValue("CustomName") is string)
+                    key.SetValue("RunAsAdmin", adminBox.Checked, RegistryValueKind.String);
+                }
+                else
+                {
+                    if (key.GetValue("RunAsAdmin") is string)
                     {
-                        EntryBox.Items.Add((string)key.GetValue("CustomName"));
+                        string RunAsAdmin = (string)key.GetValue("RunAsAdmin");
+
+                        var myList = new List<string>
+                        {
+                            RunAsAdmin,
+                            adminBox.Checked.ToString()
+                        };
+                        string[] newArray = myList.ToArray();
+
+                        key.SetValue("RunAsAdmin", newArray, RegistryValueKind.MultiString);
                     }
                     else
                     {
-                        EntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
+                        var myListCheck = new List<string>();
+                        myListCheck.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] newArrayCheck = myListCheck.ToArray();
+                        foreach (string value in newArrayCheck)
+                        {
+                            if (value == adminBox.Checked.ToString())
+                            {
+                                MessageBox.Show("This Name already exists.");
+                                return;
+                            }
+                        }
+
+                        string[] RunAsAdmin = (string[])key.GetValue("RunAsAdmin");
+
+                        var myList = new List<string>();
+                        myList.AddRange(RunAsAdmin);
+                        myList.Add(adminBox.Checked.ToString());
+                        string[] newArray = myList.ToArray();
+
+                        key.SetValue("RunAsAdmin", newArray, RegistryValueKind.MultiString);
                     }
                 }
             }
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
+            {
+                if (AllFilesCB.Checked)
+                {
+                    RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles");
+                }
+                if (DirectoriesCB.Checked)
+                {
+                    RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Directories");
+                }
+                if (BackgroundCB.Checked)
+                {
+                    RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Background");
+                }
+            }
+
+            if (string.IsNullOrEmpty(NameBox.Text))
+            {
+                MessageBox.Show("Make sure there is a Name before adding an entry.");
+                return;
+            }
+            if (string.IsNullOrEmpty(ProcessBox.Text))
+            {
+                MessageBox.Show("Make sure there is a Process before adding an entry.");
+                return;
+            }
+
+            if (AllFilesCB.Checked)
+            {
+                AddEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles");
+            }
+            if (DirectoriesCB.Checked)
+            {
+                AddEntry("SOFTWARE\\XtendedMenu\\Settings\\Directories");
+            }
+            if (BackgroundCB.Checked)
+            {
+                AddEntry("SOFTWARE\\XtendedMenu\\Settings\\Background");
+            }
+
+            AllFilesEntryBox.Text = "";
+            AllFilesEntryBox.Items.Clear();
+            PopulateEntryBoxes();
 
             NameBox.Clear();
             ProcessBox.Clear();
             ArgumentsBox.Clear();
             DirectoryBox.Clear();
             IconBox.Clear();
+            adminBox.Checked = false;
 
             AllFilesCB.Checked = true;
-            ShortcutsCB.Checked = true;
             DirectoriesCB.Checked = true;
             BackgroundCB.Checked = true;
 
-            EntryBox.Text = "";
+            AllFilesEntryBox.Text = "";
             AddButton.Text = "Add Entry";
 
             NameBox.Select();
@@ -493,7 +587,7 @@ namespace XtendedMenu
 
         private void EntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(EntryBox.Text))
+            if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
             }
@@ -501,7 +595,7 @@ namespace XtendedMenu
             {
                 AddButton.Text = "Add Entry";
             }
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings"))
             {
                 int index = 0;
                 var CustomNameList = new List<string>();
@@ -509,9 +603,9 @@ namespace XtendedMenu
                 string[] CustomNameArray = CustomNameList.ToArray();
                 foreach (string value in CustomNameArray)
                 {
-                    if (value == (string)EntryBox.SelectedItem)
+                    if (value == (string)AllFilesEntryBox.SelectedItem)
                     {
-                        NameBox.Text = (string)EntryBox.SelectedItem;
+                        NameBox.Text = (string)AllFilesEntryBox.SelectedItem;
 
                         var CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
@@ -545,13 +639,13 @@ namespace XtendedMenu
             ArgumentsBox.Clear();
             DirectoryBox.Clear();
             IconBox.Clear();
+            adminBox.Checked = false;
 
             AllFilesCB.Checked = true;
-            ShortcutsCB.Checked = true;
             DirectoriesCB.Checked = true;
             BackgroundCB.Checked = true;
 
-            EntryBox.Text = "";
+            AllFilesEntryBox.Text = "";
             AddButton.Text = "Add Entry";
 
             NameBox.Select();

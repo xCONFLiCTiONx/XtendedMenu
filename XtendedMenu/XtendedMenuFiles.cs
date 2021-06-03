@@ -16,7 +16,6 @@ namespace XtendedMenu
 {
     [ComVisible(true)]
     [COMServerAssociation(AssociationType.AllFiles)]
-    [COMServerAssociation(AssociationType.ClassOfExtension, ".lnk")]
     [DisplayName("XtendedMenu")]
     public class XtendedMenuFiles : SharpContextMenu
     {
@@ -24,6 +23,7 @@ namespace XtendedMenu
         private ContextMenuStrip Menu;
         private ToolStripMenuItem XtendedMenuMenu, Attributes, OpenNotepad, CopyName, CopyPath, CopyPathURL, CopyLONGPath, SymLink, BlockFirewall, TakeOwnership;
         private ToolStripMenuItem AttributesMenu, HiddenAttributes, SystemAttributes, ReadOnlyAttributes;
+
         protected override bool CanShowMenu()
         {
             return true;
@@ -173,7 +173,7 @@ namespace XtendedMenu
             try
             {
                 // Custom Entries
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\AllFiles"))
                 {
                     int index = 0;
                     if (key.GetValue("CustomName") is string)
@@ -260,34 +260,6 @@ namespace XtendedMenu
             try
             {
                 // Disabler
-                bool isShortcut = false;
-                bool isExeDllFile = false;
-                foreach (string path in array)
-                {
-                    try
-                    {
-                        if (Path.GetExtension(path) == ".lnk")
-                        {
-                            isShortcut = true;
-                        }
-                        if (Path.GetExtension(path) != ".exe" && Path.GetExtension(path) != ".dll")
-                        {
-                            isExeDllFile = false;
-                        }
-                        if (Path.GetExtension(path) == ".exe" || Path.GetExtension(path) == ".dll")
-                        {
-                            isExeDllFile = true;
-                        }
-                        if (Directory.Exists(ShortcutHandler.GetShortcutTarget(path)))
-                        {
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        EasyLogger.Error(ex.Message + " Error at ShortcutHandler.GetShortcutTarget(path)");
-                        continue;
-                    }
-                }
                 object AttributesFiles = XtendedMenuSettings.GetValue("AttributesFiles");
                 if (AttributesFiles != null)
                 {
@@ -310,7 +282,7 @@ namespace XtendedMenu
                     }
                 }
                 object CopyNameFiles = XtendedMenuSettings.GetValue("CopyNameFiles");
-                if (CopyNameFiles != null && !isShortcut)
+                if (CopyNameFiles != null)
                 {
                     if (CopyNameFiles.ToString() == "1")
                     {
@@ -318,7 +290,7 @@ namespace XtendedMenu
                     }
                 }
                 object CopyPathFiles = XtendedMenuSettings.GetValue("CopyPathFiles");
-                if (CopyPathFiles != null && !isShortcut)
+                if (CopyPathFiles != null)
                 {
                     if (CopyPathFiles.ToString() == "1")
                     {
@@ -326,7 +298,7 @@ namespace XtendedMenu
                     }
                 }
                 object CopyURLFiles = XtendedMenuSettings.GetValue("CopyURLFiles");
-                if (CopyURLFiles != null && !isShortcut)
+                if (CopyURLFiles != null)
                 {
                     if (CopyURLFiles.ToString() == "1")
                     {
@@ -334,7 +306,7 @@ namespace XtendedMenu
                     }
                 }
                 object CopyLONGPathFiles = XtendedMenuSettings.GetValue("CopyLONGPathFiles");
-                if (CopyLONGPathFiles != null && !isShortcut)
+                if (CopyLONGPathFiles != null)
                 {
                     if (CopyLONGPathFiles.ToString() == "1")
                     {
@@ -347,62 +319,6 @@ namespace XtendedMenu
                     if (SymlinkFiles.ToString() == "1")
                     {
                         XtendedMenuMenu.DropDownItems.Add(SymLink);
-                    }
-                }
-                object AttributesShort = XtendedMenuSettings.GetValue("AttributesShort");
-                if (AttributesShort != null && isShortcut)
-                {
-                    if (AttributesShort.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(Attributes);
-                    }
-                    else
-                    {
-                        Attributes.Dispose();
-                    }
-                }
-                object OpenNotepadShort = XtendedMenuSettings.GetValue("OpenNotepadShort");
-                if (OpenNotepadShort != null && isShortcut)
-                {
-                    if (OpenNotepadShort.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(OpenNotepad);
-                    }
-                    else
-                    {
-                        OpenNotepad.Dispose();
-                    }
-                }
-                object CopyNameShortFiles = XtendedMenuSettings.GetValue("CopyNameShortFiles");
-                if (CopyNameShortFiles != null && isShortcut)
-                {
-                    if (CopyNameShortFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(CopyName);
-                    }
-                }
-                object CopyPathShortFiles = XtendedMenuSettings.GetValue("CopyPathShortFiles");
-                if (CopyPathShortFiles != null && isShortcut)
-                {
-                    if (CopyPathShortFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(CopyPath);
-                    }
-                }
-                object CopyURLShortFiles = XtendedMenuSettings.GetValue("CopyURLShortFiles");
-                if (CopyURLShortFiles != null && isShortcut)
-                {
-                    if (CopyURLShortFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(CopyPathURL);
-                    }
-                }
-                object CopyLONGPathShortFiles = XtendedMenuSettings.GetValue("CopyLONGPathShortFiles");
-                if (CopyLONGPathShortFiles != null && isShortcut)
-                {
-                    if (CopyLONGPathShortFiles.ToString() == "1")
-                    {
-                        XtendedMenuMenu.DropDownItems.Add(CopyLONGPath);
                     }
                 }
                 object BlockWithFirewallFiles = XtendedMenuSettings.GetValue("BlockWithFirewallFiles");
@@ -422,57 +338,22 @@ namespace XtendedMenu
                     }
                 }
 
-                MenuItemDisabler(isShortcut, isExeDllFile);
+                bool AllDisabled = true;
+                foreach (ToolStripMenuItem item in XtendedMenuMenu.DropDownItems)
+                {
+                    if (item != null)
+                    {
+                        AllDisabled = false;
+                    }
+                }
+                if (AllDisabled)
+                {
+                    Menu.Dispose();
+                }
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
                 StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
-            }
-        }
-        private void MenuItemDisabler(bool isShortcut, bool isExeDllFile)
-        {
-            if (isShortcut)
-            {
-                if (BlockFirewall != null)
-                {
-                    BlockFirewall.Dispose();
-                }
-
-                if (SymLink != null)
-                {
-                    SymLink.Dispose();
-                }
-
-                if (TakeOwnership != null)
-                {
-                    TakeOwnership.Dispose();
-                }
-            }
-            if (isExeDllFile)
-            {
-                if (OpenNotepad != null)
-                {
-                    OpenNotepad.Dispose();
-                }
-            }
-            if (!isExeDllFile)
-            {
-                if (BlockFirewall != null)
-                {
-                    BlockFirewall.Dispose();
-                }
-            }
-            bool AllDisabled = true;
-            foreach (ToolStripMenuItem item in XtendedMenuMenu.DropDownItems)
-            {
-                if (item != null)
-                {
-                    AllDisabled = false;
-                }
-            }
-            if (AllDisabled)
-            {
-                Menu.Dispose();
             }
         }
         // Set File Attributes
@@ -678,19 +559,23 @@ namespace XtendedMenu
         {
             try
             {
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\CustomEntries"))
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\AllFiles"))
                 {
                     int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
-
 
                     if (key.GetValue("CustomProcess") is string)
                     {
                         using (Process process = new Process())
                         {
                             process.StartInfo.FileName = (string)key.GetValue("CustomProcess");
-                            process.StartInfo.Arguments = (string)key.GetValue("CustomArguments");
+                            process.StartInfo.Arguments = (string)key.GetValue("CustomArguments") + " " + "\"" + array.ToStringArray(false) + "\"";
                             process.StartInfo.WorkingDirectory = (string)key.GetValue("CustomProcess");
-                            //process.StartInfo.Verb = "runas";
+                            if ((string)key.GetValue("RunAsAdmin") == "True")
+                            {
+                                process.StartInfo.Verb = "runas";
+                            }
                             process.Start();
                         }
                     }
@@ -708,12 +593,19 @@ namespace XtendedMenu
                         CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
 
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+
                         using (Process process = new Process())
                         {
                             process.StartInfo.FileName = CustomProcessArray[itemName];
-                            process.StartInfo.Arguments = CustomArgumentsArray[itemName];
+                            process.StartInfo.Arguments = CustomArgumentsArray[itemName] + " " + "\"" + array.ToStringArray(false) + "\"";
                             process.StartInfo.WorkingDirectory = CustomDirectoryArray[itemName];
-                            //process.StartInfo.Verb = "runas";
+                            if (RunAsAdminArray[itemName] == "True")
+                            {
+                                process.StartInfo.Verb = "runas";
+                            }
                             process.Start();
                         }
                     }

@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchitectureCheck.cs" />
     <Compile Include="AttributesMenu.cs">
       <SubType>Form</SubType>
     </Compile>

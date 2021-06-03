@@ -1,10 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using XtendedMenu.Properties;
 using static XtendedMenu.SendMessage;
 
 namespace XtendedMenu
@@ -13,10 +13,79 @@ namespace XtendedMenu
     {
         private static readonly string website = "https://github.com/xCONFLiCTiONx/XtendedMenu";
 
+        internal static void InstallerClass(string args)
+        {
+            // Installer
+            if (args == "-install" || args == "-i")
+            {
+                if (Main.IsElevated)
+                {
+                    try
+                    {
+                        Install(GetAssembly.AssemblyInformation("directory"));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Environment.Exit(0);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-install", false, true);
+                        Environment.Exit(0);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        Environment.Exit(0);
+                    }
+                }
+            }
+            // Uninstaller
+            if (args == "-uninstall" || args == "-u")
+            {
+                if (Main.IsElevated)
+                {
+                    try
+                    {
+                        Uninstall();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Environment.Exit(0);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-uninstall", false, true);
+                        Environment.Exit(0);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        Environment.Exit(0);
+                    }
+                }
+            }
+        }
+
         internal static void Install(string location)
         {
             try
             {
+                SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\AllFiles");
+                SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Directories");
+                SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Background");
+
+
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string version = fvi.FileVersion;
@@ -25,17 +94,8 @@ namespace XtendedMenu
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt", version);
 
                 RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
-                RegistryKey InstallInfo = null;
-                if (ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    RegistryKey RegUninstallKey64 = Registry.LocalMachine.CreateSubKey(Resources.RegUninstallKey64String);
-                    InstallInfo = RegUninstallKey64;
-                }
-                if (!ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    RegistryKey RegUninstallKey32 = Registry.LocalMachine.CreateSubKey(Resources.RegUninstallKey32String);
-                    InstallInfo = RegUninstallKey32;
-                }
+                RegistryKey InstallInfo = Registry.LocalMachine.CreateSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\XtendedMenu");
+
                 StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "\"" + location + "\\XtendedMenu.dll" + "\"" + " -codebase", true, true, true);
 
                 // Adds Information to Uninstall - Change to 32 bit for compiling x86
@@ -45,7 +105,7 @@ namespace XtendedMenu
                 InstallInfo.SetValue("DisplayIcon", location + @"\XtendedMenu.exe", RegistryValueKind.String);
                 InstallInfo.SetValue("Publisher", "xCONFLiCTiONx", RegistryValueKind.String);
                 InstallInfo.SetValue("HelpLink", website, RegistryValueKind.String);
-                InstallInfo.SetValue("DisplayName", Resources.XtendedMenu, RegistryValueKind.String);
+                InstallInfo.SetValue("DisplayName", "XtendedMenu", RegistryValueKind.String);
                 InstallInfo.SetValue("DisplayVersion", GetAssembly.AssemblyInformation("version"), RegistryValueKind.String);
                 /* User Settings */
 
@@ -74,7 +134,7 @@ namespace XtendedMenu
             }
             catch (Exception ex)
             {
-                MessageForm(ex.Message + Environment.NewLine + ex.StackTrace, Resources.XtendedMenu, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm(ex.Message + Environment.NewLine + ex.StackTrace, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
         }
@@ -83,27 +143,21 @@ namespace XtendedMenu
         {
             try
             {
-                RegistryKey RegUninstallKey64 = Registry.LocalMachine.OpenSubKey(Resources.Uninstall64Bit, true);
-                RegistryKey RegUninstallKey32 = Registry.LocalMachine.OpenSubKey(Resources.Uninstall32Bit, true);
                 RegistryKey RegistrySoftware = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                RegistryKey UninstallInfo = RegUninstallKey64;
-                if (ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    UninstallInfo = RegUninstallKey64;
-                }
-                if (!ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    UninstallInfo = RegUninstallKey32;
-                }
+                RegistryKey UninstallInfo = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true);
                 StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
 
                 UninstallInfo.DeleteSubKeyTree("XtendedMenu", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\CustomEntries", false);
+                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\AllFiles", false);
+                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Directories", false);
+                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Background", false);
                 RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings", false);
                 RegistrySoftware.DeleteSubKey("XtendedMenu", false);
 
                 // Restart Explorer
-                DialogResult dialog = MessageForm(Resources.UninstallComplete, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialog = MessageForm("Uninstall is complete!" + Environment.NewLine +
+                    "Explorer must be restarted to complete the uninstallation." + Environment.NewLine + 
+                    "Would you like to restart Explorer now? ", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
                     foreach (Process proc in Process.GetProcessesByName("explorer"))
@@ -166,52 +220,57 @@ namespace XtendedMenu
             Environment.Exit(0);
         }
 
-        internal static void InstallerElevated()
+        private static void SetCustomKeys(string RegistryLocation)
         {
-            try
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryLocation))
             {
-                RegistryKey InstallInfo = null;
-                RegistryKey RegUninstallKey64 = Registry.LocalMachine.OpenSubKey(Resources.RegUninstallKey64String, true);
-                RegistryKey RegUninstallKey32 = Registry.LocalMachine.OpenSubKey(Resources.RegUninstallKey32String, true);
-                if (ArchitectureCheck.ProcessorIs64Bit())
-                {
-                    InstallInfo = RegUninstallKey64;
-                }
-                else
-                {
-                    InstallInfo = RegUninstallKey32;
-                }
-                if (InstallInfo == null)
-                {
-                    Install(GetAssembly.AssemblyInformation("directory"));
-                }
-                else
-                {
-                    DialogResult results = MessageForm(Resources.UninstallQuestion + Resources.XtendedMenu + Resources.UninstallNotice, Resources.XtendedMenu, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (results == DialogResult.Yes)
-                    {
-                        Uninstall();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(0);
-            }
-        }
-        internal static void InstallerUnelevated()
-        {
-            try
-            {
-                StartProcess.StartInfo(GetAssembly.AssemblyInformation("filelocation"), "-install", false, true);
-                Environment.Exit(0);
-            }
-            catch (Exception ex)
-            {
-                MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string[] CustomNameRange = { };
+                var CustomNameList = new List<string>();
+                CustomNameList.AddRange(CustomNameRange);
+                string[] CustomNameArray = CustomNameList.ToArray();
+                key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
 
-                Environment.Exit(0);
+
+                string[] CustomProcessRange = { };
+                var CustomProcessList = new List<string>();
+                CustomProcessList.AddRange(CustomProcessRange);
+                string[] CustomProcessArray = CustomProcessList.ToArray();
+                key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
+
+
+                string[] CustomArgumentsRange = { };
+                var CustomArgumentsList = new List<string>();
+                CustomArgumentsList.AddRange(CustomArgumentsRange);
+                string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+                key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
+
+
+                string[] CustomDirectoryRange = { };
+                var CustomDirectoryList = new List<string>();
+                CustomDirectoryList.AddRange(CustomDirectoryRange);
+                string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+                key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
+
+
+                string[] CustomIconRange = { };
+                var CustomIconList = new List<string>();
+                CustomIconList.AddRange(CustomIconRange);
+                string[] CustomIconArray = CustomIconList.ToArray();
+                key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
+
+
+                string[] CustomLocationRange = { };
+                var CustomLocationList = new List<string>();
+                CustomLocationList.AddRange(CustomLocationRange);
+                string[] CustomLocationArray = CustomLocationList.ToArray();
+                key.SetValue("CustomLocation", CustomLocationArray, RegistryValueKind.MultiString);
+
+
+                string[] RunAsAdminRange = { };
+                var RunAsAdminList = new List<string>();
+                RunAsAdminList.AddRange(RunAsAdminRange);
+                string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                key.SetValue("RunAsAdmin", RunAsAdminArray, RegistryValueKind.MultiString);
             }
         }
     }
