@@ -20,6 +20,10 @@ namespace XtendedMenu
 
         private void PopulateEntryBoxes()
         {
+            AllFilesEntryBox.Items.Clear();
+            DirectoriesEntryBox.Items.Clear();
+            BackgroundEntryBox.Items.Clear();
+
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\AllFiles", true))
             {
                 if (key.GetValue("CustomName") != null)
@@ -368,18 +372,6 @@ namespace XtendedMenu
                     }
                     else
                     {
-                        var myListCheck = new List<string>();
-                        myListCheck.AddRange((string[])key.GetValue("RunAsAdmin"));
-                        string[] newArrayCheck = myListCheck.ToArray();
-                        foreach (string value in newArrayCheck)
-                        {
-                            if (value == adminBox.Checked.ToString())
-                            {
-                                MessageBox.Show("This Name already exists.");
-                                return;
-                            }
-                        }
-
                         string[] RunAsAdmin = (string[])key.GetValue("RunAsAdmin");
 
                         var myList = new List<string>();
