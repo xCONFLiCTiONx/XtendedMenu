@@ -433,7 +433,7 @@ namespace XtendedMenu
             Clear();
         }
 
-        private void Clear()
+        private void Clear(string entryBox = null)
         {
             NameBox.Clear();
             ProcessBox.Clear();
@@ -446,9 +446,27 @@ namespace XtendedMenu
             DirectoriesCB.Checked = true;
             BackgroundCB.Checked = true;
 
-            AllFilesEntryBox.SelectedIndex = -1;
-            DirectoriesEntryBox.SelectedIndex = -1;
-            BackgroundEntryBox.SelectedIndex = -1;
+            if (entryBox == "AllFilesEntryBox")
+            {
+                DirectoriesEntryBox.SelectedIndex = -1;
+                BackgroundEntryBox.SelectedIndex = -1;
+            }
+            else if (entryBox == "DirectoriesEntryBox")
+            {
+                AllFilesEntryBox.SelectedIndex = -1;
+                BackgroundEntryBox.SelectedIndex = -1;
+            }
+            else if (entryBox == "BackgroundEntryBox")
+            {
+                AllFilesEntryBox.SelectedIndex = -1;
+                DirectoriesEntryBox.SelectedIndex = -1;
+            }
+            else
+            {
+                AllFilesEntryBox.SelectedIndex = -1;
+                DirectoriesEntryBox.SelectedIndex = -1;
+                BackgroundEntryBox.SelectedIndex = -1;
+            }
 
             AddButton.Text = "Add Entry";
 
@@ -523,6 +541,8 @@ namespace XtendedMenu
 
         private void EntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Clear("AllFilesEntryBox");
+
             if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
@@ -571,6 +591,8 @@ namespace XtendedMenu
 
         private void DirectoriesEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Clear("DirectoriesEntryBox");
+
             if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
@@ -619,6 +641,8 @@ namespace XtendedMenu
 
         private void BackgroundEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Clear("BackgroundEntryBox");
+
             if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
