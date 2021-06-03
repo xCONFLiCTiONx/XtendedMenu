@@ -2,7 +2,9 @@
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -210,6 +212,73 @@ namespace XtendedMenu
             PasteContents.Image = Resources.CopyName.ToBitmap();
 
             AddMenuItems();
+
+            try
+            {
+                // Custom Entries
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background"))
+                {
+                    int index = 0;
+                    if (key.GetValue("CustomName") is string)
+                    {
+                        ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
+
+                        using (CustomMenuItem = new ToolStripMenuItem())
+                        {
+                            CustomMenuItem.Text = (string)key.GetValue("CustomName");
+                            CustomMenuItem.Name = index.ToString();
+                        }
+
+                        if (File.Exists((string)key.GetValue("CustomIcon")))
+                        {
+                            CustomMenuItem.Image = Image.FromFile((string)key.GetValue("CustomIcon"));
+                        }
+
+                        Menu.Items.Add(CustomMenuItem);
+
+                        CustomMenuItem.Click += CustomMenuItem_Click;
+                        XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                    }
+                    else
+                    {
+                        var CustomNameList = new List<string>();
+                        CustomNameList.AddRange((string[])key.GetValue("CustomName"));
+                        string[] CustomNameArray = CustomNameList.ToArray();
+                        foreach (string value in CustomNameArray)
+                        {
+                            ToolStripMenuItem CustomMenuItem = new ToolStripMenuItem();
+
+                            using (CustomMenuItem = new ToolStripMenuItem())
+                            {
+                                CustomMenuItem.Text = value;
+                                CustomMenuItem.Name = index.ToString();
+                            }
+
+                            var CustomIconList = new List<string>();
+                            CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
+                            string[] IconListArray = CustomIconList.ToArray();
+
+                            if (!string.IsNullOrEmpty(IconListArray[index]))
+                            {
+                                if (File.Exists(IconListArray[index]))
+                                {
+                                    CustomMenuItem.Image = Image.FromFile(IconListArray[index]);
+                                }
+                            }
+
+                            Menu.Items.Add(CustomMenuItem);
+
+                            CustomMenuItem.Click += CustomMenuItem_Click;
+                            XtendedMenuMenu.DropDownItems.Add(CustomMenuItem);
+                            index++;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
 
             // Subscriptions
             OpenTerminalAsUser.Click += (sender, args) => OpenTerminalAsUserMethod();
@@ -522,6 +591,68 @@ namespace XtendedMenu
             if (!string.IsNullOrEmpty(Clipboard.GetText()))
             {
                 File.AppendAllText(FolderPath + "\\ClipboardContents.txt", Clipboard.GetText());
+            }
+        }
+
+        private void CustomMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DirectoryInfo DirectoryPath = new DirectoryInfo(FolderPath);
+
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background"))
+                {
+                    int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
+
+                    if (key.GetValue("CustomProcess") is string)
+                    {
+                        using (Process process = new Process())
+                        {
+                            process.StartInfo.FileName = (string)key.GetValue("CustomProcess");
+                            process.StartInfo.Arguments = (string)key.GetValue("CustomArguments") + " " + "\"" + DirectoryPath + "\"";
+                            process.StartInfo.WorkingDirectory = (string)key.GetValue("CustomProcess");
+                            if ((string)key.GetValue("RunAsAdmin") == "True")
+                            {
+                                process.StartInfo.Verb = "runas";
+                            }
+                            process.Start();
+                        }
+                    }
+                    else
+                    {
+                        var CustomProcessList = new List<string>();
+                        CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
+                        string[] CustomProcessArray = CustomProcessList.ToArray();
+
+                        var CustomArgumentsList = new List<string>();
+                        CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
+                        string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+
+                        var CustomDirectoryList = new List<string>();
+                        CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
+                        string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+
+                        using (Process process = new Process())
+                        {
+                            process.StartInfo.FileName = CustomProcessArray[itemName];
+                            process.StartInfo.Arguments = CustomArgumentsArray[itemName] + " " + "\"" + DirectoryPath + "\"";
+                            process.StartInfo.WorkingDirectory = CustomDirectoryArray[itemName];
+                            if (RunAsAdminArray[itemName] == "True")
+                            {
+                                process.StartInfo.Verb = "runas";
+                            }
+                            process.Start();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
             }
         }
     }

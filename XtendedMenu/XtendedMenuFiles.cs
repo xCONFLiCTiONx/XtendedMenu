@@ -234,8 +234,7 @@ namespace XtendedMenu
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                throw;
+                EasyLogger.Error(ex);
             }
 
 
@@ -613,9 +612,7 @@ namespace XtendedMenu
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 EasyLogger.Error(ex);
-                throw;
             }
         }
     }
