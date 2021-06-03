@@ -213,6 +213,41 @@ namespace XtendedMenu
 
             AddMenuItems();
 
+            CustomEntries();
+
+            // Subscriptions
+            OpenTerminalAsUser.Click += (sender, args) => OpenTerminalAsUserMethod();
+            OpenTerminalAsAdmin.Click += (sender, args) => OpenTerminalAsAdminMethod();
+            OpenCmdAsUser.Click += (sender, args) => OpenCmdAsUserMethod();
+            OpenCmdAsAdmin.Click += (sender, args) => OpenCmdAsAdminMethod();
+            OpenGitAsUser.Click += (sender, args) => OpenGitAsUserMethod();
+            OpenGitAsAdmin.Click += (sender, args) => OpenGitAsAdminMethod();
+            OpenPSAsUser.Click += (sender, args) => OpenPSAsUserMethod();
+            OpenPSAsAdmin.Click += (sender, args) => OpenPSAsAdminMethod();
+            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
+            ShowHidden.Click += (sender, args) => ShowHiddenMethod();
+            HideHidden.Click += (sender, args) => HideHiddenMethod();
+            ShowSystem.Click += (sender, args) => ShowSystemMethod();
+            HideSystem.Click += (sender, args) => HideSystemMethod();
+            FindWallpaper.Click += (sender, args) => FindWallpaperMethod();
+            AppDataFolder.Click += (sender, args) => AppDataFolderMethod();
+            ProgramDataFolder.Click += (sender, args) => ProgramDataFolderMethod();
+            UserStartMenuFolder.Click += (sender, args) => UserStartMenuFolderMethod();
+            AllUsersStartMenuFolder.Click += (sender, args) => AllUsersStartMenuFolderMethod();
+            UserTempFolder.Click += (sender, args) => UserTempFolderMethod();
+
+            if (!string.IsNullOrEmpty(Clipboard.GetText()))
+            {
+                PasteContents.Click += (sender, args) => PasteContentsMethod();
+            }
+            else
+            {
+                PasteContents.Dispose();
+            }
+        }
+
+        private void CustomEntries()
+        {
             try
             {
                 // Custom Entries
@@ -278,36 +313,6 @@ namespace XtendedMenu
             catch (Exception ex)
             {
                 EasyLogger.Error(ex);
-            }
-
-            // Subscriptions
-            OpenTerminalAsUser.Click += (sender, args) => OpenTerminalAsUserMethod();
-            OpenTerminalAsAdmin.Click += (sender, args) => OpenTerminalAsAdminMethod();
-            OpenCmdAsUser.Click += (sender, args) => OpenCmdAsUserMethod();
-            OpenCmdAsAdmin.Click += (sender, args) => OpenCmdAsAdminMethod();
-            OpenGitAsUser.Click += (sender, args) => OpenGitAsUserMethod();
-            OpenGitAsAdmin.Click += (sender, args) => OpenGitAsAdminMethod();
-            OpenPSAsUser.Click += (sender, args) => OpenPSAsUserMethod();
-            OpenPSAsAdmin.Click += (sender, args) => OpenPSAsAdminMethod();
-            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
-            ShowHidden.Click += (sender, args) => ShowHiddenMethod();
-            HideHidden.Click += (sender, args) => HideHiddenMethod();
-            ShowSystem.Click += (sender, args) => ShowSystemMethod();
-            HideSystem.Click += (sender, args) => HideSystemMethod();
-            FindWallpaper.Click += (sender, args) => FindWallpaperMethod();
-            AppDataFolder.Click += (sender, args) => AppDataFolderMethod();
-            ProgramDataFolder.Click += (sender, args) => ProgramDataFolderMethod();
-            UserStartMenuFolder.Click += (sender, args) => UserStartMenuFolderMethod();
-            AllUsersStartMenuFolder.Click += (sender, args) => AllUsersStartMenuFolderMethod();
-            UserTempFolder.Click += (sender, args) => UserTempFolderMethod();
-
-            if (!string.IsNullOrEmpty(Clipboard.GetText()))
-            {
-                PasteContents.Click += (sender, args) => PasteContentsMethod();
-            }
-            else
-            {
-                PasteContents.Dispose();
             }
         }
 

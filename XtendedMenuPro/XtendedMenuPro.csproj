@@ -43,8 +43,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EasyLogger, Version=2.4.0.0, Culture=neutral, PublicKeyToken=157f051b2ef23119, processorArchitecture=MSIL">
-      <HintPath>..\packages\xCONFLiCTiONx.Logger.2.4.0\lib\net40-client\EasyLogger.dll</HintPath>
+    <Reference Include="EasyLogger, Version=2.9.0.0, Culture=neutral, PublicKeyToken=157f051b2ef23119, processorArchitecture=MSIL">
+      <HintPath>..\packages\xCONFLiCTiONx.Logger.2.9.0\lib\net40-client\EasyLogger.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,6 +147,10 @@
     <Resource Include="Resources\MAIN_ICON_256.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IconPack\IconPack.csproj">
+      <Project>{92E382A2-74B6-4342-B9D9-BE6843F2CE22}</Project>
+      <Name>IconPack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XtendedMenu\XtendedMenu.csproj">
       <Project>{025cdc7e-8f87-4e9b-99d3-6a6aeb962917}</Project>
       <Name>XtendedMenu</Name>

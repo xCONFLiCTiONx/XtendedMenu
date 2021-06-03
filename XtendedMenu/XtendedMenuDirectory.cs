@@ -159,6 +159,28 @@ namespace XtendedMenu
 
             AddMenuItems();
 
+            CustomEntries();
+
+            // Subscriptions
+            BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
+            CopyName.Click += (sender, args) => CopyNameMethod();
+            CopyPath.Click += (sender, args) => CopyPathMethod();
+            CopyPathURL.Click += (sender, args) => CopyPathURLMethod();
+            CopyLONGPath.Click += (sender, args) => CopyLONGPathMethod();
+            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
+            HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
+            SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
+            ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
+            ShowHidden.Click += (sender, args) => ShowHiddenMethod();
+            HideHidden.Click += (sender, args) => HideHiddenMethod();
+            ShowSystem.Click += (sender, args) => ShowSystemMethod();
+            HideSystem.Click += (sender, args) => HideSystemMethod();
+            SymLink.Click += (sender, args) => SymLinkMethod();
+            TakeOwnership.Click += (sender, args) => TakeOwnershipMethod();
+        }
+
+        private void CustomEntries()
+        {
             try
             {
                 // Custom Entries
@@ -225,23 +247,6 @@ namespace XtendedMenu
             {
                 EasyLogger.Error(ex);
             }
-
-            // Subscriptions
-            BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
-            CopyName.Click += (sender, args) => CopyNameMethod();
-            CopyPath.Click += (sender, args) => CopyPathMethod();
-            CopyPathURL.Click += (sender, args) => CopyPathURLMethod();
-            CopyLONGPath.Click += (sender, args) => CopyLONGPathMethod();
-            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
-            HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
-            SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
-            ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
-            ShowHidden.Click += (sender, args) => ShowHiddenMethod();
-            HideHidden.Click += (sender, args) => HideHiddenMethod();
-            ShowSystem.Click += (sender, args) => ShowSystemMethod();
-            HideSystem.Click += (sender, args) => HideSystemMethod();
-            SymLink.Click += (sender, args) => SymLinkMethod();
-            TakeOwnership.Click += (sender, args) => TakeOwnershipMethod();
         }
 
         // Add Menu Items

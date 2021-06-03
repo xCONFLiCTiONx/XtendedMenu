@@ -30,107 +30,115 @@ namespace XtendedMenu
         }
         protected override ContextMenuStrip CreateMenu()
         {
-            CheckUserSettings();
-            // Main Menu
-            using (Menu = new ContextMenuStrip())
+            try
             {
-                Menu.Name = "XtendedMenuFiles";
-
-                using (XtendedMenuMenu = new ToolStripMenuItem())
+                CheckUserSettings();
+                // Main Menu
+                using (Menu = new ContextMenuStrip())
                 {
-                    XtendedMenuMenu.Name = "XtendedMenuMenu";
+                    Menu.Name = "XtendedMenuFiles";
 
-                    // Attributes
-                    using (Attributes = new ToolStripMenuItem())
+                    using (XtendedMenuMenu = new ToolStripMenuItem())
                     {
-                        Attributes.Name = "Attributes";
+                        XtendedMenuMenu.Name = "XtendedMenuMenu";
 
-                        Attributes.Text = "Attributes";
-                        // AttributesMenu
-                        using (AttributesMenu = new ToolStripMenuItem())
+                        // Attributes
+                        using (Attributes = new ToolStripMenuItem())
                         {
-                            AttributesMenu.Text = "Attributes Menu";
-                            AttributesMenu.Name = "AttributesMenu";
-                        }
-                        // Get : Set Attributes
-                        string[] SelectedPath = SelectedItemPaths.Cast<string>().ToArray();
-                        if (SelectedPath.Length > 1)
-                        {
-                            foreach (string item in SelectedPath)
+                            Attributes.Name = "Attributes";
+
+                            Attributes.Text = "Attributes";
+                            // AttributesMenu
+                            using (AttributesMenu = new ToolStripMenuItem())
+                            {
+                                AttributesMenu.Text = "Attributes Menu";
+                                AttributesMenu.Name = "AttributesMenu";
+                            }
+                            // Get : Set Attributes
+                            string[] SelectedPath = SelectedItemPaths.Cast<string>().ToArray();
+                            if (SelectedPath.Length > 1)
+                            {
+                                foreach (string item in SelectedPath)
+                                {
+                                    try
+                                    {
+                                        AttributesInfo.GetFileAttributes(item);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
+                                    }
+                                }
+                            }
+                            else
                             {
                                 try
                                 {
-                                    AttributesInfo.GetFileAttributes(item);
+                                    AttributesInfo.GetFileAttributes(SelectedPath.ToStringArray(false));
                                 }
                                 catch (Exception ex)
                                 {
                                     StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
                                 }
                             }
+                            SetFileAttributes();
                         }
-                        else
+                        // OpenNotepad
+                        using (OpenNotepad = new ToolStripMenuItem())
                         {
-                            try
-                            {
-                                AttributesInfo.GetFileAttributes(SelectedPath.ToStringArray(false));
-                            }
-                            catch (Exception ex)
-                            {
-                                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
-                            }
+                            OpenNotepad.Text = "Open with text editor";
+                            OpenNotepad.Name = "OpenNotepad";
                         }
-                        SetFileAttributes();
-                    }
-                    // OpenNotepad
-                    using (OpenNotepad = new ToolStripMenuItem())
-                    {
-                        OpenNotepad.Text = "Open with text editor";
-                        OpenNotepad.Name = "OpenNotepad";
-                    }
-                    // CopyName
-                    using (CopyName = new ToolStripMenuItem())
-                    {
-                        CopyName.Text = "Copy Name";
-                        CopyName.Name = "CopyName";
-                    }
-                    // CopyPath
-                    using (CopyPath = new ToolStripMenuItem())
-                    {
-                        CopyPath.Text = "Copy Path";
-                        CopyPath.Name = "CopyPath";
-                    }
-                    // CopyPathURL
-                    using (CopyPathURL = new ToolStripMenuItem())
-                    {
-                        CopyPathURL.Text = "Copy Path as URL";
-                        CopyPathURL.Name = "CopyPathURL";
-                    }
-                    // CopyLONGPath
-                    using (CopyLONGPath = new ToolStripMenuItem())
-                    {
-                        CopyLONGPath.Text = "Copy Long Path";
-                        CopyLONGPath.Name = "CopyLONGPath";
-                    }
-                    // SymLink
-                    using (SymLink = new ToolStripMenuItem())
-                    {
-                        SymLink.Text = "Create Symbolic Link (Junction)";
-                        SymLink.Name = "SymLink";
-                    }
-                    // BlockFirewall
-                    using (BlockFirewall = new ToolStripMenuItem())
-                    {
-                        BlockFirewall.Text = "Block with Firewall";
-                        BlockFirewall.Name = "BlockFirewall";
-                    }
-                    // TakeOwnership
-                    using (TakeOwnership = new ToolStripMenuItem())
-                    {
-                        TakeOwnership.Text = "Take Ownership";
-                        TakeOwnership.Name = "TakeOwnership";
+                        // CopyName
+                        using (CopyName = new ToolStripMenuItem())
+                        {
+                            CopyName.Text = "Copy Name";
+                            CopyName.Name = "CopyName";
+                        }
+                        // CopyPath
+                        using (CopyPath = new ToolStripMenuItem())
+                        {
+                            CopyPath.Text = "Copy Path";
+                            CopyPath.Name = "CopyPath";
+                        }
+                        // CopyPathURL
+                        using (CopyPathURL = new ToolStripMenuItem())
+                        {
+                            CopyPathURL.Text = "Copy Path as URL";
+                            CopyPathURL.Name = "CopyPathURL";
+                        }
+                        // CopyLONGPath
+                        using (CopyLONGPath = new ToolStripMenuItem())
+                        {
+                            CopyLONGPath.Text = "Copy Long Path";
+                            CopyLONGPath.Name = "CopyLONGPath";
+                        }
+                        // SymLink
+                        using (SymLink = new ToolStripMenuItem())
+                        {
+                            SymLink.Text = "Create Symbolic Link (Junction)";
+                            SymLink.Name = "SymLink";
+                        }
+                        // BlockFirewall
+                        using (BlockFirewall = new ToolStripMenuItem())
+                        {
+                            BlockFirewall.Text = "Block with Firewall";
+                            BlockFirewall.Name = "BlockFirewall";
+                        }
+                        // TakeOwnership
+                        using (TakeOwnership = new ToolStripMenuItem())
+                        {
+                            TakeOwnership.Text = "Take Ownership";
+                            TakeOwnership.Name = "TakeOwnership";
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
+
             MenuDeveloper();
 
             return Menu;
@@ -138,38 +146,78 @@ namespace XtendedMenu
 
         private static void CheckUserSettings()
         {
-            if (XtendedMenuSettings == null)
+            try
             {
-                RegistryKey Software = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                Software.CreateSubKey("XtendedMenu");
-                RegistryKey SoftwareXtendedMenu = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu", true);
-                SoftwareXtendedMenu.CreateSubKey("Settings");
+                if (XtendedMenuSettings == null)
+                {
+                    RegistryKey Software = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
+                    Software.CreateSubKey("XtendedMenu");
+                    RegistryKey SoftwareXtendedMenu = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu", true);
+                    SoftwareXtendedMenu.CreateSubKey("Settings");
 
-                SetRegistryItems.SetItems();
+                    SetRegistryItems.SetItems();
+                }
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
             }
         }
         private void MenuDeveloper()
         {
-            // Main Menu
-            Menu.Items.Add(XtendedMenuMenu);
-            XtendedMenuMenu.Text = "XtendedMenu";
+            try
+            {
+                // Main Menu
+                Menu.Items.Add(XtendedMenuMenu);
+                XtendedMenuMenu.Text = "XtendedMenu";
 
-            // Icons
-            XtendedMenuMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
-            Attributes.Image = Properties.Resources.FileAttributes.ToBitmap();
-            AttributesMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
-            OpenNotepad.Image = Properties.Resources.notepad.ToBitmap();
-            CopyPath.Image = Properties.Resources.CopyPath.ToBitmap();
-            CopyPathURL.Image = Properties.Resources.CopyPath.ToBitmap();
-            CopyLONGPath.Image = Properties.Resources.CopyPath.ToBitmap();
-            CopyName.Image = Properties.Resources.CopyName.ToBitmap();
-            SymLink.Image = Properties.Resources.SymLink.ToBitmap();
-            BlockFirewall.Image = Properties.Resources.Firewall.ToBitmap();
-            TakeOwnership.Image = Properties.Resources.TakeOwnership.ToBitmap();
+                // Icons
+                XtendedMenuMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
+                Attributes.Image = Properties.Resources.FileAttributes.ToBitmap();
+                AttributesMenu.Image = Properties.Resources.MAIN_ICON.ToBitmap();
+                OpenNotepad.Image = Properties.Resources.notepad.ToBitmap();
+                CopyPath.Image = Properties.Resources.CopyPath.ToBitmap();
+                CopyPathURL.Image = Properties.Resources.CopyPath.ToBitmap();
+                CopyLONGPath.Image = Properties.Resources.CopyPath.ToBitmap();
+                CopyName.Image = Properties.Resources.CopyName.ToBitmap();
+                SymLink.Image = Properties.Resources.SymLink.ToBitmap();
+                BlockFirewall.Image = Properties.Resources.Firewall.ToBitmap();
+                TakeOwnership.Image = Properties.Resources.TakeOwnership.ToBitmap();
 
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            AddMenuItems(array);
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                AddMenuItems(array);
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
 
+            CustomEntries();
+
+            try
+            {
+                // Subscriptions
+                AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
+                OpenNotepad.Click += (sender, args) => OpenNotepadMethod();
+                CopyPath.Click += (sender, args) => CopyPathMethod();
+                CopyPathURL.Click += (sender, args) => CopyPathURLMethod();
+                CopyLONGPath.Click += (sender, args) => CopyLONGPathMethod();
+                CopyName.Click += (sender, args) => CopyNameMethod();
+                HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
+                SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
+                ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
+                SymLink.Click += (sender, args) => SymLinkMethod();
+                BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
+                TakeOwnership.Click += (sender, args) => TakeOwnershipMethod();
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
+        }
+
+        private void CustomEntries()
+        {
             try
             {
                 // Custom Entries
@@ -236,21 +284,6 @@ namespace XtendedMenu
             {
                 EasyLogger.Error(ex);
             }
-
-
-            // Subscriptions
-            AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
-            OpenNotepad.Click += (sender, args) => OpenNotepadMethod();
-            CopyPath.Click += (sender, args) => CopyPathMethod();
-            CopyPathURL.Click += (sender, args) => CopyPathURLMethod();
-            CopyLONGPath.Click += (sender, args) => CopyLONGPathMethod();
-            CopyName.Click += (sender, args) => CopyNameMethod();
-            HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
-            SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
-            ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
-            SymLink.Click += (sender, args) => SymLinkMethod();
-            BlockFirewall.Click += (sender, args) => BlockFirewallMethod();
-            TakeOwnership.Click += (sender, args) => TakeOwnershipMethod();
         }
 
         // Add Menu Items
@@ -358,38 +391,45 @@ namespace XtendedMenu
         // Set File Attributes
         private void SetFileAttributes()
         {
-            using (HiddenAttributes = new ToolStripMenuItem())
+            try
             {
-                HiddenAttributes.Text = "Set Hidden Attribute";
-                HiddenAttributes.Name = "HiddenAttributes";
+                using (HiddenAttributes = new ToolStripMenuItem())
+                {
+                    HiddenAttributes.Text = "Set Hidden Attribute";
+                    HiddenAttributes.Name = "HiddenAttributes";
+                }
+                if (AttributesInfo.hidden)
+                {
+                    HiddenAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
+                }
+                // SystemAttributes
+                using (SystemAttributes = new ToolStripMenuItem())
+                {
+                    SystemAttributes.Text = "Set System Attribute";
+                    SystemAttributes.Name = "SystemAttributes";
+                }
+                if (AttributesInfo.system)
+                {
+                    SystemAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
+                }
+                // ReadOnlyAttributes
+                using (ReadOnlyAttributes = new ToolStripMenuItem())
+                {
+                    ReadOnlyAttributes.Text = "Set Read-only Attribute";
+                    ReadOnlyAttributes.Name = "ReadOnlyAttributes";
+                }
+                if (AttributesInfo.readOnly)
+                {
+                    ReadOnlyAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
+                }
             }
-            if (AttributesInfo.hidden)
+            catch (Exception ex)
             {
-                HiddenAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
-            }
-            // SystemAttributes
-            using (SystemAttributes = new ToolStripMenuItem())
-            {
-                SystemAttributes.Text = "Set System Attribute";
-                SystemAttributes.Name = "SystemAttributes";
-            }
-            if (AttributesInfo.system)
-            {
-                SystemAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
-            }
-            // ReadOnlyAttributes
-            using (ReadOnlyAttributes = new ToolStripMenuItem())
-            {
-                ReadOnlyAttributes.Text = "Set Read-only Attribute";
-                ReadOnlyAttributes.Name = "ReadOnlyAttributes";
-            }
-            if (AttributesInfo.readOnly)
-            {
-                ReadOnlyAttributes.Image = Properties.Resources.AttributesShow.ToBitmap();
+                EasyLogger.Error(ex);
             }
         }
-        // Methods
 
+        // Methods
         public static bool HasExecutable(string path)
         {
             string executable = FindExecutable(path);
@@ -407,54 +447,82 @@ namespace XtendedMenu
         private static extern long FindExecutable(string lpFile, string lpDirectory, StringBuilder lpResult);
         private void OpenNotepadMethod()
         {
-            string textFile = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt";
-            if (!File.Exists(textFile))
+            try
             {
-                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                string version = fvi.FileVersion;
+                string textFile = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt";
+                if (!File.Exists(textFile))
+                {
+                    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+                    string version = fvi.FileVersion;
 
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu");
-                File.WriteAllText(textFile, version);
-            }
-            if (HasExecutable(textFile))
-            {
-                foreach (string filePath in SelectedItemPaths)
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu");
+                    File.WriteAllText(textFile, version);
+                }
+                if (HasExecutable(textFile))
                 {
-                    StartProcess.StartInfo(FindExecutable(textFile), "\"" + filePath + "\"");
+                    foreach (string filePath in SelectedItemPaths)
+                    {
+                        StartProcess.StartInfo(FindExecutable(textFile), "\"" + filePath + "\"");
+                    }
+                }
+                else
+                {
+                    foreach (string filePath in SelectedItemPaths)
+                    {
+                        StartProcess.StartInfo("Notepad.exe", "\"" + filePath + "\"");
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                foreach (string filePath in SelectedItemPaths)
-                {
-                    StartProcess.StartInfo("Notepad.exe", "\"" + filePath + "\"");
-                }
+                EasyLogger.Error(ex);
             }
         }
         private void BlockFirewallMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray() + "\" " + "-firewallfiles", false, true);
+            try
+            {
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray() + "\" " + "-firewallfiles", false, true);
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void CopyNameMethod()
         {
-            Clipboard.Clear();
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            Clipboard.SetText(array.ToStringArray(true));
+            try
+            {
+                Clipboard.Clear();
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                Clipboard.SetText(array.ToStringArray(true));
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void CopyPathMethod()
         {
-            Clipboard.Clear();
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            Clipboard.SetText(array.ToStringArray(false));
+            try
+            {
+                Clipboard.Clear();
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                Clipboard.SetText(array.ToStringArray(false));
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void CopyPathURLMethod()
         {
-            Clipboard.Clear();
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
             try
             {
+                Clipboard.Clear();
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
                 Clipboard.SetText(new Uri(array.ToStringArray(false)).AbsoluteUri);
             }
             catch (Exception ex)
@@ -464,94 +532,143 @@ namespace XtendedMenu
         }
         private void CopyLONGPathMethod()
         {
-            Clipboard.Clear();
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            Clipboard.SetText(@"\\?\" + array.ToStringArray(false));
+            try
+            {
+                Clipboard.Clear();
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                Clipboard.SetText(@"\\?\" + array.ToStringArray(false));
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void AttributesMenuMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\" " + "-attributesmenu");
+            try
+            {
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\" " + "-attributesmenu");
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void HiddenAttributesMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            foreach (string item in array)
+            try
             {
-                FileAttributes attributes = File.GetAttributes(item);
-                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                foreach (string item in array)
                 {
-                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.Hidden);
-                    File.SetAttributes(item, attributes);
+                    FileAttributes attributes = File.GetAttributes(item);
+                    if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+                    {
+                        attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.Hidden);
+                        File.SetAttributes(item, attributes);
+                    }
+                    else
+                    {
+                        File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.Hidden);
+                    }
                 }
-                else
-                {
-                    File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.Hidden);
-                }
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
             }
-            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void SystemAttributesMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            foreach (string item in array)
+            try
             {
-                FileAttributes attributes = File.GetAttributes(item);
-                if ((attributes & FileAttributes.System) == FileAttributes.System)
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                foreach (string item in array)
                 {
-                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.System);
-                    File.SetAttributes(item, attributes);
+                    FileAttributes attributes = File.GetAttributes(item);
+                    if ((attributes & FileAttributes.System) == FileAttributes.System)
+                    {
+                        attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.System);
+                        File.SetAttributes(item, attributes);
+                    }
+                    else
+                    {
+                        File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.System);
+                    }
                 }
-                else
-                {
-                    File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.System);
-                }
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
             }
-            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
         private void ReadOnlyAttributesMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            foreach (string item in array)
+            try
             {
-                FileAttributes attributes = File.GetAttributes(item);
-                if ((attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                foreach (string item in array)
                 {
-                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.ReadOnly);
-                    File.SetAttributes(item, attributes);
+                    FileAttributes attributes = File.GetAttributes(item);
+                    if ((attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                    {
+                        attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.ReadOnly);
+                        File.SetAttributes(item, attributes);
+                    }
+                    else
+                    {
+                        File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.ReadOnly);
+                    }
                 }
-                else
-                {
-                    File.SetAttributes(item, File.GetAttributes(item) | FileAttributes.ReadOnly);
-                }
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
             }
         }
         private void SymLinkMethod()
         {
-            foreach (string file in SelectedItemPaths)
+            try
             {
-                try
+                foreach (string file in SelectedItemPaths)
                 {
-                    using (FolderBrowserDialog ofd = new FolderBrowserDialog())
+                    try
                     {
-                        ofd.Description = Path.GetFileName(file);
-                        if (ofd.ShowDialog() == DialogResult.OK)
+                        using (FolderBrowserDialog ofd = new FolderBrowserDialog())
                         {
-                            string PathName = ofd.SelectedPath + @"\" + Path.GetFileName(file);
-                            StartProcess.StartInfo("cmd.exe", "/c mklink " + "\"" + PathName + "\"" + " " + "\"" + file + "\"", true, true, true);
+                            ofd.Description = Path.GetFileName(file);
+                            if (ofd.ShowDialog() == DialogResult.OK)
+                            {
+                                string PathName = ofd.SelectedPath + @"\" + Path.GetFileName(file);
+                                StartProcess.StartInfo("cmd.exe", "/c mklink " + "\"" + PathName + "\"" + " " + "\"" + file + "\"", true, true, true);
+                            }
                         }
                     }
+                    catch (System.ComponentModel.Win32Exception ex)
+                    {
+                        StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
+                    }
                 }
-                catch (System.ComponentModel.Win32Exception ex)
-                {
-                    StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
-                }
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
             }
         }
         private void TakeOwnershipMethod()
         {
-            string[] array = SelectedItemPaths.Cast<string>().ToArray();
-            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\"" + " -ownership", false, true);
+            try
+            {
+                string[] array = SelectedItemPaths.Cast<string>().ToArray();
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\"" + " -ownership", false, true);
+            }
+            catch (Exception ex)
+            {
+                EasyLogger.Error(ex);
+            }
         }
 
         private void CustomMenuItem_Click(object sender, EventArgs e)
