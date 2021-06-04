@@ -2,7 +2,7 @@
 
 Extended context menu tools Pro  
 
-
+[![LICENSE](https://img.shields.io/github/license/xCONFLiCTiONx/XtendedMenu)](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/LICENSE) [![Stars](https://img.shields.io/github/stars/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/stargazers) [![Issues](https://img.shields.io/github/issues/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/issues)
 
 ## Requirements
 
