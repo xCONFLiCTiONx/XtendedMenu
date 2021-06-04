@@ -448,18 +448,33 @@ namespace XtendedMenu
 
             if (entryBox == "AllFilesEntryBox")
             {
+                DirectoriesEntryBox.SelectedIndexChanged -= new EventHandler(DirectoriesEntryBox_SelectedIndexChanged);
                 DirectoriesEntryBox.SelectedIndex = -1;
+                DirectoriesEntryBox.SelectedIndexChanged += new EventHandler(DirectoriesEntryBox_SelectedIndexChanged);
+
+                BackgroundEntryBox.SelectedIndexChanged -= new EventHandler(BackgroundEntryBox_SelectedIndexChanged);
                 BackgroundEntryBox.SelectedIndex = -1;
+                BackgroundEntryBox.SelectedIndexChanged += new EventHandler(BackgroundEntryBox_SelectedIndexChanged);
             }
             else if (entryBox == "DirectoriesEntryBox")
             {
+                AllFilesEntryBox.SelectedIndexChanged -= new EventHandler(AllFilesEntryBox_SelectedIndexChanged);
                 AllFilesEntryBox.SelectedIndex = -1;
+                AllFilesEntryBox.SelectedIndexChanged += new EventHandler(AllFilesEntryBox_SelectedIndexChanged);
+
+                BackgroundEntryBox.SelectedIndexChanged -= new EventHandler(BackgroundEntryBox_SelectedIndexChanged);
                 BackgroundEntryBox.SelectedIndex = -1;
+                BackgroundEntryBox.SelectedIndexChanged += new EventHandler(BackgroundEntryBox_SelectedIndexChanged);
             }
             else if (entryBox == "BackgroundEntryBox")
             {
+                AllFilesEntryBox.SelectedIndexChanged -= new EventHandler(AllFilesEntryBox_SelectedIndexChanged);
                 AllFilesEntryBox.SelectedIndex = -1;
+                AllFilesEntryBox.SelectedIndexChanged += new EventHandler(AllFilesEntryBox_SelectedIndexChanged);
+
+                DirectoriesEntryBox.SelectedIndexChanged -= new EventHandler(DirectoriesEntryBox_SelectedIndexChanged);
                 DirectoriesEntryBox.SelectedIndex = -1;
+                DirectoriesEntryBox.SelectedIndexChanged += new EventHandler(DirectoriesEntryBox_SelectedIndexChanged);
             }
             else
             {
@@ -539,7 +554,7 @@ namespace XtendedMenu
             }
         }
 
-        private void EntryBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void AllFilesEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Clear("AllFilesEntryBox");
 
@@ -593,7 +608,7 @@ namespace XtendedMenu
         {
             Clear("DirectoriesEntryBox");
 
-            if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
+            if (!string.IsNullOrEmpty(DirectoriesEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
             }
@@ -610,9 +625,9 @@ namespace XtendedMenu
 
                 foreach (string value in CustomNameArray)
                 {
-                    if (value == (string)AllFilesEntryBox.SelectedItem)
+                    if (value == (string)DirectoriesEntryBox.SelectedItem)
                     {
-                        NameBox.Text = (string)AllFilesEntryBox.SelectedItem;
+                        NameBox.Text = (string)DirectoriesEntryBox.SelectedItem;
 
                         var CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
@@ -643,7 +658,7 @@ namespace XtendedMenu
         {
             Clear("BackgroundEntryBox");
 
-            if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
+            if (!string.IsNullOrEmpty(BackgroundEntryBox.Text))
             {
                 AddButton.Text = "Update Entry";
             }
@@ -660,9 +675,9 @@ namespace XtendedMenu
 
                 foreach (string value in CustomNameArray)
                 {
-                    if (value == (string)AllFilesEntryBox.SelectedItem)
+                    if (value == (string)BackgroundEntryBox.SelectedItem)
                     {
-                        NameBox.Text = (string)AllFilesEntryBox.SelectedItem;
+                        NameBox.Text = (string)BackgroundEntryBox.SelectedItem;
 
                         var CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));

@@ -71,13 +71,13 @@ namespace XtendedMenu
             this.AllFilesEntryBox.Name = "AllFilesEntryBox";
             this.AllFilesEntryBox.Size = new System.Drawing.Size(229, 21);
             this.AllFilesEntryBox.TabIndex = 0;
-            this.AllFilesEntryBox.SelectedIndexChanged += new System.EventHandler(this.EntryBox_SelectedIndexChanged);
+            this.AllFilesEntryBox.SelectedIndexChanged += new System.EventHandler(this.AllFilesEntryBox_SelectedIndexChanged);
             // 
             // NameBox
             // 
             this.NameBox.Location = new System.Drawing.Point(71, 39);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(322, 20);
+            this.NameBox.Size = new System.Drawing.Size(228, 20);
             this.NameBox.TabIndex = 2;
             // 
             // ProcessBox
@@ -147,7 +147,7 @@ namespace XtendedMenu
             // 
             this.ArgumentsBox.Location = new System.Drawing.Point(71, 65);
             this.ArgumentsBox.Name = "ArgumentsBox";
-            this.ArgumentsBox.Size = new System.Drawing.Size(228, 20);
+            this.ArgumentsBox.Size = new System.Drawing.Size(322, 20);
             this.ArgumentsBox.TabIndex = 3;
             // 
             // label5
@@ -261,7 +261,7 @@ namespace XtendedMenu
             // adminBox
             // 
             this.adminBox.AutoSize = true;
-            this.adminBox.Location = new System.Drawing.Point(304, 67);
+            this.adminBox.Location = new System.Drawing.Point(304, 42);
             this.adminBox.Name = "adminBox";
             this.adminBox.Size = new System.Drawing.Size(92, 17);
             this.adminBox.TabIndex = 4;
