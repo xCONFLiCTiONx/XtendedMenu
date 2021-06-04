@@ -8,7 +8,7 @@ Extended context menu tools Pro
 
 ## Notes
 
-*Contrary to what other websites are saying, XtendedMenu is not portable by definition and should be installed to a non-removable drive.*
+*XtendedMenu is not portable and should be installed to a non-removable drive.*
 
 ## Language
 
@@ -16,7 +16,7 @@ Extended context menu tools Pro
 
 ## Support
 
-*Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft and Windows 8/.1 is just a joke.*
+*Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
 
 ![All_Files](https://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/AllFiles.png) ![Directories](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Directories.png)  ![Background](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Background.png) ![Attributes](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Attributes.jpg)
 
