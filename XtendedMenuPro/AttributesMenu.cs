@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using XtendedMenu.Properties;
 using static XtendedMenu.SendMessage;
 
 namespace XtendedMenu

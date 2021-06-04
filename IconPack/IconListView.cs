@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace TAFactory.IconPack
@@ -14,12 +11,12 @@ namespace TAFactory.IconPack
         private const int textHeight = 18;
         private const int verticalSpacing = 5;
         private static readonly Padding TilePadding = new Padding(5, 1, 5, 1);
-        
+
         public IconListView()
         {
             InitializeComponent();
             base.View = View.Tile;
-            this.TileSize = base.TileSize;
+            TileSize = base.TileSize;
             base.OwnerDraw = true;
             base.DrawItem += new DrawListViewItemEventHandler(IconListView_DrawItem);
         }
@@ -27,8 +24,8 @@ namespace TAFactory.IconPack
         private Size _tileSize;
         public new Size TileSize
         {
-            get { return _tileSize; }
-            set 
+            get => _tileSize;
+            set
             {
                 _tileSize = value;
                 base.BeginUpdate();
@@ -66,13 +63,17 @@ namespace TAFactory.IconPack
             Pen border = SystemPens.ControlLight;
             if (e.Item.Selected)
             {
-                if (this.Focused)
+                if (Focused)
+                {
                     border = SystemPens.Highlight;
+                }
                 else
+                {
                     border = SystemPens.ButtonFace;
+                }
             }
-            int centerSpacing = (e.Bounds.Width - this.TileSize.Width - TilePadding.Horizontal) / 2 + TilePadding.Left;
-            Rectangle newBounds = new Rectangle(e.Bounds.X + centerSpacing, e.Bounds.Y + TilePadding.Top, this.TileSize.Width, this.TileSize.Height);
+            int centerSpacing = (e.Bounds.Width - TileSize.Width - TilePadding.Horizontal) / 2 + TilePadding.Left;
+            Rectangle newBounds = new Rectangle(e.Bounds.X + centerSpacing, e.Bounds.Y + TilePadding.Top, TileSize.Width, TileSize.Height);
             e.Graphics.DrawRectangle(border, newBounds);
 
             //e.Graphics.DrawString("Whatever", this.Font, e., 0, 0);
@@ -84,28 +85,30 @@ namespace TAFactory.IconPack
             e.Graphics.DrawIcon(item.Icon, rect);
 
             string text = string.Format("{0} x {1}", item.Icon.Width, item.Icon.Height);
-            SizeF stringSize = e.Graphics.MeasureString(text, this.Font);
-            int stringWidth = (int) Math.Round(stringSize.Width);
-            int stringHeight = (int) Math.Round(stringSize.Height);
+            SizeF stringSize = e.Graphics.MeasureString(text, Font);
+            int stringWidth = (int)Math.Round(stringSize.Width);
+            int stringHeight = (int)Math.Round(stringSize.Height);
             x = e.Bounds.X + (e.Bounds.Width - stringWidth - TilePadding.Horizontal) / 2 + TilePadding.Left;
-            y = e.Bounds.Y + this.TileSize.Height + verticalSpacing + TilePadding.Top;
+            y = e.Bounds.Y + TileSize.Height + verticalSpacing + TilePadding.Top;
             clipReg = new Region(e.Bounds);
             e.Graphics.Clip = clipReg;
             if (e.Item.Selected)
             {
-                if (this.Focused)
+                if (Focused)
                 {
                     e.Graphics.FillRectangle(SystemBrushes.Highlight, x - 1, y - 1, stringWidth + 2, stringSize.Height + 2);
-                    e.Graphics.DrawString(text, this.Font, SystemBrushes.HighlightText, x, y);
+                    e.Graphics.DrawString(text, Font, SystemBrushes.HighlightText, x, y);
                 }
                 else
                 {
                     e.Graphics.FillRectangle(SystemBrushes.ButtonFace, x - 1, y - 1, stringWidth + 2, stringSize.Height + 2);
-                    e.Graphics.DrawString(text, this.Font, SystemBrushes.ControlText, x, y);
+                    e.Graphics.DrawString(text, Font, SystemBrushes.ControlText, x, y);
                 }
             }
             else
-                e.Graphics.DrawString(text, this.Font, SystemBrushes.ControlText, x, y);
+            {
+                e.Graphics.DrawString(text, Font, SystemBrushes.ControlText, x, y);
+            }
         }
     }
     public class IconListViewItem : ListViewItem
@@ -113,8 +116,8 @@ namespace TAFactory.IconPack
         private Icon _icon;
         public Icon Icon
         {
-            get { return _icon; }
-            set { _icon = value; }
+            get => _icon;
+            set => _icon = value;
         }
     }
 }

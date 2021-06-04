@@ -254,7 +254,7 @@ namespace XtendedMenu
                 using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background"))
                 {
                     int index = 0;
-                    var CustomNameList = new List<string>();
+                    List<string> CustomNameList = new List<string>();
                     CustomNameList.AddRange((string[])key.GetValue("CustomName"));
                     string[] CustomNameArray = CustomNameList.ToArray();
                     foreach (string value in CustomNameArray)
@@ -267,7 +267,7 @@ namespace XtendedMenu
                             CustomMenuItem.Name = index.ToString();
                         }
 
-                        var CustomIconList = new List<string>();
+                        List<string> CustomIconList = new List<string>();
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] IconListArray = CustomIconList.ToArray();
 
@@ -289,7 +289,7 @@ namespace XtendedMenu
             }
             catch (Exception ex)
             {
-                EasyLogger.Error(ex);
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
             }
         }
 
@@ -586,19 +586,19 @@ namespace XtendedMenu
                 {
                     int itemName = Convert.ToInt32(((ToolStripMenuItem)sender).Name);
 
-                    var CustomProcessList = new List<string>();
+                    List<string> CustomProcessList = new List<string>();
                     CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
                     string[] CustomProcessArray = CustomProcessList.ToArray();
 
-                    var CustomArgumentsList = new List<string>();
+                    List<string> CustomArgumentsList = new List<string>();
                     CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                     string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
 
-                    var CustomDirectoryList = new List<string>();
+                    List<string> CustomDirectoryList = new List<string>();
                     CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                     string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
 
-                    var RunAsAdminList = new List<string>();
+                    List<string> RunAsAdminList = new List<string>();
                     RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                     string[] RunAsAdminArray = RunAsAdminList.ToArray();
 
@@ -617,7 +617,7 @@ namespace XtendedMenu
             }
             catch (Exception ex)
             {
-                EasyLogger.Error(ex);
+                StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
             }
         }
     }

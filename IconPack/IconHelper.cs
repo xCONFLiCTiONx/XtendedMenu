@@ -1,10 +1,9 @@
+using Microsoft.API;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using Microsoft.API;
-using System.Runtime.InteropServices;
 using System.IO;
+using System.Runtime.InteropServices;
 using TAFactory.Utilities;
 
 namespace TAFactory.IconPack
@@ -13,13 +12,13 @@ namespace TAFactory.IconPack
     //[Flags]
     public enum IconFlags : int
     {
-        Icon              = 0x000000100,     // get icon
-        LinkOverlay       = 0x000008000,     // put a link overlay on icon
-        Selected          = 0x000010000,     // show icon in selected state
-        LargeIcon         = 0x000000000,     // get large icon
-        SmallIcon         = 0x000000001,     // get small icon
-        OpenIcon          = 0x000000002,     // get open icon
-        ShellIconSize     = 0x000000004,     // get shell size icon
+        Icon = 0x000000100,     // get icon
+        LinkOverlay = 0x000008000,     // put a link overlay on icon
+        Selected = 0x000010000,     // show icon in selected state
+        LargeIcon = 0x000000000,     // get large icon
+        SmallIcon = 0x000000001,     // get small icon
+        OpenIcon = 0x000000002,     // get open icon
+        ShellIconSize = 0x000000004,     // get shell size icon
     }
     #endregion
 
@@ -47,7 +46,7 @@ namespace TAFactory.IconPack
         {
             return new IconInfo(fileName);
         }
-        
+
         /// <summary>
         /// Extracts an icon from a givin icon file or an executable module (.dll or an .exe file).
         /// </summary>
@@ -62,7 +61,9 @@ namespace TAFactory.IconPack
             catch { }
 
             if (icon != null) //The file was an icon file, return the icon.
+            {
                 return icon;
+            }
 
             //Load the file as an executable module.
             using (IconExtractor extractor = new IconExtractor(fileName))
@@ -102,7 +103,7 @@ namespace TAFactory.IconPack
             }
             return list;
         }
-        
+
         /// <summary>
         /// Splits the group icon into a list of icons (the single icon file can contain a set of icons).
         /// </summary>
@@ -198,10 +199,12 @@ namespace TAFactory.IconPack
         {
             flags |= IconFlags.Icon;
             SHFILEINFO fileInfo = new SHFILEINFO();
-            IntPtr result = Win32.SHGetFileInfo(fileName, 0, ref fileInfo, (uint)Marshal.SizeOf(fileInfo), (SHGetFileInfoFlags) flags);
+            IntPtr result = Win32.SHGetFileInfo(fileName, 0, ref fileInfo, (uint)Marshal.SizeOf(fileInfo), (SHGetFileInfoFlags)flags);
 
             if (fileInfo.hIcon == IntPtr.Zero)
+            {
                 return null;
+            }
 
             return Icon.FromHandle(fileInfo.hIcon);
         }

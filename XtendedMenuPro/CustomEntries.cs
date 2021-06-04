@@ -47,7 +47,7 @@ namespace XtendedMenu
             }
         }
 
-        static string CapitalizeFirstLetter(string value)
+        private static string CapitalizeFirstLetter(string value)
         {
             value = value.ToLower();
             char[] array = value.ToCharArray();
@@ -143,7 +143,7 @@ namespace XtendedMenu
                 {
                     string[] CustomArguments = (string[])key.GetValue("CustomArguments");
 
-                    var myList = new List<string>();
+                    List<string> myList = new List<string>();
                     myList.AddRange(CustomArguments);
                     myList.Add(ArgumentsBox.Text);
                     string[] newArray = myList.ToArray();
@@ -159,7 +159,7 @@ namespace XtendedMenu
                 {
                     string[] CustomDirectory = (string[])key.GetValue("CustomDirectory");
 
-                    var myList = new List<string>();
+                    List<string> myList = new List<string>();
                     myList.AddRange(CustomDirectory);
                     myList.Add(DirectoryBox.Text);
                     string[] newArray = myList.ToArray();
@@ -175,7 +175,7 @@ namespace XtendedMenu
                 {
                     string[] CustomProcess = (string[])key.GetValue("CustomProcess");
 
-                    var myList = new List<string>();
+                    List<string> myList = new List<string>();
                     myList.AddRange(CustomProcess);
                     myList.Add(ProcessBox.Text);
                     string[] newArray = myList.ToArray();
@@ -191,7 +191,7 @@ namespace XtendedMenu
                 {
                     string[] CustomIcon = (string[])key.GetValue("CustomIcon");
 
-                    var myList = new List<string>();
+                    List<string> myList = new List<string>();
                     myList.AddRange(CustomIcon);
                     myList.Add(IconBox.Text);
                     string[] newArray = myList.ToArray();
@@ -208,7 +208,7 @@ namespace XtendedMenu
                 {
                     string[] RunAsAdmin = (string[])key.GetValue("RunAsAdmin");
 
-                    var myList = new List<string>();
+                    List<string> myList = new List<string>();
                     myList.AddRange(RunAsAdmin);
                     myList.Add(adminBox.Checked.ToString());
                     string[] newArray = myList.ToArray();
@@ -453,7 +453,7 @@ namespace XtendedMenu
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\AllFiles"))
             {
                 int index = 0;
-                var CustomNameList = new List<string>();
+                List<string> CustomNameList = new List<string>();
                 CustomNameList.AddRange((string[])key.GetValue("CustomName"));
                 string[] CustomNameArray = CustomNameList.ToArray();
 
@@ -463,26 +463,26 @@ namespace XtendedMenu
                     {
                         NameBox.Text = (string)AllFilesEntryBox.SelectedItem;
 
-                        var CustomProcessList = new List<string>();
+                        List<string> CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
                         ProcessBox.Text = CustomProcessList[index];
 
-                        var CustomArgumentsList = new List<string>();
+                        List<string> CustomArgumentsList = new List<string>();
                         CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                         string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
                         ArgumentsBox.Text = CustomArgumentsArray[index];
 
-                        var CustomDirectoryList = new List<string>();
+                        List<string> CustomDirectoryList = new List<string>();
                         CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                         DirectoryBox.Text = CustomDirectoryArray[index];
 
-                        var CustomIconList = new List<string>();
+                        List<string> CustomIconList = new List<string>();
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
 
-                        var RunAsAdminList = new List<string>();
+                        List<string> RunAsAdminList = new List<string>();
                         RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                         string[] RunAsAdminArray = RunAsAdminList.ToArray();
                         if (RunAsAdminArray[index] == "True")
@@ -519,7 +519,7 @@ namespace XtendedMenu
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\Directories"))
             {
                 int index = 0;
-                var CustomNameList = new List<string>();
+                List<string> CustomNameList = new List<string>();
                 CustomNameList.AddRange((string[])key.GetValue("CustomName"));
                 string[] CustomNameArray = CustomNameList.ToArray();
 
@@ -529,26 +529,26 @@ namespace XtendedMenu
                     {
                         NameBox.Text = (string)DirectoriesEntryBox.SelectedItem;
 
-                        var CustomProcessList = new List<string>();
+                        List<string> CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
                         ProcessBox.Text = CustomProcessList[index];
 
-                        var CustomArgumentsList = new List<string>();
+                        List<string> CustomArgumentsList = new List<string>();
                         CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                         string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
                         ArgumentsBox.Text = CustomArgumentsArray[index];
 
-                        var CustomDirectoryList = new List<string>();
+                        List<string> CustomDirectoryList = new List<string>();
                         CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                         DirectoryBox.Text = CustomDirectoryArray[index];
 
-                        var CustomIconList = new List<string>();
+                        List<string> CustomIconList = new List<string>();
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
 
-                        var RunAsAdminList = new List<string>();
+                        List<string> RunAsAdminList = new List<string>();
                         RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                         string[] RunAsAdminArray = RunAsAdminList.ToArray();
                         if (RunAsAdminArray[index] == "True")
@@ -585,7 +585,7 @@ namespace XtendedMenu
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background"))
             {
                 int index = 0;
-                var CustomNameList = new List<string>();
+                List<string> CustomNameList = new List<string>();
                 CustomNameList.AddRange((string[])key.GetValue("CustomName"));
                 string[] CustomNameArray = CustomNameList.ToArray();
 
@@ -595,26 +595,26 @@ namespace XtendedMenu
                     {
                         NameBox.Text = (string)BackgroundEntryBox.SelectedItem;
 
-                        var CustomProcessList = new List<string>();
+                        List<string> CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
                         ProcessBox.Text = CustomProcessList[index];
 
-                        var CustomArgumentsList = new List<string>();
+                        List<string> CustomArgumentsList = new List<string>();
                         CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                         string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
                         ArgumentsBox.Text = CustomArgumentsArray[index];
 
-                        var CustomDirectoryList = new List<string>();
+                        List<string> CustomDirectoryList = new List<string>();
                         CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                         DirectoryBox.Text = CustomDirectoryArray[index];
 
-                        var CustomIconList = new List<string>();
+                        List<string> CustomIconList = new List<string>();
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
 
-                        var RunAsAdminList = new List<string>();
+                        List<string> RunAsAdminList = new List<string>();
                         RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                         string[] RunAsAdminArray = RunAsAdminList.ToArray();
                         if (RunAsAdminArray[index] == "True")
@@ -652,7 +652,7 @@ namespace XtendedMenu
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryLocation, true))
             {
                 int index = 0;
-                var CustomNameList = new List<string>();
+                List<string> CustomNameList = new List<string>();
                 CustomNameList.AddRange((string[])key.GetValue("CustomName"));
                 string[] CustomNameArray = CustomNameList.ToArray();
 
@@ -664,34 +664,34 @@ namespace XtendedMenu
                         key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
 
 
-                        var CustomProcessList = new List<string>();
+                        List<string> CustomProcessList = new List<string>();
                         CustomProcessList.AddRange((string[])key.GetValue("CustomProcess"));
                         CustomProcessList.RemoveAt(index);
                         string[] CustomProcessArray = CustomProcessList.ToArray();
                         key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
 
-                        var CustomArgumentsList = new List<string>();
+                        List<string> CustomArgumentsList = new List<string>();
                         CustomArgumentsList.AddRange((string[])key.GetValue("CustomArguments"));
                         CustomArgumentsList.RemoveAt(index);
                         string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
                         key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
 
 
-                        var CustomDirectoryList = new List<string>();
+                        List<string> CustomDirectoryList = new List<string>();
                         CustomDirectoryList.AddRange((string[])key.GetValue("CustomDirectory"));
                         CustomDirectoryList.RemoveAt(index);
                         string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                         key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
 
 
-                        var CustomIconList = new List<string>();
+                        List<string> CustomIconList = new List<string>();
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         CustomIconList.RemoveAt(index);
                         string[] CustomIconArray = CustomIconList.ToArray();
                         key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
 
 
-                        var RunAsAdminList = new List<string>();
+                        List<string> RunAsAdminList = new List<string>();
                         RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                         RunAsAdminList.RemoveAt(index);
                         string[] RunAsAdminArray = RunAsAdminList.ToArray();

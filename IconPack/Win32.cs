@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Microsoft.API
 {
@@ -12,15 +11,15 @@ namespace Microsoft.API
     [Flags]
     public enum LoadLibraryExFlags : int
     {
-        DONT_RESOLVE_DLL_REFERENCES   = 0x00000001,
-        LOAD_LIBRARY_AS_DATAFILE      = 0x00000002,
+        DONT_RESOLVE_DLL_REFERENCES = 0x00000001,
+        LOAD_LIBRARY_AS_DATAFILE = 0x00000002,
         LOAD_WITH_ALTERED_SEARCH_PATH = 0x00000008
     }
     public enum GetLastErrorResult : int
     {
-        ERROR_SUCCESS                 = 0,
-        ERROR_FILE_NOT_FOUND          = 2,
-        ERROR_BAD_EXE_FORMAT          = 193,
+        ERROR_SUCCESS = 0,
+        ERROR_FILE_NOT_FOUND = 2,
+        ERROR_BAD_EXE_FORMAT = 193,
         ERROR_RESOURCE_TYPE_NOT_FOUND = 1813
     }
     public enum ResourceTypes : int
@@ -31,32 +30,32 @@ namespace Microsoft.API
     public enum LookupIconIdFromDirectoryExFlags : int
     {
         LR_DEFAULTCOLOR = 0,
-        LR_MONOCHROME   = 1
+        LR_MONOCHROME = 1
     }
     public enum LoadImageTypes : int
     {
         IMAGE_BITMAP = 0,
-        IMAGE_ICON   = 1,
+        IMAGE_ICON = 1,
         IMAGE_CURSOR = 2
     }
     [Flags]
     public enum SHGetFileInfoFlags : int
     {
-        Icon              = 0x000000100,     // get icon
-        DisplayName       = 0x000000200,     // get display name
-        TypeName          = 0x000000400,     // get type name
-        Attributes        = 0x000000800,     // get attributes
-        IconLocation      = 0x000001000,     // get icon location
-        ExeType           = 0x000002000,     // return exe type
-        SysIconIndex      = 0x000004000,     // get system icon index
-        LinkOverlay       = 0x000008000,     // put a link overlay on icon
-        Selected          = 0x000010000,     // show icon in selected state
-        AttrSpecified     = 0x000020000,     // get only specified attributes
-        LargeIcon         = 0x000000000,     // get large icon
-        SmallIcon         = 0x000000001,     // get small icon
-        OpenIcon          = 0x000000002,     // get open icon
-        ShellIconSize     = 0x000000004,     // get shell size icon
-        PIDL              = 0x000000008,     // pszPath is a pidl
+        Icon = 0x000000100,     // get icon
+        DisplayName = 0x000000200,     // get display name
+        TypeName = 0x000000400,     // get type name
+        Attributes = 0x000000800,     // get attributes
+        IconLocation = 0x000001000,     // get icon location
+        ExeType = 0x000002000,     // return exe type
+        SysIconIndex = 0x000004000,     // get system icon index
+        LinkOverlay = 0x000008000,     // put a link overlay on icon
+        Selected = 0x000010000,     // show icon in selected state
+        AttrSpecified = 0x000020000,     // get only specified attributes
+        LargeIcon = 0x000000000,     // get large icon
+        SmallIcon = 0x000000001,     // get small icon
+        OpenIcon = 0x000000002,     // get open icon
+        ShellIconSize = 0x000000004,     // get shell size icon
+        PIDL = 0x000000008,     // pszPath is a pidl
         UseFileAttributes = 0x000000010      // use passed dwFileAttribute
     }
     #endregion

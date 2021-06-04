@@ -156,7 +156,7 @@ namespace XtendedMenu
 
                 // Restart Explorer
                 DialogResult dialog = MessageForm("Uninstall is complete!" + Environment.NewLine +
-                    "Explorer must be restarted to complete the uninstallation." + Environment.NewLine + 
+                    "Explorer must be restarted to complete the uninstallation." + Environment.NewLine +
                     "Would you like to restart Explorer now? ", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
@@ -225,42 +225,42 @@ namespace XtendedMenu
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryLocation))
             {
                 string[] CustomNameRange = { };
-                var CustomNameList = new List<string>();
+                List<string> CustomNameList = new List<string>();
                 CustomNameList.AddRange(CustomNameRange);
                 string[] CustomNameArray = CustomNameList.ToArray();
                 key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
 
 
                 string[] CustomProcessRange = { };
-                var CustomProcessList = new List<string>();
+                List<string> CustomProcessList = new List<string>();
                 CustomProcessList.AddRange(CustomProcessRange);
                 string[] CustomProcessArray = CustomProcessList.ToArray();
                 key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
 
 
                 string[] CustomArgumentsRange = { };
-                var CustomArgumentsList = new List<string>();
+                List<string> CustomArgumentsList = new List<string>();
                 CustomArgumentsList.AddRange(CustomArgumentsRange);
                 string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
                 key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
 
 
                 string[] CustomDirectoryRange = { };
-                var CustomDirectoryList = new List<string>();
+                List<string> CustomDirectoryList = new List<string>();
                 CustomDirectoryList.AddRange(CustomDirectoryRange);
                 string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
                 key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
 
 
                 string[] CustomIconRange = { };
-                var CustomIconList = new List<string>();
+                List<string> CustomIconList = new List<string>();
                 CustomIconList.AddRange(CustomIconRange);
                 string[] CustomIconArray = CustomIconList.ToArray();
                 key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
 
 
                 string[] RunAsAdminRange = { };
-                var RunAsAdminList = new List<string>();
+                List<string> RunAsAdminList = new List<string>();
                 RunAsAdminList.AddRange(RunAsAdminRange);
                 string[] RunAsAdminArray = RunAsAdminList.ToArray();
                 key.SetValue("RunAsAdmin", RunAsAdminArray, RegistryValueKind.MultiString);

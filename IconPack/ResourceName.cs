@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace TAFactory.IconPack
@@ -17,8 +15,8 @@ namespace TAFactory.IconPack
         /// </summary>
         public int? Id
         {
-            get { return _id; }
-            private set { _id = value; }
+            get => _id;
+            private set => _id = value;
         }
 
         private string _name;
@@ -27,8 +25,8 @@ namespace TAFactory.IconPack
         /// </summary>
         public string Name
         {
-            get { return _name; }
-            private set { _name = value; }
+            get => _name;
+            private set => _name = value;
         }
 
         private IntPtr _value;
@@ -39,24 +37,25 @@ namespace TAFactory.IconPack
         {
             get
             {
-                if (this.IsIntResource)
-                    return new IntPtr(this.Id.Value);
+                if (IsIntResource)
+                {
+                    return new IntPtr(Id.Value);
+                }
 
-                if (this._value == IntPtr.Zero)
-                    this._value = Marshal.StringToHGlobalAuto(this.Name);
+                if (_value == IntPtr.Zero)
+                {
+                    _value = Marshal.StringToHGlobalAuto(Name);
+                }
 
                 return _value;
             }
-            private set { _value = value; }
+            private set => _value = value;
         }
 
         /// <summary>
         /// Gets whether the resource is an integer resource.
         /// </summary>
-        public bool IsIntResource
-        {
-            get { return (this.Id != null); }
-        }
+        public bool IsIntResource => (Id != null);
         #endregion
 
         #region Constructor/Destructor
@@ -74,13 +73,13 @@ namespace TAFactory.IconPack
         {
             if (((uint)lpName >> 16) == 0)  //Integer resource
             {
-                this.Id = lpName.ToInt32();
-                this.Name = null;
+                Id = lpName.ToInt32();
+                Name = null;
             }
             else
             {
-                this.Id = null;
-                this.Name = Marshal.PtrToStringAuto(lpName);
+                Id = null;
+                Name = Marshal.PtrToStringAuto(lpName);
             }
         }
         /// <summary>
@@ -99,21 +98,23 @@ namespace TAFactory.IconPack
         /// <returns>Returns a System.String that represents the current TAFactory.IconPack.ResourceName.</returns>
         public override string ToString()
         {
-            if (this.IsIntResource)
-                return "#" + this.Id.ToString();
+            if (IsIntResource)
+            {
+                return "#" + Id.ToString();
+            }
 
-            return this.Name;
+            return Name;
         }
         /// <summary>
         /// Releases the pointer to the resource name.
         /// </summary>
         public void Free()
         {
-            if (this._value != IntPtr.Zero)
+            if (_value != IntPtr.Zero)
             {
-                try { Marshal.FreeHGlobal(this._value); }
+                try { Marshal.FreeHGlobal(_value); }
                 catch { }
-                this._value = IntPtr.Zero;
+                _value = IntPtr.Zero;
             }
         }
         #endregion
