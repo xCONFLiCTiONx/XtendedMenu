@@ -18,7 +18,7 @@ Extended context menu tools Pro
 
 *Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
 
-![All_Files](https://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/AllFiles.png) ![Directories](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Directories.png)  ![Background](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Background.png) ![Attributes](hhttps://github.com/xCONFLiCTiONx/XtendedMenu/raw/master/Screenshots/Attributes.jpg)
+![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/AllFiles.png) ![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.png)  ![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.png) ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.png)
 
 ## SharpShell Credits
 
