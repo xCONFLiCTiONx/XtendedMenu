@@ -19,8 +19,7 @@ Extended context menu tools Pro
 *Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
 
 ![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/AllFiles.png) ![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.png)  
-![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.png)  
-![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.png)  
+![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.png) ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.png)  
 ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Custom.png)  
 ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/ContextMenu.png)  
 
