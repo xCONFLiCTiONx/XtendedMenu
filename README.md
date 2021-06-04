@@ -2,6 +2,10 @@
 
 Extended context menu tools Pro  
 
+## How do I download XtendedMenu
+
+You can compile it yourself for free or you can donate $10.00 USD to my PayPal account and I'll compile it myself. Contact me if you would like to donate.
+
 ## Requirements
 
 .NET Framework 4.7.2
