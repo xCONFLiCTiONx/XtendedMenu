@@ -28,42 +28,21 @@ namespace XtendedMenu
             {
                 if (key.GetValue("CustomName") != null)
                 {
-                    if (key.GetValue("CustomName") is string)
-                    {
-                        AllFilesEntryBox.Items.Add((string)key.GetValue("CustomName"));
-                    }
-                    else
-                    {
-                        AllFilesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
-                    }
+                    AllFilesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
                 }
             }
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\Directories", true))
             {
                 if (key.GetValue("CustomName") != null)
                 {
-                    if (key.GetValue("CustomName") is string)
-                    {
-                        DirectoriesEntryBox.Items.Add((string)key.GetValue("CustomName"));
-                    }
-                    else
-                    {
-                        DirectoriesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
-                    }
+                    DirectoriesEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
                 }
             }
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings\\Background", true))
             {
                 if (key.GetValue("CustomName") != null)
                 {
-                    if (key.GetValue("CustomName") is string)
-                    {
-                        BackgroundEntryBox.Items.Add((string)key.GetValue("CustomName"));
-                    }
-                    else
-                    {
-                        BackgroundEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
-                    }
+                    BackgroundEntryBox.Items.AddRange((string[])key.GetValue("CustomName"));
                 }
             }
         }
@@ -134,47 +113,26 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("CustomName") is string)
+                    List<string> myListCheck = new List<string>();
+                    myListCheck.AddRange((string[])key.GetValue("CustomName"));
+                    string[] newArrayCheck = myListCheck.ToArray();
+                    foreach (string value in newArrayCheck)
                     {
-                        if ((string)key.GetValue("CustomName") == NameBox.Text)
+                        if (value == NameBox.Text)
                         {
                             MessageBox.Show("This Name already exists.");
                             return;
                         }
-                        string CustomName = (string)key.GetValue("CustomName");
-
-                        var myList = new List<string>
-                        {
-                            CustomName,
-                            NameBox.Text
-                        };
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomName", newArray, RegistryValueKind.MultiString);
                     }
-                    else
-                    {
-                        var myListCheck = new List<string>();
-                        myListCheck.AddRange((string[])key.GetValue("CustomName"));
-                        string[] newArrayCheck = myListCheck.ToArray();
-                        foreach (string value in newArrayCheck)
-                        {
-                            if (value == NameBox.Text)
-                            {
-                                MessageBox.Show("This Name already exists.");
-                                return;
-                            }
-                        }
 
-                        string[] CustomName = (string[])key.GetValue("CustomName");
+                    string[] CustomName = (string[])key.GetValue("CustomName");
 
-                        var myList = new List<string>();
-                        myList.AddRange(CustomName);
-                        myList.Add(NameBox.Text);
-                        string[] newArray = myList.ToArray();
+                    List<string> myList = new List<string>();
+                    myList.AddRange(CustomName);
+                    myList.Add(NameBox.Text);
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("CustomName", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("CustomName", newArray, RegistryValueKind.MultiString);
                 }
                 // CustomArguments
                 if (key.GetValue("CustomArguments") == null)
@@ -183,30 +141,14 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("CustomArguments") is string)
-                    {
-                        string CustomArguments = (string)key.GetValue("CustomArguments");
+                    string[] CustomArguments = (string[])key.GetValue("CustomArguments");
 
-                        var myList = new List<string>
-                        {
-                            CustomArguments,
-                            ArgumentsBox.Text
-                        };
-                        string[] newArray = myList.ToArray();
+                    var myList = new List<string>();
+                    myList.AddRange(CustomArguments);
+                    myList.Add(ArgumentsBox.Text);
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("CustomArguments", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] CustomArguments = (string[])key.GetValue("CustomArguments");
-
-                        var myList = new List<string>();
-                        myList.AddRange(CustomArguments);
-                        myList.Add(ArgumentsBox.Text);
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomArguments", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("CustomArguments", newArray, RegistryValueKind.MultiString);
                 }
                 // CustomDirectory
                 if (key.GetValue("CustomDirectory") == null)
@@ -215,30 +157,14 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("CustomDirectory") is string)
-                    {
-                        string CustomDirectory = (string)key.GetValue("CustomDirectory");
+                    string[] CustomDirectory = (string[])key.GetValue("CustomDirectory");
 
-                        var myList = new List<string>
-                        {
-                            CustomDirectory,
-                            DirectoryBox.Text
-                        };
-                        string[] newArray = myList.ToArray();
+                    var myList = new List<string>();
+                    myList.AddRange(CustomDirectory);
+                    myList.Add(DirectoryBox.Text);
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("CustomDirectory", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] CustomDirectory = (string[])key.GetValue("CustomDirectory");
-
-                        var myList = new List<string>();
-                        myList.AddRange(CustomDirectory);
-                        myList.Add(DirectoryBox.Text);
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomDirectory", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("CustomDirectory", newArray, RegistryValueKind.MultiString);
                 }
                 // CustomProcess
                 if (key.GetValue("CustomProcess") == null)
@@ -247,30 +173,14 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("CustomProcess") is string)
-                    {
-                        string CustomProcess = (string)key.GetValue("CustomProcess");
+                    string[] CustomProcess = (string[])key.GetValue("CustomProcess");
 
-                        var myList = new List<string>
-                        {
-                            CustomProcess,
-                            ProcessBox.Text
-                        };
-                        string[] newArray = myList.ToArray();
+                    var myList = new List<string>();
+                    myList.AddRange(CustomProcess);
+                    myList.Add(ProcessBox.Text);
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("CustomProcess", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] CustomProcess = (string[])key.GetValue("CustomProcess");
-
-                        var myList = new List<string>();
-                        myList.AddRange(CustomProcess);
-                        myList.Add(ProcessBox.Text);
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomProcess", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("CustomProcess", newArray, RegistryValueKind.MultiString);
                 }
                 // CustomIcon
                 if (key.GetValue("CustomIcon") == null)
@@ -279,75 +189,14 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("CustomIcon") is string)
-                    {
-                        string CustomIcon = (string)key.GetValue("CustomIcon");
+                    string[] CustomIcon = (string[])key.GetValue("CustomIcon");
 
-                        var myList = new List<string>
-                        {
-                            CustomIcon,
-                            IconBox.Text
-                        };
-                        string[] newArray = myList.ToArray();
+                    var myList = new List<string>();
+                    myList.AddRange(CustomIcon);
+                    myList.Add(IconBox.Text);
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("CustomIcon", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] CustomIcon = (string[])key.GetValue("CustomIcon");
-
-                        var myList = new List<string>();
-                        myList.AddRange(CustomIcon);
-                        myList.Add(IconBox.Text);
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomIcon", newArray, RegistryValueKind.MultiString);
-                    }
-                }
-                // CustomLocation
-                string checkedLocations = string.Empty;
-                if (AllFilesCB.Checked)
-                {
-                    checkedLocations += 1;
-                }
-                if (DirectoriesCB.Checked)
-                {
-                    checkedLocations += 3;
-                }
-                if (BackgroundCB.Checked)
-                {
-                    checkedLocations += 4;
-                }
-                if (key.GetValue("CustomLocation") == null)
-                {
-                    key.SetValue("CustomLocation", checkedLocations, RegistryValueKind.String);
-                }
-                else
-                {
-                    if (key.GetValue("CustomLocation") is string)
-                    {
-                        string CustomLocation = (string)key.GetValue("CustomLocation");
-
-                        var myList = new List<string>
-                        {
-                            CustomLocation,
-                            checkedLocations
-                        };
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomLocation", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] CustomLocation = (string[])key.GetValue("CustomLocation");
-
-                        var myList = new List<string>();
-                        myList.AddRange(CustomLocation);
-                        myList.Add(checkedLocations);
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("CustomLocation", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("CustomIcon", newArray, RegistryValueKind.MultiString);
                 }
 
                 // Admin
@@ -357,36 +206,43 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    if (key.GetValue("RunAsAdmin") is string)
-                    {
-                        string RunAsAdmin = (string)key.GetValue("RunAsAdmin");
+                    string[] RunAsAdmin = (string[])key.GetValue("RunAsAdmin");
 
-                        var myList = new List<string>
-                        {
-                            RunAsAdmin,
-                            adminBox.Checked.ToString()
-                        };
-                        string[] newArray = myList.ToArray();
+                    var myList = new List<string>();
+                    myList.AddRange(RunAsAdmin);
+                    myList.Add(adminBox.Checked.ToString());
+                    string[] newArray = myList.ToArray();
 
-                        key.SetValue("RunAsAdmin", newArray, RegistryValueKind.MultiString);
-                    }
-                    else
-                    {
-                        string[] RunAsAdmin = (string[])key.GetValue("RunAsAdmin");
-
-                        var myList = new List<string>();
-                        myList.AddRange(RunAsAdmin);
-                        myList.Add(adminBox.Checked.ToString());
-                        string[] newArray = myList.ToArray();
-
-                        key.SetValue("RunAsAdmin", newArray, RegistryValueKind.MultiString);
-                    }
+                    key.SetValue("RunAsAdmin", newArray, RegistryValueKind.MultiString);
                 }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!string.IsNullOrEmpty(AllFilesEntryBox.Text) && !string.IsNullOrEmpty(DirectoriesEntryBox.Text) && !string.IsNullOrEmpty(BackgroundEntryBox.Text))
+                {
+                    if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\AllFiles"))
+                    {
+                        return;
+                    }
+                    if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\Directories"))
+                    {
+                        return;
+                    }
+                    if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\Background"))
+                    {
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
                 RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles", AllFilesEntryBox);
@@ -428,6 +284,28 @@ namespace XtendedMenu
             PopulateEntryBoxes();
         }
 
+        private bool EntryExistsCheck(string RegistryLocation)
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryLocation, true))
+            {
+                if (key.GetValue("CustomName") != null)
+                {
+                    List<string> myListCheck = new List<string>();
+                    myListCheck.AddRange((string[])key.GetValue("CustomName"));
+                    string[] newArrayCheck = myListCheck.ToArray();
+                    foreach (string value in newArrayCheck)
+                    {
+                        if (value == NameBox.Text)
+                        {
+                            MessageBox.Show("This Name already exists.");
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
@@ -441,10 +319,6 @@ namespace XtendedMenu
             DirectoryBox.Clear();
             IconBox.Clear();
             adminBox.Checked = false;
-
-            AllFilesCB.Checked = true;
-            DirectoriesCB.Checked = true;
-            BackgroundCB.Checked = true;
 
             if (entryBox == "AllFilesEntryBox")
             {
@@ -483,9 +357,13 @@ namespace XtendedMenu
                 BackgroundEntryBox.SelectedIndex = -1;
             }
 
+            AllFilesCB.Checked = true;
+            DirectoriesCB.Checked = true;
+            BackgroundCB.Checked = true;
+
             AddButton.Text = "Add Entry";
 
-            NameBox.Select();
+            ProcessBox.Select();
         }
 
         private void IconBrowseButton_Click(object sender, EventArgs e)
@@ -527,10 +405,12 @@ namespace XtendedMenu
 
             if (Path.GetExtension(fileName) == ".exe" || Path.GetExtension(fileName) == ".dll")
             {
-                Icon ico = IconHelper.ExtractBestFitIcon(fileName, 0, SystemInformation.SmallIconSize);
-                using (FileStream fs = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.Create))
+                using (Icon ico = IconHelper.ExtractBestFitIcon(fileName, 0, SystemInformation.SmallIconSize))
                 {
-                    ico.Save(fs);
+                    using (FileStream fs = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.Create))
+                    {
+                        ico.Save(fs);
+                    }
                 }
             }
             else
@@ -557,6 +437,10 @@ namespace XtendedMenu
         private void AllFilesEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Clear("AllFilesEntryBox");
+
+            AllFilesCB.Checked = true;
+            DirectoriesCB.Checked = false;
+            BackgroundCB.Checked = false;
 
             if (!string.IsNullOrEmpty(AllFilesEntryBox.Text))
             {
@@ -597,6 +481,18 @@ namespace XtendedMenu
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
+
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                        if (RunAsAdminArray[index] == "True")
+                        {
+                            adminBox.Checked = true;
+                        }
+                        else
+                        {
+                            adminBox.Checked = false;
+                        }
                     }
 
                     index++;
@@ -607,6 +503,10 @@ namespace XtendedMenu
         private void DirectoriesEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Clear("DirectoriesEntryBox");
+
+            AllFilesCB.Checked = false;
+            DirectoriesCB.Checked = true;
+            BackgroundCB.Checked = false;
 
             if (!string.IsNullOrEmpty(DirectoriesEntryBox.Text))
             {
@@ -647,6 +547,18 @@ namespace XtendedMenu
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
+
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                        if (RunAsAdminArray[index] == "True")
+                        {
+                            adminBox.Checked = true;
+                        }
+                        else
+                        {
+                            adminBox.Checked = false;
+                        }
                     }
 
                     index++;
@@ -657,6 +569,10 @@ namespace XtendedMenu
         private void BackgroundEntryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Clear("BackgroundEntryBox");
+
+            AllFilesCB.Checked = false;
+            DirectoriesCB.Checked = false;
+            BackgroundCB.Checked = true;
 
             if (!string.IsNullOrEmpty(BackgroundEntryBox.Text))
             {
@@ -697,6 +613,18 @@ namespace XtendedMenu
                         CustomIconList.AddRange((string[])key.GetValue("CustomIcon"));
                         string[] CustomIconArray = CustomIconList.ToArray();
                         IconBox.Text = CustomIconArray[index];
+
+                        var RunAsAdminList = new List<string>();
+                        RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
+                        string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                        if (RunAsAdminArray[index] == "True")
+                        {
+                            adminBox.Checked = true;
+                        }
+                        else
+                        {
+                            adminBox.Checked = false;
+                        }
                     }
 
                     index++;
@@ -763,13 +691,6 @@ namespace XtendedMenu
                         key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
 
 
-                        var CustomLocationList = new List<string>();
-                        CustomLocationList.AddRange((string[])key.GetValue("CustomLocation"));
-                        CustomLocationList.RemoveAt(index);
-                        string[] CustomLocationArray = CustomLocationList.ToArray();
-                        key.SetValue("CustomLocation", CustomLocationArray, RegistryValueKind.MultiString);
-
-
                         var RunAsAdminList = new List<string>();
                         RunAsAdminList.AddRange((string[])key.GetValue("RunAsAdmin"));
                         RunAsAdminList.RemoveAt(index);
@@ -781,7 +702,6 @@ namespace XtendedMenu
                 }
             }
 
-            Clear();
             PopulateEntryBoxes();
         }
     }

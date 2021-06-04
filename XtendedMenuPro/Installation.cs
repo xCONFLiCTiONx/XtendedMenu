@@ -259,13 +259,6 @@ namespace XtendedMenu
                 key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
 
 
-                string[] CustomLocationRange = { };
-                var CustomLocationList = new List<string>();
-                CustomLocationList.AddRange(CustomLocationRange);
-                string[] CustomLocationArray = CustomLocationList.ToArray();
-                key.SetValue("CustomLocation", CustomLocationArray, RegistryValueKind.MultiString);
-
-
                 string[] RunAsAdminRange = { };
                 var RunAsAdminList = new List<string>();
                 RunAsAdminList.AddRange(RunAsAdminRange);
