@@ -222,16 +222,22 @@ namespace XtendedMenu
         {
             try
             {
-                if (!string.IsNullOrEmpty(AllFilesEntryBox.Text) && !string.IsNullOrEmpty(DirectoriesEntryBox.Text) && !string.IsNullOrEmpty(BackgroundEntryBox.Text))
+                if (string.IsNullOrEmpty(AllFilesEntryBox.Text) && AllFilesCB.Checked)
                 {
                     if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\AllFiles"))
                     {
                         return;
                     }
+                }
+                if (string.IsNullOrEmpty(DirectoriesEntryBox.Text) && DirectoriesCB.Checked)
+                {
                     if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\Directories"))
                     {
                         return;
                     }
+                }
+                if (string.IsNullOrEmpty(BackgroundEntryBox.Text) && BackgroundCB.Checked)
+                {
                     if (EntryExistsCheck("SOFTWARE\\XtendedMenu\\Settings\\Background"))
                     {
                         return;
@@ -634,20 +640,20 @@ namespace XtendedMenu
 
         private void AllFilesRemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles", AllFilesEntryBox);
+            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\AllFiles", AllFilesEntryBox, true);
         }
 
         private void DirectoriesRemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Directories", DirectoriesEntryBox);
+            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Directories", DirectoriesEntryBox, true);
         }
 
         private void BackgroundRemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Background", BackgroundEntryBox);
+            RemoveEntry("SOFTWARE\\XtendedMenu\\Settings\\Background", BackgroundEntryBox, true);
         }
 
-        private void RemoveEntry(string RegistryLocation, ComboBox comboBox)
+        private void RemoveEntry(string RegistryLocation, ComboBox comboBox, bool clear = false)
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryLocation, true))
             {
@@ -702,6 +708,10 @@ namespace XtendedMenu
                 }
             }
 
+            if (clear)
+            {
+                Clear();
+            }
             PopulateEntryBoxes();
         }
     }

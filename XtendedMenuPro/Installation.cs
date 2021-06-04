@@ -143,6 +143,12 @@ namespace XtendedMenu
         {
             try
             {
+                DialogResult dialog1 = MessageForm("Would you like to uninstall XtendedMenu?", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog1 == DialogResult.No)
+                {
+                    Environment.Exit(0);
+                }
+
                 RegistryKey RegistrySoftware = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 RegistryKey UninstallInfo = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true);
                 StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
