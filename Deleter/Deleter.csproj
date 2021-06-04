@@ -39,6 +39,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>KeyFile.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MAIN_ICON_256.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SendMessage.cs" />
     <Compile Include="Uninstaller.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +78,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="KeyFile.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAIN_ICON_256.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MAIN_ICON_256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

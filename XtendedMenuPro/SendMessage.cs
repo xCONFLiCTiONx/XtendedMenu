@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using XtendedMenu.Properties;
 
 namespace XtendedMenu
 {
@@ -25,6 +26,7 @@ namespace XtendedMenu
 
                 using (Form form = new Form())
                 {
+                    form.Icon = (Resources.MAIN_ICON_256);
                     form.Opacity = 0;
 
                     form.Show();

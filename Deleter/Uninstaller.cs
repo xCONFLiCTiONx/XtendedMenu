@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using XtendedMenu;
+using XtendedMenu.Properties;
 
 namespace Deleter
 {
@@ -12,27 +14,30 @@ namespace Deleter
         {
             try
             {
+                Icon = Resources.MAIN_ICON_256;
                 InitializeComponent();
 
                 try
                 {
                     Process[] chrome = Process.GetProcessesByName("chrome");
                     Process[] OUTLOOK = Process.GetProcessesByName("OUTLOOK");
+
                     if (chrome.Length > 0 && OUTLOOK.Length > 0)
                     {
-                        MessageBox.Show("It appears that Chrome and Outlook are currently running and may lock some files. Please close them and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendMessage.MessageForm("It appears that Chrome and Outlook are currently running and may lock some files. Please close them and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else if (chrome.Length > 0)
                     {
-                        MessageBox.Show("It appears that Chrome is currently running and may lock some files. Please close Chrome and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendMessage.MessageForm("It appears that Chrome is currently running and may lock some files. Please close Chrome and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else if (OUTLOOK.Length > 0)
                     {
-                        MessageBox.Show("It appears that Outlook is currently running and may lock some files. Please close Outlook and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendMessage.MessageForm("It appears that Outlook is currently running and may lock some files. Please close Outlook and press OK to continue. You may stil need to reboot after uninstallation!", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                 }
 
                 if (args.Length > 0)
@@ -81,8 +86,8 @@ namespace Deleter
                     using (StreamWriter sw = File.CreateText(Path.GetTempPath() + "Deleter.bat"))
                     {
                         sw.WriteLine("timeout 5");
-                        sw.WriteLine("del " + "\"" + Path.GetTempPath() + "Deleter.exe" + "\"" + " /f /q");
-                        sw.WriteLine("del " + "\"" + Path.GetTempPath() + "Deleter.bat" + "\"" + " /f /q");
+                        sw.WriteLine("del " + "\"" + Path.GetTempPath() + "Deleter.exe" + "\" /f /q");
+                        sw.WriteLine("del " + "\"" + Path.GetTempPath() + "Deleter.bat" + "\" /f /q");
                         sw.WriteLine("pause");
                     }
                     using (Process p = new Process())
