@@ -59,7 +59,7 @@
             this.DirBackComLinesCheckbox = new System.Windows.Forms.CheckBox();
             this.DirBackAttributesCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CustomEntriesButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -443,15 +443,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
-            // button1
+            // CustomEntriesButton
             // 
-            this.button1.Location = new System.Drawing.Point(207, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Custom Entries";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.CustomEntriesButton.Location = new System.Drawing.Point(207, 277);
+            this.CustomEntriesButton.Name = "CustomEntriesButton";
+            this.CustomEntriesButton.Size = new System.Drawing.Size(97, 23);
+            this.CustomEntriesButton.TabIndex = 23;
+            this.CustomEntriesButton.Text = "Custom Entries";
+            this.CustomEntriesButton.UseVisualStyleBackColor = true;
+            this.CustomEntriesButton.Click += new System.EventHandler(this.CustomEntriesButton_Click);
             // 
             // Settings
             // 
@@ -459,7 +459,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(311, 307);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CustomEntriesButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -512,6 +512,6 @@
         private System.Windows.Forms.CheckBox CopyURLFilesCheckBox;
         private System.Windows.Forms.CheckBox CopyURLDirectoryCheckbox;
         private System.Windows.Forms.CheckBox CopyLongPathDirectoryCheckbox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CustomEntriesButton;
     }
 }

@@ -9,30 +9,6 @@ using System.Text;
 
 namespace XtendedMenu
 {
-    internal static class ShortcutHandler
-    {
-        internal static string GetShortcutTarget(string shortcutFilename)
-        {
-            string pathOnly = Path.GetDirectoryName(shortcutFilename);
-            string filenameOnly = Path.GetFileName(shortcutFilename);
-            Shell32.Shell shell = new Shell32.Shell();
-            Shell32.Folder folder = shell.NameSpace(pathOnly);
-            Shell32.FolderItem folderItem = folder.ParseName(filenameOnly);
-            if (folderItem != null)
-            {
-                if (folderItem.IsLink)
-                {
-                    Shell32.ShellLinkObject link = (Shell32.ShellLinkObject)folderItem.GetLink;
-                    return link.Path;
-                }
-                return shortcutFilename;
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }
     internal static class DesktopWallpaper
     {
         private static byte[] SliceMe(byte[] source, int pos)

@@ -639,7 +639,7 @@ namespace XtendedMenu
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CustomEntriesButton_Click(object sender, EventArgs e)
         {
             CustomEntries customEntries = new CustomEntries();
             customEntries.ShowDialog();

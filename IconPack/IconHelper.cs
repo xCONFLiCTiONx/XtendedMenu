@@ -199,7 +199,7 @@ namespace TAFactory.IconPack
         {
             flags |= IconFlags.Icon;
             SHFILEINFO fileInfo = new SHFILEINFO();
-            IntPtr result = Win32.SHGetFileInfo(fileName, 0, ref fileInfo, (uint)Marshal.SizeOf(fileInfo), (SHGetFileInfoFlags)flags);
+            _ = Win32.SHGetFileInfo(fileName, 0, ref fileInfo, (uint)Marshal.SizeOf(fileInfo), (SHGetFileInfoFlags)flags);
 
             if (fileInfo.hIcon == IntPtr.Zero)
             {

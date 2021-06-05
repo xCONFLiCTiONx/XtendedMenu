@@ -51,8 +51,7 @@ namespace TAFactory.IconPack
 
         private void IconListView_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            IconListViewItem item = e.Item as IconListViewItem;
-            if (item == null)
+            if (!(e.Item is IconListViewItem item))
             {
                 e.DrawDefault = true;
                 return;
@@ -87,7 +86,7 @@ namespace TAFactory.IconPack
             string text = string.Format("{0} x {1}", item.Icon.Width, item.Icon.Height);
             SizeF stringSize = e.Graphics.MeasureString(text, Font);
             int stringWidth = (int)Math.Round(stringSize.Width);
-            int stringHeight = (int)Math.Round(stringSize.Height);
+            _ = (int)Math.Round(stringSize.Height);
             x = e.Bounds.X + (e.Bounds.Width - stringWidth - TilePadding.Horizontal) / 2 + TilePadding.Left;
             y = e.Bounds.Y + TileSize.Height + verticalSpacing + TilePadding.Top;
             clipReg = new Region(e.Bounds);

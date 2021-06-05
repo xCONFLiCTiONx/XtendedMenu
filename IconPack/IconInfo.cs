@@ -279,12 +279,7 @@ namespace TAFactory.IconPack
         /// <param name="icon">A System.Drawing.Icon object to retrieve the information about.</param>
         private void LoadIconInfo(Icon icon)
         {
-            if (icon == null)
-            {
-                throw new ArgumentNullException("icon");
-            }
-
-            SourceIcon = icon;
+            SourceIcon = icon ?? throw new ArgumentNullException("icon");
             MemoryStream inputStream = new MemoryStream();
             SourceIcon.Save(inputStream);
 

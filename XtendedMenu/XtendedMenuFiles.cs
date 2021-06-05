@@ -185,7 +185,7 @@ namespace XtendedMenu
                 TakeOwnership.Image = Properties.Resources.TakeOwnership.ToBitmap();
 
                 string[] array = SelectedItemPaths.Cast<string>().ToArray();
-                AddMenuItems(array);
+                AddMenuItems();
             }
             catch (Exception ex)
             {
@@ -264,7 +264,7 @@ namespace XtendedMenu
         }
 
         // Add Menu Items
-        private void AddMenuItems(string[] array)
+        private void AddMenuItems()
         {
             try
             {
