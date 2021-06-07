@@ -23,10 +23,10 @@ You can compile it yourself for free or you can donate $10.00 USD to my PayPal a
 
 *Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
 
+![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/ContextMenu.png)  
 ![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/AllFiles.png) ![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.png)  
 ![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.png) ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.png)  
-![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Custom.png)  
-![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/ContextMenu.png)  
+![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Custom.png)   
 
 ## SharpShell Credits
 
