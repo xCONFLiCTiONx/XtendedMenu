@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputBox));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PauseButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.OKButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,31 +57,11 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Please enter the name for the folder junction.";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(231, 99);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(144, 99);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panel1.Controls.Add(this.CancelButton);
+            this.panel1.Controls.Add(this.OKButton);
             this.panel1.Controls.Add(this.PauseButton);
             this.panel1.Controls.Add(this.StopButton);
             this.panel1.Location = new System.Drawing.Point(0, 87);
@@ -117,14 +97,32 @@
             this.StopButton.TabStop = false;
             this.StopButton.UseVisualStyleBackColor = true;
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(232, 12);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.TabIndex = 5;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // OKButton
+            // 
+            this.OKButton.Location = new System.Drawing.Point(151, 12);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.TabIndex = 6;
+            this.OKButton.Text = "OK";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            // 
             // InputBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(322, 132);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
@@ -146,10 +144,10 @@
 
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button PauseButton;
         private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button OKButton;
     }
 }

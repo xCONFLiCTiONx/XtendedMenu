@@ -348,6 +348,7 @@ namespace XtendedMenu
             this.groupBox1.Size = new System.Drawing.Size(406, 176);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "New Entry";
             // 
             // groupBox2
             // 
@@ -365,11 +366,13 @@ namespace XtendedMenu
             this.groupBox2.Size = new System.Drawing.Size(406, 109);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "All Entries";
             // 
             // CustomEntries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(430, 334);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

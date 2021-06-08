@@ -576,5 +576,10 @@ namespace XtendedMenu
         {
             ExplorerRefresh.RefreshWindowsExplorer();
         }
+
+        private void ApplyButton_Click(object sender, EventArgs e)
+        {
+            ExplorerRefresh.RefreshWindowsExplorer();
+        }
     }
 }

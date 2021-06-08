@@ -57,7 +57,7 @@
             this.SystemCheckBox = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.HiddenCheckBox = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ApplyButton = new System.Windows.Forms.Button();
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -367,24 +367,23 @@
             this.HiddenCheckBox.UseVisualStyleBackColor = true;
             this.HiddenCheckBox.CheckedChanged += new System.EventHandler(this.HiddenCheckBox_CheckedChanged);
             // 
-            // button1
+            // ApplyButton
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(336, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 25);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Apply Now";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.ApplyButton.Location = new System.Drawing.Point(343, 217);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(104, 23);
+            this.ApplyButton.TabIndex = 16;
+            this.ApplyButton.Text = "Apply Now";
+            this.ApplyButton.UseVisualStyleBackColor = true;
+            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // AttributesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(457, 252);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(457, 251);
+            this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel5);
@@ -450,6 +449,6 @@
         private System.Windows.Forms.CheckBox SystemCheckBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox HiddenCheckBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ApplyButton;
     }
 }

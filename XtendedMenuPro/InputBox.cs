@@ -21,15 +21,15 @@ namespace XtendedMenu
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
         {
             Main.JunctionName = textBox1.Text;
             Close();
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
         }
     }
 }
