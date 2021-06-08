@@ -572,11 +572,6 @@ namespace XtendedMenu
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            ExplorerRefresh.RefreshWindowsExplorer();
-        }
-
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             ExplorerRefresh.RefreshWindowsExplorer();
