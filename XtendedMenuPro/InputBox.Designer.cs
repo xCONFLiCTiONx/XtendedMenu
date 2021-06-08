@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PauseButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this._CancelButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +60,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.panel1.Controls.Add(this.CancelButton);
+            this.panel1.Controls.Add(this._CancelButton);
             this.panel1.Controls.Add(this.OKButton);
             this.panel1.Controls.Add(this.PauseButton);
             this.panel1.Controls.Add(this.StopButton);
@@ -99,13 +99,13 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(232, 12);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 5;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this._CancelButton.Location = new System.Drawing.Point(232, 12);
+            this._CancelButton.Name = "CancelButton";
+            this._CancelButton.Size = new System.Drawing.Size(75, 23);
+            this._CancelButton.TabIndex = 5;
+            this._CancelButton.Text = "Cancel";
+            this._CancelButton.UseVisualStyleBackColor = true;
+            this._CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OKButton
             // 
@@ -147,7 +147,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button PauseButton;
         private System.Windows.Forms.Button StopButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button OKButton;
     }
 }
