@@ -17,28 +17,48 @@ namespace XtendedMenu
             Application.ThreadException += Application_ThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
+            try
+            {
+                // Logging
+                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(EasyLogger.LogFile);
+                if (ts.Days > 30)
+                {
+                    EasyLogger.BackupLogs(EasyLogger.LogFile);
+                }
+                EasyLogger.AddListener(EasyLogger.LogFile);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Logging
-            TimeSpan ts = DateTime.Now - File.GetLastAccessTime(EasyLogger.LogFile);
-            if (ts.Days > 30)
-            {
-                EasyLogger.BackupLogs(EasyLogger.LogFile);
-            }
-            EasyLogger.AddListener(EasyLogger.LogFile);
-
             Application.Run(new Main(args));
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            EasyLogger.Error("Application.ThreadException: Base Exception: " + e.Exception.GetBaseException() + Environment.NewLine + "Exception Message: " + e.Exception.Message);
+            try
+            {
+                EasyLogger.Error("Application.ThreadException: Base Exception: " + e.Exception.GetBaseException() + Environment.NewLine + "Exception Message: " + e.Exception.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            EasyLogger.Error("AppDomain.UnhandledException: Exception Object: " + e.ExceptionObject + Environment.NewLine + "Exception Object: " + ((Exception)e.ExceptionObject).Message);
+            try
+            {
+                EasyLogger.Error("AppDomain.UnhandledException: Exception Object: " + e.ExceptionObject + Environment.NewLine + "Exception Object: " + ((Exception)e.ExceptionObject).Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
