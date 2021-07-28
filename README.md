@@ -5,7 +5,19 @@ This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTo
 
 ## How do I download XtendedMenu
 
-You can compile it yourself for free or you can donate $10.00 USD to my PayPal account and I'll compile it myself. Contact me if you would like to donate.
+You can compile it yourself for free or you can donate $10.00 USD to my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account and I'll compile it myself. Contact me if you would like to donate.
+
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="business" value="FBGPD9E4Z4B9W" />
+<input type="hidden" name="amount" value="10" />
+<input type="hidden" name="no_recurring" value="1" />
+<input type="hidden" name="item_name" value="XtendedMenu" />
+<input type="hidden" name="currency_code" value="USD" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
+![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QRCode.png](QRCode.png)
 
 ## Requirements
 
