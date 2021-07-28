@@ -1,7 +1,7 @@
 # XtendedMenu
 
 Extended context menu tools Pro  
-This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTools)(deprecated) but supports custom entries, a few optimizations and bug fixes.
+This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTools) (deprecated) but supports custom entries, a few optimizations and bug fixes.
 
 ## How do I download XtendedMenu
 
