@@ -7,7 +7,7 @@ This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTo
 
 You can compile it yourself for free or you can donate $10.00 USD to my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account and I'll compile it myself. Contact me if you would like to donate.
 
-[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPal.png](PayPal.png)](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD)
+[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD)
 
 ![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QRCode.png](QRCode.png)
 
