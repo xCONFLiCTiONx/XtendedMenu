@@ -30,7 +30,7 @@ You can compile it yourself for free or you can donate $10.00 USD to my [PayPal]
 ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/ContextMenu.png)  
 ![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/AllFiles.png) ![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.png)  
 ![Background](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Background.png) ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Attributes.png)  
-![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Custom.png)   
+![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Custom.png)
 
 ## SharpShell Credits
 
