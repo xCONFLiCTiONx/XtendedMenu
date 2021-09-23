@@ -1,0 +1,6 @@
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\bin\x64\Debug\TAFactory.IconPack.dll
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\bin\x64\Debug\TAFactory.IconPack.pdb
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\obj\x64\Debug\IconPack.csprojAssemblyReference.cache
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\obj\x64\Debug\IconPack.csproj.CoreCompileInputs.cache
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\obj\x64\Debug\TAFactory.IconPack.dll
+C:\Users\mhall\Source\repos\XtendedMenu\IconPack\obj\x64\Debug\TAFactory.IconPack.pdb

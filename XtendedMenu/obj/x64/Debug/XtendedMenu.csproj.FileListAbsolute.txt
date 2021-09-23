@@ -1,0 +1,9 @@
+C:\Users\mhall\Source\repos\XtendedMenu\Release\XtendedMenu.dll
+C:\Users\mhall\Source\repos\XtendedMenu\Release\XtendedMenu.pdb
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.csprojAssemblyReference.cache
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.Properties.Resources.resources
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.csproj.GenerateResource.cache
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.csproj.CoreCompileInputs.cache
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.csproj.CopyComplete
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.dll
+C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Debug\XtendedMenu.pdb

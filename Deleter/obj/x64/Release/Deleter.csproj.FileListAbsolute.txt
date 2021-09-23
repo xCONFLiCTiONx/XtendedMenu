@@ -1,0 +1,7 @@
+C:\Users\mhall\Source\repos\XtendedMenu\Release\Deleter.exe
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.AssemblyReference.cache
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.Form1.resources
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\XtendedMenu.Properties.Resources.resources
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.GenerateResource.cache
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.CoreCompileInputs.cache
+C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.exe
