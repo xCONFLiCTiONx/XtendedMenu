@@ -460,7 +460,7 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = "Blocking Files" + progressBar1.Value + "%";
+                                Text = "Blocking Files " + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {
@@ -496,7 +496,7 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = "Blocking Files" + progressBar1.Value + "%";
+                                Text = "Blocking Files " + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {

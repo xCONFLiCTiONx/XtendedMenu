@@ -5,3 +5,10 @@ C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.
 C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CoreCompileInputs.cache
 C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CopyComplete
 C:\Users\mhall\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.dll
+C:\Users\Mike\Source\repos\XtendedMenu\Release\XtendedMenu.dll
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csprojAssemblyReference.cache
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.Properties.Resources.resources
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.GenerateResource.cache
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CoreCompileInputs.cache
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CopyComplete
+C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.dll
