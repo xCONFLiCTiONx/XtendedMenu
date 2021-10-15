@@ -143,7 +143,7 @@ namespace XtendedMenu
         {
             try
             {
-                DialogResult dialog1 = MessageForm("Would you like to uninstall XtendedMenu?", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialog1 = MessageForm("Would you like to uninstall XtendedMenu?", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, false);
                 if (dialog1 == DialogResult.No)
                 {
                     Environment.Exit(0);
@@ -163,7 +163,7 @@ namespace XtendedMenu
                 // Restart Explorer
                 DialogResult dialog = MessageForm("Uninstall is complete!" + Environment.NewLine +
                     "Explorer must be restarted to complete the uninstallation." + Environment.NewLine +
-                    "Would you like to restart Explorer now? ", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    "Would you like to restart Explorer now?", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, false);
                 if (dialog == DialogResult.Yes)
                 {
                     foreach (Process proc in Process.GetProcessesByName("explorer"))

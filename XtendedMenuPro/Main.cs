@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
@@ -153,7 +154,7 @@ namespace XtendedMenu
                         }
                         else
                         {
-                            MessageForm("Please try again only selecting one directory at a time while creating junctions.", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageForm("Please try again only selecting one directory at a time while creating junctions.", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, false);
                         }
                     }
                     catch (Win32Exception ex)
@@ -307,7 +308,7 @@ namespace XtendedMenu
                         if (NoErrors)
                         {
                             DialogResult results = MessageForm("File(s) added to Windows Defender Firewall successfully." + Environment.NewLine +
-                                "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                                "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, false);
                             if (results == DialogResult.Yes)
                             {
                                 StartProcess.StartInfo("wf.msc");
@@ -460,14 +461,17 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = "Blocking Files " + progressBar1.Value + "%";
+                                Text = "Blocking Files:  " + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {
                                 EasyLogger.Error(ex);
                                 continue;
                             }
-                            label2.Text = Path.GetFileName(Path.GetDirectoryName(item)) + ": " + Path.GetFileName(item);
+
+                            string lastFolderName = Path.GetFileName(Path.GetDirectoryName(item));
+                            label2.Text = "..\\" + item.Substring(item.IndexOf(lastFolderName));
+
                             Application.DoEvents();
                             StartProcess.StartInfo("netsh.exe", arguments, true, true, true);
                         }
@@ -496,14 +500,17 @@ namespace XtendedMenu
                             progressBar1.Value = (current * 100) / FilesCount;
                             try
                             {
-                                Text = "Blocking Files " + progressBar1.Value + "%";
+                                Text = "Blocking Files:  " + progressBar1.Value + "%";
                             }
                             catch (ArgumentOutOfRangeException ex)
                             {
                                 EasyLogger.Error(ex);
                                 continue;
                             }
-                            label2.Text = Path.GetFileName(Path.GetDirectoryName(item)) + ": " + Path.GetFileName(item);
+
+                            string lastFolderName = Path.GetFileName(Path.GetDirectoryName(item));
+                            label2.Text = "..\\" + item.Substring(item.IndexOf(lastFolderName));
+
                             Application.DoEvents();
                             StartProcess.StartInfo("netsh.exe", arguments, true, true, true);
                         }
@@ -519,7 +526,7 @@ namespace XtendedMenu
                         Hide();
 
                         DialogResult results = MessageForm("All Files with extension exe and dll have been added to the Windows Defender Firewall." + Environment.NewLine +
-                            "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                            "Would you like to view the results?", "Task Completed Successfully", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, false);
                         if (results == DialogResult.Yes)
                         {
                             StartProcess.StartInfo("wf.msc");
@@ -529,7 +536,7 @@ namespace XtendedMenu
                     {
                         Hide();
 
-                        MessageForm("No .exe or .dll files were found in the given directory.", "Task Completed with Errors", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageForm("No .exe or .dll files were found in the given directory.", "Task Completed with Errors", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, false);
                     }
                 }
                 ThreadRunning = false;

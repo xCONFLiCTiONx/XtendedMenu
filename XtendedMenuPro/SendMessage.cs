@@ -6,22 +6,25 @@ namespace XtendedMenu
 {
     public class SendMessage
     {
-        public static DialogResult MessageForm(string text, string title = null, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Information, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button2)
+        public static DialogResult MessageForm(string text, string title = null, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Information, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button2, bool IsErrorDialog = true)
         {
             try
             {
-                // Log this message for debugging
-                if (icon == MessageBoxIcon.Error)
+                if (IsErrorDialog)
                 {
-                    EasyLogger.Error(text);
-                }
-                else if (icon == MessageBoxIcon.Warning)
-                {
-                    EasyLogger.Info(text);
-                }
-                else
-                {
-                    EasyLogger.Info(text);
+                    // Log this message for debugging
+                    if (icon == MessageBoxIcon.Error)
+                    {
+                        EasyLogger.Error(text);
+                    }
+                    else if (icon == MessageBoxIcon.Warning)
+                    {
+                        EasyLogger.Info(text);
+                    }
+                    else
+                    {
+                        EasyLogger.Info(text);
+                    }
                 }
 
                 using (Form form = new Form())

@@ -6,7 +6,6 @@ C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.G
 C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.CoreCompileInputs.cache
 C:\Users\mhall\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.exe
 C:\Users\Mike\Source\repos\XtendedMenu\Release\Deleter.exe
-C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csprojAssemblyReference.cache
 C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.Form1.resources
 C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\XtendedMenu.Properties.Resources.resources
 C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.GenerateResource.cache
