@@ -7,9 +7,11 @@ This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTo
 
 You can compile it yourself for free or you can donate $10.00 USD into my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account and I'll compile it myself. Contact me if you would like to donate.
 
-[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD)
+[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate?business=GKLE6HYQE46SA&no_recurring=0&item_name=i%21i%21i%21+NOTE+WHAT+THIS+DONATION+IS+FOR+i%21i%21i%21&currency_code=USD)
 
 ![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QRCode.png](QRCode.png)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=GKLE6HYQE46SA&no_recurring=0&item_name=i%21i%21i%21+NOTE+WHAT+THIS+DONATION+IS+FOR+i%21i%21i%21&currency_code=USD)
 
 ## Requirements
 
