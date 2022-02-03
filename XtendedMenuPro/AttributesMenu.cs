@@ -302,7 +302,7 @@ namespace XtendedMenu
                 }
                 else
                 {
-                    Registry.SetValue(AttributesInfo.UserRoot + AttributesInfo.ExplorerAdvanced, "ShowSuperHidden", 2.ToString(current), RegistryValueKind.DWord);
+                    Registry.SetValue(AttributesInfo.UserRoot + AttributesInfo.ExplorerAdvanced, "ShowSuperHidden", 0.ToString(current), RegistryValueKind.DWord);
                 }
             }
             catch (UnauthorizedAccessException ex)

@@ -533,7 +533,7 @@ namespace XtendedMenu
 
         private void HideSystemMethod()
         {
-            ExplorerAdvanced.SetValue("ShowSuperHidden", 2.ToString(culture), RegistryValueKind.DWord);
+            ExplorerAdvanced.SetValue("ShowSuperHidden", 0.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
 

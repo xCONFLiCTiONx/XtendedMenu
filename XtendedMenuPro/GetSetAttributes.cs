@@ -74,7 +74,7 @@ namespace XtendedMenu
                     {
                         SystemFilesShowing = true;
                     }
-                    if (system.ToString() == "2")
+                    if (system.ToString() == "0")
                     {
                         SystemFilesShowing = false;
                     }

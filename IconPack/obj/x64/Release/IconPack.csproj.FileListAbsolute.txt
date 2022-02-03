@@ -4,3 +4,4 @@ C:\Users\mhall\Source\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconP
 C:\Users\Mike\Source\repos\XtendedMenu\IconPack\bin\x64\Release\TAFactory.IconPack.dll
 C:\Users\Mike\Source\repos\XtendedMenu\IconPack\obj\x64\Release\IconPack.csproj.CoreCompileInputs.cache
 C:\Users\Mike\Source\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconPack.dll
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconPack.dll
