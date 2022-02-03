@@ -426,21 +426,20 @@ namespace XtendedMenu
         {
             try
             {
-                string textFile = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt";
-                if (!File.Exists(textFile))
+                if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt"))
                 {
                     System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                     FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                     string version = fvi.FileVersion;
 
                     Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu");
-                    File.WriteAllText(textFile, version);
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt", version);
                 }
-                if (HasExecutable(textFile))
+                if (HasExecutable(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt"))
                 {
                     foreach (string filePath in SelectedItemPaths)
                     {
-                        StartProcess.StartInfo(FindExecutable(textFile), "\"" + filePath + "\"");
+                        StartProcess.StartInfo(FindExecutable(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt"), "\"" + filePath + "\"");
                     }
                 }
                 else
