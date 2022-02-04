@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -46,7 +47,14 @@ namespace XtendedMenu
                 {
                     if (args.Length > 0)
                     {
-                        Installation.InstallerClass(args[0]);
+                        if (args[0].ToLower() == "-install" || args[0].ToLower() == "-i" || args[0].ToLower() == "/install" || args[0].ToLower() == "/i")
+                        {
+                            Installation.InstallerClass("-install");
+                        }
+                        if (args[0].ToLower() == "-uninstall" || args[0].ToLower() == "-u" || args[0].ToLower() == "/uninstall" || args[0].ToLower() == "/u")
+                        {
+                            Installation.InstallerClass("-uninstall");
+                        }
                     }
                     else
                     {
@@ -57,36 +65,57 @@ namespace XtendedMenu
                 {
                     if (args.Length == 0)
                     {
-                        Settings settings = new Settings();
-                        using (settings)
+                        using (new Settings())
                         {
-                            settings.ShowDialog();
+                            new Settings().ShowDialog();
                         }
                     }
                     if (args.Length > 0)
                     {
-                        if (args[0] == "-install" || args[0] == "-i")
+                        if (args[0].ToLower() == "-install" || args[0].ToLower() == "-i" || args[0].ToLower() == "/install" || args[0].ToLower() == "/i")
                         {
                             Installation.InstallerClass("-install");
                         }
-                        if (args[0] == "-uninstall" || args[0] == "-u")
+                        if (args[0].ToLower() == "-uninstall" || args[0].ToLower() == "-u" || args[0].ToLower() == "/uninstall" || args[0].ToLower() == "/u")
                         {
                             Installation.InstallerClass("-uninstall");
                         }
+                        // Settings
+                        if (args[0].ToLower() == "-settings" || args[0].ToLower() == "-s" || args[0].ToLower() == "/settings" || args[0].ToLower() == "/s")
+                        {
+                            using (new Settings())
+                            {
+                                new Settings().ShowDialog();
+                            }
+                        }
+                        // Custom Entries
+                        if (args[0].ToLower() == "-customentries" || args[0].ToLower() == "/customentries" || args[0].ToLower() == "-c" || args[0].ToLower() == "/c")
+                        {
+                            if (IsElevated)
+                            {
+                                using (new Settings("customEntries"))
+                                {
+                                    new Settings().ShowDialog();
+                                }
+                            }
+                            else
+                            {
+                                using (Process proc = new Process())
+                                {
+                                    proc.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
+                                    proc.StartInfo.Arguments = "-CustomEntries";
+                                    proc.StartInfo.UseShellExecute = true;
+                                    proc.StartInfo.Verb = "runas";
+                                    proc.Start();
+                                };
+
+                                Environment.Exit(0);
+                            }
+                        }
                         // Refresh Explorer
-                        if (args[0] == "-refresh")
+                        if (args[0].ToLower() == "-refresh" || args[0].ToLower() == "/refresh" || args[0].ToLower() == "-r" || args[0].ToLower() == "/r")
                         {
                             ExplorerRefresh.RefreshWindowsExplorer();
-                        }
-
-                        // Settings
-                        if (args[0] == "-settings" || args[0] == "-s")
-                        {
-                            Settings settings = new Settings();
-                            using (settings)
-                            {
-                                settings.ShowDialog();
-                            }
                         }
                     }
                     if (args.Length > 1)
@@ -116,7 +145,7 @@ namespace XtendedMenu
         {
             try
             {
-                if (args[1] == "-makelink")
+                if (args[1].ToLower() == "-makelink")
                 {
                     string[] selectPaths = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     int items = 0;
@@ -162,11 +191,11 @@ namespace XtendedMenu
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                if (args[1] == "-catchhandler")
+                if (args[1].ToLower() == "-catchhandler")
                 {
                     MessageLogging(args[0], MessageBoxIcon.Error);
                 }
-                if (args[1] == "-attributesmenu")
+                if (args[1].ToLower() == "-attributesmenu")
                 {
                     string[] array = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     AttributesMenu menu = new AttributesMenu(array);
@@ -176,7 +205,7 @@ namespace XtendedMenu
                     }
                     Environment.Exit(0);
                 }
-                if (args[1] == "-firewallfiles")
+                if (args[1].ToLower() == "-firewallfiles")
                 {
                     try
                     {
@@ -195,7 +224,7 @@ namespace XtendedMenu
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                if (args[1] == "-firewallfolder")
+                if (args[1].ToLower() == "-firewallfolder")
                 {
                     KeepAlive = true;
                     Text = "Blocking Files";
@@ -205,7 +234,7 @@ namespace XtendedMenu
                     };
                     thread.Start();
                 }
-                if (args[1] == "-ownership")
+                if (args[1].ToLower() == "-ownership")
                 {
                     string[] array = args[0].Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     foreach (string item in array)

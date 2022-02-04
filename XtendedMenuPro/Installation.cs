@@ -40,7 +40,6 @@ namespace XtendedMenu
                     catch (Exception ex)
                     {
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                         Environment.Exit(0);
                     }
                 }
@@ -70,7 +69,6 @@ namespace XtendedMenu
                     catch (Exception ex)
                     {
                         MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                         Environment.Exit(0);
                     }
                 }
@@ -85,12 +83,12 @@ namespace XtendedMenu
                 SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Directories");
                 SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Background");
 
-
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string version = fvi.FileVersion;
 
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu");
+
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt", version);
 
                 RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
@@ -129,7 +127,6 @@ namespace XtendedMenu
                 }
 
                 Shortcut.Create(shortcutFolder, InstallInfo.ToString());
-
                 Environment.Exit(0);
             }
             catch (Exception ex)
@@ -222,7 +219,6 @@ namespace XtendedMenu
                 MessageForm(ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show("Some errors may have occured. Please check the log for details.", "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
             Environment.Exit(0);
         }
 

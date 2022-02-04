@@ -13,7 +13,6 @@ C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.Ge
 C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.CoreCompileInputs.cache
 C:\Users\Mike\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.exe
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Release\Deleter.exe
-F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.AssemblyReference.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.SuggestedBindingRedirects.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.Form1.resources
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\XtendedMenu.Properties.Resources.resources

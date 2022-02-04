@@ -37,7 +37,7 @@ namespace XtendedMenu
         private object FindWallpaperDirectoryBack;
         private object PasteContentsDirectoryBack;
 
-        public Settings()
+        public Settings(string arg = null)
         {
             InitializeComponent();
 
@@ -55,6 +55,11 @@ namespace XtendedMenu
                 Environment.Exit(0);
             }
             GetSettings();
+
+            if (arg == "customEntries")
+            {
+                ShowCustomEntries();
+            }
         }
         private void GetSettings()
         {
@@ -641,8 +646,31 @@ namespace XtendedMenu
 
         private void CustomEntriesButton_Click(object sender, EventArgs e)
         {
-            CustomEntries customEntries = new CustomEntries();
-            customEntries.ShowDialog();
+            ShowCustomEntries();
+        }
+
+        private void ShowCustomEntries()
+        {
+            if (Main.IsElevated)
+            {
+                using (new CustomEntries())
+                {
+                    new CustomEntries().ShowDialog();
+                }
+            }
+            else
+            {
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
+                    proc.StartInfo.Arguments = "-CustomEntries";
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.Verb = "runas";
+                    proc.Start();
+                };
+
+                Environment.Exit(0);
+            }
         }
     }
 }

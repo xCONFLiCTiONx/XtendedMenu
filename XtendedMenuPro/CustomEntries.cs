@@ -406,26 +406,32 @@ namespace XtendedMenu
 
         private void GrabIcon(string fileName)
         {
-            string IconPath = AppDomain.CurrentDomain.BaseDirectory + "ICONS\\";
-            Directory.CreateDirectory(IconPath);
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\XtendedMenu\\Icons\\");
+            string IconPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\XtendedMenu\\Icons\\";
 
-            if (Path.GetExtension(fileName) == ".exe" || Path.GetExtension(fileName) == ".dll")
+            if (!File.Exists(IconPath))
             {
-                using (Icon ico = IconHelper.ExtractBestFitIcon(fileName, 0, SystemInformation.SmallIconSize))
+                if (Path.GetExtension(fileName) == ".exe" || Path.GetExtension(fileName) == ".dll")
                 {
-                    using (FileStream fs = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.Create))
+                    using (Icon ico = IconHelper.ExtractBestFitIcon(fileName, 0, SystemInformation.SmallIconSize))
                     {
-                        ico.Save(fs);
+                        using (FileStream fs = new FileStream(IconPath + NameBox.Text + ".ico", FileMode.Create, FileAccess.ReadWrite))
+                        {
+                            ico.Save(fs);
+                        }
                     }
+                }
+                else
+                {
+                    File.Copy(fileName, IconPath + NameBox.Text + ".ico", true);
                 }
             }
             else
             {
-                File.Copy(fileName, IconPath + NameBox.Text + ".ico", true);
+
             }
 
             IconBox.Text = IconPath + NameBox.Text + ".ico";
-
         }
 
         private void DirectoryBrowseButton_Click(object sender, EventArgs e)
