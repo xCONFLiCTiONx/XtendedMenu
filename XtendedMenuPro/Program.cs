@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,17 +19,10 @@ namespace XtendedMenu
             try
             {
                 // Logging
-                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(EasyLogger.LogFile);
-                if (ts.Days > 30)
-                {
-                    EasyLogger.BackupLogs(EasyLogger.LogFile);
-                }
+                EasyLogger.BackupLogs(EasyLogger.LogFile, 90);
                 EasyLogger.AddListener(EasyLogger.LogFile);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -43,10 +35,7 @@ namespace XtendedMenu
             {
                 EasyLogger.Error("Application.ThreadException: Base Exception: " + e.Exception.GetBaseException() + Environment.NewLine + "Exception Message: " + e.Exception.Message);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { }
         }
 
         private static void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -55,10 +44,7 @@ namespace XtendedMenu
             {
                 EasyLogger.Error("AppDomain.UnhandledException: Exception Object: " + e.ExceptionObject + Environment.NewLine + "Exception Object: " + ((Exception)e.ExceptionObject).Message);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "XtendedMenu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { }
         }
     }
 }

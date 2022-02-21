@@ -1,7 +1,7 @@
 
 1 VERSIONINFO
-FILEVERSION 1,2,0,0
-PRODUCTVERSION 1,2,0,0
+FILEVERSION 1,3,0,0
+PRODUCTVERSION 1,3,0,0
 FILEOS 0x50005
 FILETYPE 0x1
 {
@@ -11,12 +11,12 @@ BLOCK "StringFileInfo"
 	{
 		VALUE "CompanyName", "xCONFLiCTiONx"
 		VALUE "FileDescription", "XtendedMenu Setup"
-		VALUE "FileVersion", "1.2.0"
+		VALUE "FileVersion", "1.3.0"
 		VALUE "InternalName", "XtendedMenu Setup"
 		VALUE "LegalCopyright", "Copyright \xA9 2022 xCONFLiCTiONx"
 		VALUE "OriginalFilename", "XtendedMenu Setup.exe"
 		VALUE "ProductName", "XtendedMenu"
-		VALUE "ProductVersion", "1.2.0"
+		VALUE "ProductVersion", "1.3.0"
 	}
 }
 

@@ -12,6 +12,7 @@ C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.c
 C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CopyComplete
 C:\Users\Mike\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.dll
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Release\XtendedMenu.dll
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.AssemblyReference.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.Properties.Resources.resources
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.GenerateResource.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CoreCompileInputs.cache
