@@ -1,0 +1,16 @@
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Release\XtendedMenu.exe
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.AssemblyReference.cache
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.SuggestedBindingRedirects.cache
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\Interop.IWshRuntimeLibrary.dll
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.ResolveComReference.cache
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.g.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.AttributesMenu.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.CustomEntries.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.InputBox.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.Main.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.Properties.Resources.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.Settings.resources
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.GenerateResource.cache
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.CoreCompileInputs.cache
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenuPro.csproj.CopyComplete
+F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenuPro\obj\x64\Release\XtendedMenu.exe

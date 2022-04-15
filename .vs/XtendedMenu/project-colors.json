@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "97c2692a-6728-438d-a92e-00e3bbac0da9": {
+      "ProjectGuid": "97c2692a-6728-438d-a92e-00e3bbac0da9",
+      "DisplayName": "XtendedMenuPro",
+      "ColorIndex": 0
+    },
+    "025cdc7e-8f87-4e9b-99d3-6a6aeb962917": {
+      "ProjectGuid": "025cdc7e-8f87-4e9b-99d3-6a6aeb962917",
+      "DisplayName": "XtendedMenu",
+      "ColorIndex": 1
+    },
+    "2fd942fe-f282-4216-bc10-f443b213d9e3": {
+      "ProjectGuid": "2fd942fe-f282-4216-bc10-f443b213d9e3",
+      "DisplayName": "Deleter",
+      "ColorIndex": 2
+    },
+    "92e382a2-74b6-4342-b9d9-be6843f2ce22": {
+      "ProjectGuid": "92e382a2-74b6-4342-b9d9-be6843f2ce22",
+      "DisplayName": "IconPack",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

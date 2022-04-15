@@ -102,6 +102,7 @@ namespace XtendedMenu
                 InstallInfo.SetValue("UninstallString", "\"" + location + @"\XtendedMenu.exe" + "\"" + " -uninstall", RegistryValueKind.String);
                 InstallInfo.SetValue("DisplayIcon", location + @"\XtendedMenu.exe", RegistryValueKind.String);
                 InstallInfo.SetValue("Publisher", "xCONFLiCTiONx", RegistryValueKind.String);
+                InstallInfo.SetValue("InstallDate", DateTime.Now.ToString("yyyyMMdd"));
                 InstallInfo.SetValue("HelpLink", website, RegistryValueKind.String);
                 InstallInfo.SetValue("DisplayName", "XtendedMenu", RegistryValueKind.String);
                 InstallInfo.SetValue("DisplayVersion", GetAssembly.AssemblyInformation("version"), RegistryValueKind.String);
