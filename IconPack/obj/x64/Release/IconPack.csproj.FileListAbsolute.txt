@@ -7,3 +7,7 @@ C:\Users\Mike\Source\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconPa
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\IconPack\bin\x64\Release\TAFactory.IconPack.dll
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\IconPack\obj\x64\Release\IconPack.csproj.CoreCompileInputs.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconPack.dll
+F:\repos\XtendedMenu\IconPack\bin\x64\Release\TAFactory.IconPack.dll
+F:\repos\XtendedMenu\IconPack\obj\x64\Release\IconPack.csproj.AssemblyReference.cache
+F:\repos\XtendedMenu\IconPack\obj\x64\Release\IconPack.csproj.CoreCompileInputs.cache
+F:\repos\XtendedMenu\IconPack\obj\x64\Release\TAFactory.IconPack.dll

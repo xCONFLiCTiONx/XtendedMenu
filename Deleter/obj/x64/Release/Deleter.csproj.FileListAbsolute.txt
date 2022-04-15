@@ -20,3 +20,11 @@ F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.GenerateResource.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.CoreCompileInputs.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.exe
+F:\repos\XtendedMenu\Release\Deleter.exe
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.AssemblyReference.cache
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.SuggestedBindingRedirects.cache
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.Form1.resources
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\XtendedMenu.Properties.Resources.resources
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.GenerateResource.cache
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.csproj.CoreCompileInputs.cache
+F:\repos\XtendedMenu\Deleter\obj\x64\Release\Deleter.exe

@@ -18,3 +18,10 @@ F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CoreCompileInputs.cache
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CopyComplete
 F:\OneDrive - New Life Evangelistic Center\Source\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.dll
+F:\repos\XtendedMenu\Release\XtendedMenu.dll
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.AssemblyReference.cache
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.Properties.Resources.resources
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.GenerateResource.cache
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CoreCompileInputs.cache
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.csproj.CopyComplete
+F:\repos\XtendedMenu\XtendedMenu\obj\x64\Release\XtendedMenu.dll
