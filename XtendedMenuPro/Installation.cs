@@ -141,22 +141,32 @@ namespace XtendedMenu
         {
             try
             {
-                DialogResult dialog1 = MessageForm("Would you like to uninstall XtendedMenu?", "XtendedMenu", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, false);
-                if (dialog1 == DialogResult.No)
+                DialogResult dialog1 = MessageForm("Would you like to keep your settings?", "XtendedMenu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, false);
+                if (dialog1 == DialogResult.Cancel)
                 {
                     Environment.Exit(0);
                 }
+                if (dialog1 == DialogResult.No)
+                {
+                    RegistryKey RegistrySoftware = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
+                    RegistryKey UninstallInfo = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true);
+                    StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
 
-                RegistryKey RegistrySoftware = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                RegistryKey UninstallInfo = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true);
-                StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
+                    UninstallInfo.DeleteSubKeyTree("XtendedMenu", false);
+                    RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\AllFiles", false);
+                    RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Directories", false);
+                    RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Background", false);
+                    RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings", false);
+                    RegistrySoftware.DeleteSubKey("XtendedMenu", false);
+                }
+                if (dialog1 == DialogResult.Yes)
+                {
+                    RegistryKey RegistrySoftware = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
+                    RegistryKey UninstallInfo = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true);
+                    StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "-unregister " + "\"" + GetAssembly.AssemblyInformation("directory") + "\\XtendedMenu.dll" + "\"", true, true, true);
 
-                UninstallInfo.DeleteSubKeyTree("XtendedMenu", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\AllFiles", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Directories", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings\\Background", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu\\Settings", false);
-                RegistrySoftware.DeleteSubKey("XtendedMenu", false);
+                    UninstallInfo.DeleteSubKeyTree("XtendedMenu", false);
+                }
 
                 // Restart Explorer
                 DialogResult dialog = MessageForm("Uninstall is complete!" + Environment.NewLine +
