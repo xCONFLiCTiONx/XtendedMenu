@@ -45,7 +45,9 @@ namespace XtendedMenu
             if (key == null)
             {
                 key = Registry.CurrentUser.CreateSubKey(SoftwareXtendedMenu);
+                SetRegistryItems.SetItems();
             }
+
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;

@@ -80,6 +80,13 @@ namespace XtendedMenu
         {
             try
             {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", true);
+                if (key == null)
+                {
+                    key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
+                    SetRegistryItems.SetItems();
+                }
+
                 SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\AllFiles");
                 SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Directories");
                 SetCustomKeys("SOFTWARE\\XtendedMenu\\Settings\\Background");
@@ -91,14 +98,6 @@ namespace XtendedMenu
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu");
 
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt", version);
-
-
-
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", true);
-                if (key == null)
-                {
-                    key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
-                }
 
                 RegistryKey InstallInfo = Registry.LocalMachine.CreateSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\XtendedMenu");
 
@@ -115,8 +114,6 @@ namespace XtendedMenu
                 InstallInfo.SetValue("DisplayName", "XtendedMenu", RegistryValueKind.String);
                 InstallInfo.SetValue("DisplayVersion", GetAssembly.AssemblyInformation("version"), RegistryValueKind.String);
                 /* User Settings */
-
-                SetRegistryItems.SetItems();
 
                 // Create Shorcut in All Users Start Menu Programs
                 StringBuilder allUserProfile = new StringBuilder(260);
