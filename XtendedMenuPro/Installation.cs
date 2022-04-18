@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using static XtendedMenu.SendMessage;
@@ -91,7 +92,14 @@ namespace XtendedMenu
 
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\XtendedMenu\\Version.txt", version);
 
-                RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
+
+
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", true);
+                if (key == null)
+                {
+                    key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
+                }
+
                 RegistryKey InstallInfo = Registry.LocalMachine.CreateSubKey("SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\XtendedMenu");
 
                 StartProcess.StartInfo(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe", "\"" + location + "\\XtendedMenu.dll" + "\"" + " -codebase", true, true, true);
@@ -141,7 +149,7 @@ namespace XtendedMenu
         {
             try
             {
-                DialogResult dialog1 = MessageForm("Would you like to keep your settings?", "XtendedMenu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, false);
+                DialogResult dialog1 = MessageForm("Would you like to keep your settings?", "XtendedMenu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3, false);
                 if (dialog1 == DialogResult.Cancel)
                 {
                     Environment.Exit(0);
@@ -237,47 +245,66 @@ namespace XtendedMenu
         {
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryLocation))
             {
-                string[] CustomNameRange = { };
-                List<string> CustomNameList = new List<string>();
-                CustomNameList.AddRange(CustomNameRange);
-                string[] CustomNameArray = CustomNameList.ToArray();
-                key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
+                if (!CheckRegistryValue(RegistryLocation, "CustomName"))
+                {
+                    string[] CustomNameRange = { };
+                    List<string> CustomNameList = new List<string>();
+                    CustomNameList.AddRange(CustomNameRange);
+                    string[] CustomNameArray = CustomNameList.ToArray();
+                    key.SetValue("CustomName", CustomNameArray, RegistryValueKind.MultiString);
+                }
 
+                if (!CheckRegistryValue(RegistryLocation, "CustomProcess"))
+                {
+                    string[] CustomProcessRange = { };
+                    List<string> CustomProcessList = new List<string>();
+                    CustomProcessList.AddRange(CustomProcessRange);
+                    string[] CustomProcessArray = CustomProcessList.ToArray();
+                    key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
+                }
 
-                string[] CustomProcessRange = { };
-                List<string> CustomProcessList = new List<string>();
-                CustomProcessList.AddRange(CustomProcessRange);
-                string[] CustomProcessArray = CustomProcessList.ToArray();
-                key.SetValue("CustomProcess", CustomProcessArray, RegistryValueKind.MultiString);
+                if (!CheckRegistryValue(RegistryLocation, "CustomArguments"))
+                {
+                    string[] CustomArgumentsRange = { };
+                    List<string> CustomArgumentsList = new List<string>();
+                    CustomArgumentsList.AddRange(CustomArgumentsRange);
+                    string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
+                    key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
+                }
 
+                if (!CheckRegistryValue(RegistryLocation, "CustomDirectory"))
+                {
+                    string[] CustomDirectoryRange = { };
+                    List<string> CustomDirectoryList = new List<string>();
+                    CustomDirectoryList.AddRange(CustomDirectoryRange);
+                    string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
+                    key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
+                }
 
-                string[] CustomArgumentsRange = { };
-                List<string> CustomArgumentsList = new List<string>();
-                CustomArgumentsList.AddRange(CustomArgumentsRange);
-                string[] CustomArgumentsArray = CustomArgumentsList.ToArray();
-                key.SetValue("CustomArguments", CustomArgumentsArray, RegistryValueKind.MultiString);
+                if (!CheckRegistryValue(RegistryLocation, "CustomIcon"))
+                {
+                    string[] CustomIconRange = { };
+                    List<string> CustomIconList = new List<string>();
+                    CustomIconList.AddRange(CustomIconRange);
+                    string[] CustomIconArray = CustomIconList.ToArray();
+                    key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
+                }
 
-
-                string[] CustomDirectoryRange = { };
-                List<string> CustomDirectoryList = new List<string>();
-                CustomDirectoryList.AddRange(CustomDirectoryRange);
-                string[] CustomDirectoryArray = CustomDirectoryList.ToArray();
-                key.SetValue("CustomDirectory", CustomDirectoryArray, RegistryValueKind.MultiString);
-
-
-                string[] CustomIconRange = { };
-                List<string> CustomIconList = new List<string>();
-                CustomIconList.AddRange(CustomIconRange);
-                string[] CustomIconArray = CustomIconList.ToArray();
-                key.SetValue("CustomIcon", CustomIconArray, RegistryValueKind.MultiString);
-
-
-                string[] RunAsAdminRange = { };
-                List<string> RunAsAdminList = new List<string>();
-                RunAsAdminList.AddRange(RunAsAdminRange);
-                string[] RunAsAdminArray = RunAsAdminList.ToArray();
-                key.SetValue("RunAsAdmin", RunAsAdminArray, RegistryValueKind.MultiString);
+                if (!CheckRegistryValue(RegistryLocation, "RunAsAdmin"))
+                {
+                    string[] RunAsAdminRange = { };
+                    List<string> RunAsAdminList = new List<string>();
+                    RunAsAdminList.AddRange(RunAsAdminRange);
+                    string[] RunAsAdminArray = RunAsAdminList.ToArray();
+                    key.SetValue("RunAsAdmin", RunAsAdminArray, RegistryValueKind.MultiString);
+                }
             }
+        }
+
+        private static bool CheckRegistryValue(string RegistryLocation, string value)
+        {
+            RegistryKey regValue = Registry.CurrentUser.OpenSubKey(RegistryLocation, true);
+            return (regValue.GetValueNames().Contains(value));
         }
     }
 }
