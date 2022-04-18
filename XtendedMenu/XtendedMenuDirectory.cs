@@ -332,7 +332,7 @@ namespace XtendedMenu
             // SystemAttributes
             using (SystemAttributes = new ToolStripMenuItem())
             {
-                SystemAttributes.Text = "Set Attributes";
+                SystemAttributes.Text = "Set System Attributes";
                 SystemAttributes.Name = "SystemAttributes";
             }
             if (AttributesInfo.system)
