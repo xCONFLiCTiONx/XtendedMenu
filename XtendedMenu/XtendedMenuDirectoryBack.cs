@@ -23,7 +23,7 @@ namespace XtendedMenu
         private ContextMenuStrip Menu;
         private ToolStripMenuItem XtendedMenuMenu, CommandLine, Attributes, FindWallpaper, SystemFolders, PasteContents;
         private ToolStripMenuItem OpenTerminalAsAdmin, OpenTerminalAsUser, OpenCmdAsAdmin, OpenCmdAsUser, OpenGitAsUser, OpenGitAsAdmin, OpenPSAsUser, OpenPSAsAdmin;
-        private ToolStripMenuItem AttributesMenu, ShowHidden, HideHidden, ShowSystem, HideSystem;
+        private ToolStripMenuItem AttributesMenu, HiddenAttributes, SystemAttributes, ReadOnlyAttributes, ShowHidden, HideHidden, ShowSystem, HideSystem;
         private ToolStripMenuItem AppDataFolder, ProgramDataFolder, UserStartMenuFolder, AllUsersStartMenuFolder, UserTempFolder;
 
         [STAThread]
@@ -123,7 +123,7 @@ namespace XtendedMenu
                         {
                             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
                         }
-                        SetInternalAttributes();
+                        SetFileAttributes();
                     }
                     // System Folders
                     using (SystemFolders = new ToolStripMenuItem())
@@ -397,6 +397,40 @@ namespace XtendedMenu
         }
 
         [STAThread]
+        private void SetFileAttributes()
+        {
+            using (HiddenAttributes = new ToolStripMenuItem())
+            {
+                HiddenAttributes.Text = "Set Hidden Attribute";
+                HiddenAttributes.Name = "HiddenAttributes";
+            }
+            if (AttributesInfo.hidden)
+            {
+                HiddenAttributes.Image = Resources.AttributesShow.ToBitmap();
+            }
+            // SystemAttributes
+            using (SystemAttributes = new ToolStripMenuItem())
+            {
+                SystemAttributes.Text = "Set System Attributes";
+                SystemAttributes.Name = "SystemAttributes";
+            }
+            if (AttributesInfo.system)
+            {
+                SystemAttributes.Image = Resources.AttributesShow.ToBitmap();
+            }
+            // ReadOnlyAttributes
+            using (ReadOnlyAttributes = new ToolStripMenuItem())
+            {
+                ReadOnlyAttributes.Text = "Set Read-only Attribute";
+                ReadOnlyAttributes.Name = "ReadOnlyAttributes";
+            }
+            if (AttributesInfo.readOnly)
+            {
+                ReadOnlyAttributes.Image = Resources.AttributesShow.ToBitmap();
+            }
+            SetInternalAttributes();
+        }
+
         private void SetInternalAttributes()
         {
             using (ShowHidden = new ToolStripMenuItem())
