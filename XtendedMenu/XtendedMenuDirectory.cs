@@ -131,6 +131,7 @@ namespace XtendedMenu
 
             return Menu;
         }
+
         private static void CheckUserSettings()
         {
             RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
@@ -139,6 +140,7 @@ namespace XtendedMenu
                 SetRegistryItems.SetItems();
             }
         }
+
         private void MenuDeveloper()
         {
             // Main Menu
@@ -226,7 +228,6 @@ namespace XtendedMenu
             }
         }
 
-        // Add Menu Items
         private void AddMenuItems()
         {
             RegistryKey XtendedMenuSettings = Registry.CurrentUser.CreateSubKey("SOFTWARE\\XtendedMenu\\Settings");
@@ -317,6 +318,7 @@ namespace XtendedMenu
                 Menu.Dispose();
             }
         }
+
         // Set File Attributes
         private void SetFileAttributes()
         {
@@ -351,6 +353,7 @@ namespace XtendedMenu
             }
             SetInternalAttributes();
         }
+
         private void SetInternalAttributes()
         {
             using (ShowHidden = new ToolStripMenuItem())
@@ -390,24 +393,28 @@ namespace XtendedMenu
                 HideSystem.Image = Resources.AttributesHide.ToBitmap();
             }
         }
+
         // Methods
         private void BlockFirewallMethod()
         {
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\" " + "-firewallfolder", false, true);
         }
+
         private void CopyNameMethod()
         {
             Clipboard.Clear();
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             Clipboard.SetText(array.ToStringArray(true));
         }
+
         private void CopyPathMethod()
         {
             Clipboard.Clear();
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             Clipboard.SetText(array.ToStringArray(false));
         }
+
         private void CopyPathURLMethod()
         {
             Clipboard.Clear();
@@ -421,17 +428,20 @@ namespace XtendedMenu
                 StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + ex.GetBaseException() + Environment.NewLine + ex.TargetSite + "\"" + " -catchhandler");
             }
         }
+
         private void CopyLONGPathMethod()
         {
             Clipboard.Clear();
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             Clipboard.SetText(@"\\?\" + array.ToStringArray(false));
         }
+
         private void AttributesMenuMethod()
         {
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\" " + "-attributesmenu");
         }
+
         private void SystemAttributesMethod()
         {
             foreach (string file in SelectedItemPaths)
@@ -449,6 +459,7 @@ namespace XtendedMenu
             }
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void ReadOnlyAttributesMethod()
         {
             foreach (string file in SelectedItemPaths)
@@ -465,26 +476,31 @@ namespace XtendedMenu
                 }
             }
         }
+
         private void ShowHiddenMethod()
         {
             ExplorerAdvanced.SetValue("Hidden", 1.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void HideHiddenMethod()
         {
             ExplorerAdvanced.SetValue("Hidden", 2.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void ShowSystemMethod()
         {
             ExplorerAdvanced.SetValue("ShowSuperHidden", 1.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void HideSystemMethod()
         {
             ExplorerAdvanced.SetValue("ShowSuperHidden", 0.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void HiddenAttributesMethod()
         {
             foreach (string file in SelectedItemPaths)
@@ -501,11 +517,13 @@ namespace XtendedMenu
                 }
             }
         }
+
         private void SymLinkMethod()
         {
             string[] array = SelectedItemPaths.Cast<string>().ToArray();
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + array.ToStringArray(false) + "\" " + "-makelink", false, true);
         }
+
         private void TakeOwnershipMethod()
         {
             string[] array = SelectedItemPaths.Cast<string>().ToArray();

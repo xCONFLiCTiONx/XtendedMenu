@@ -225,6 +225,9 @@ namespace XtendedMenu
             OpenPSAsUser.Click += (sender, args) => OpenPSAsUserMethod();
             OpenPSAsAdmin.Click += (sender, args) => OpenPSAsAdminMethod();
             AttributesMenu.Click += (sender, args) => AttributesMenuMethod();
+            HiddenAttributes.Click += (sender, args) => HiddenAttributesMethod();
+            SystemAttributes.Click += (sender, args) => SystemAttributesMethod();
+            ReadOnlyAttributes.Click += (sender, args) => ReadOnlyAttributesMethod();
             ShowHidden.Click += (sender, args) => ShowHiddenMethod();
             HideHidden.Click += (sender, args) => HideHiddenMethod();
             ShowSystem.Click += (sender, args) => ShowSystemMethod();
@@ -294,7 +297,6 @@ namespace XtendedMenu
         }
 
         [STAThread]
-        // Add Menu Items
         private void AddMenuItems()
         {
             try
@@ -309,6 +311,10 @@ namespace XtendedMenu
                         {
                             XtendedMenuMenu.DropDownItems.Add(Attributes);
                             Attributes.DropDownItems.Add(AttributesMenu);
+                            Attributes.DropDownItems.Add(new ToolStripSeparator());
+                            Attributes.DropDownItems.Add(HiddenAttributes);
+                            Attributes.DropDownItems.Add(SystemAttributes);
+                            Attributes.DropDownItems.Add(ReadOnlyAttributes);
                             Attributes.DropDownItems.Add(new ToolStripSeparator());
                             Attributes.DropDownItems.Add(ShowHidden);
                             Attributes.DropDownItems.Add(HideHidden);
@@ -470,7 +476,7 @@ namespace XtendedMenu
                 HideSystem.Image = Resources.AttributesHide.ToBitmap();
             }
         }
-        // Methods
+
         private void OpenTerminalAsUserMethod()
         {
             string appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Microsoft\WindowsApps\Microsoft.WindowsTerminal_8wekyb3d8bbwe\wt.exe");
@@ -484,6 +490,7 @@ namespace XtendedMenu
                 StartProcess.StartInfo(appPath, "-d " + FolderPath);
             }
         }
+
         private void OpenTerminalAsAdminMethod()
         {
             string appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Microsoft\WindowsApps\Microsoft.WindowsTerminal_8wekyb3d8bbwe\wt.exe");
@@ -497,14 +504,17 @@ namespace XtendedMenu
                 StartProcess.StartInfo(appPath, "-d " + FolderPath, false, true);
             }
         }
+
         private void OpenCmdAsUserMethod()
         {
             StartProcess.StartInfo("cmd.exe", "/s /k pushd " + "\"" + FolderPath + "\"");
         }
+
         private void OpenCmdAsAdminMethod()
         {
             StartProcess.StartInfo("cmd.exe", "/s /k pushd " + "\"" + FolderPath + "\"", false, true);
         }
+
         private void OpenGitAsUserMethod()
         {
             if (FolderPath.Contains(" "))
@@ -517,6 +527,7 @@ namespace XtendedMenu
             }
 
         }
+
         private void OpenGitAsAdminMethod()
         {
             if (FolderPath.Contains(" "))
@@ -528,15 +539,18 @@ namespace XtendedMenu
                 StartProcess.StartInfo("C:\\Program Files\\Git\\git-cmd.exe", "--cd=" + FolderPath, false, true);
             }
         }
+
         private void OpenPSAsUserMethod()
         {
             StartProcess.StartInfo("C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "-NoExit -Command Set-Location -LiteralPath " + "\'" + FolderPath + "\'");
         }
+
         private void OpenPSAsAdminMethod()
         {
 
             StartProcess.StartInfo("C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "-NoExit -Command Set-Location -LiteralPath " + "\'" + FolderPath + "\'", false, true);
         }
+
         private void AttributesMenuMethod()
         {
             DirectoryInfo DirectoryPath = new DirectoryInfo(FolderPath);
@@ -549,16 +563,54 @@ namespace XtendedMenu
                 StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "\"" + DirectoryPath + "\" " + "-attributesmenu");
             }
         }
+
+        private void SystemAttributesMethod()
+        {
+            foreach (string file in SelectedItemPaths)
+            {
+                FileAttributes attributes = File.GetAttributes(file);
+                if ((attributes & FileAttributes.System) == FileAttributes.System)
+                {
+                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.System);
+                    File.SetAttributes(file, attributes);
+                }
+                else
+                {
+                    File.SetAttributes(file, File.GetAttributes(file) | FileAttributes.System);
+                }
+            }
+            StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
+        }
+
+        private void ReadOnlyAttributesMethod()
+        {
+            foreach (string file in SelectedItemPaths)
+            {
+                FileAttributes attributes = File.GetAttributes(file);
+                if ((attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                {
+                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.ReadOnly);
+                    File.SetAttributes(file, attributes);
+                }
+                else
+                {
+                    File.SetAttributes(file, File.GetAttributes(file) | FileAttributes.ReadOnly);
+                }
+            }
+        }
+
         private void ShowHiddenMethod()
         {
             ExplorerAdvanced.SetValue("Hidden", 1.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void HideHiddenMethod()
         {
             ExplorerAdvanced.SetValue("Hidden", 2.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
         }
+
         private void ShowSystemMethod()
         {
             ExplorerAdvanced.SetValue("ShowSuperHidden", 1.ToString(culture), RegistryValueKind.DWord);
@@ -569,6 +621,23 @@ namespace XtendedMenu
         {
             ExplorerAdvanced.SetValue("ShowSuperHidden", 0.ToString(culture), RegistryValueKind.DWord);
             StartProcess.StartInfo(AttributesInfo.GetAssembly.AssemblyInformation("directory") + @"\XtendedMenu.exe", "-refresh");
+        }
+
+        private void HiddenAttributesMethod()
+        {
+            foreach (string file in SelectedItemPaths)
+            {
+                FileAttributes attributes = File.GetAttributes(file);
+                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+                {
+                    attributes = AttributesInfo.RemoveAttribute(attributes, FileAttributes.Hidden);
+                    File.SetAttributes(file, attributes);
+                }
+                else
+                {
+                    File.SetAttributes(file, File.GetAttributes(file) | FileAttributes.Hidden);
+                }
+            }
         }
 
         private void UserTempFolderMethod()
