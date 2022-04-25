@@ -7,8 +7,8 @@
 
 ;-------------------------------------------------------------------------------
 ; Constants
-!define PRODUCT_NAME "MediaDownloader"
-!define PRODUCT_DESCRIPTION "MediaDownloader for Windows"
+!define PRODUCT_NAME "XtendedMenu"
+!define PRODUCT_DESCRIPTION "XtendedMenu for Windows"
 !define COMPANYNAME "xCONFLiCTiONx"
 !define COPYRIGHT "Copyright © 2022 ${COMPANYNAME}"
 !define PRODUCT_VERSION "1.1.0.0"
@@ -18,10 +18,10 @@ SetCompressor "bzip2"
 
 ;-------------------------------------------------------------------------------
 ; Attributes
-Name "MediaDownloader"
-OutFile "MediaDownloader_Setup.exe"
-InstallDir "$LOCALAPPDATA\MediaDownloader"
-InstallDirRegKey HKCU "Software\xCONFLiCTiONx\MediaDownloader" ""
+Name "XtendedMenu"
+OutFile "XtendedMenu_Setup.exe"
+InstallDir "$LOCALAPPDATA\XtendedMenu"
+InstallDirRegKey HKCU "Software\xCONFLiCTiONx\XtendedMenu" ""
 RequestExecutionLevel user ; user|highest|admin
 
 ;-------------------------------------------------------------------------------
@@ -68,9 +68,16 @@ Section "${PRODUCT_NAME}" MyApp
 	SetOutPath $INSTDIR
 	File "${PRODUCT_NAME}.exe"
   File "${PRODUCT_NAME}.exe.config"
-  File "DesktopToast.dll"
-  File "EasyLogger.dll"
-  File "EasyLogger.xml"
+  
+  Deleter.exe
+EasyLogger.dll
+EasyLogger.xml
+SharpShell.dll
+SharpShell.xml
+TAFactory.IconPack.dll
+XtendedMenu.dll
+XtendedMenu.exe
+  
   File "LICENSE"
 ;write uninstall information to the registry
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName" "${PRODUCT_NAME}"
@@ -85,6 +92,8 @@ Section "${PRODUCT_NAME}" MyApp
   ;create desktop shortcut
   CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  !define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
+  !insertmacro MUI_PAGE_FINISH
 SectionEnd
 
 ;-------------------------------------------------------------------------------
