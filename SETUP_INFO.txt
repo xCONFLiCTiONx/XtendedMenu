@@ -14,7 +14,7 @@ BLOCK "StringFileInfo"
 		VALUE "FileVersion", "1.4.0"
 		VALUE "InternalName", "XtendedMenu Setup"
 		VALUE "LegalCopyright", "Copyright \xA9 2022 xCONFLiCTiONx"
-		VALUE "OriginalFilename", "XtendedMenu Setup.exe"
+		VALUE "OriginalFilename", "XtendedMenu.exe"
 		VALUE "ProductName", "XtendedMenu"
 		VALUE "ProductVersion", "1.4.0"
 	}
