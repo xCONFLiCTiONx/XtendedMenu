@@ -7,7 +7,7 @@ This project is the upgrade to [xMenuTools](https://github.com/xCONFLiCTiONx/xMe
 
 [https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)
 
-Feel free to donate to my [PayPal.Me/xCONFLiCTiONx](PayPal.Me/xCONFLiCTiONx) account. I work hard on these projects.
+Feel free to donate to my [PayPal.Me/xCONFLiCTiONx](https://PayPal.Me/xCONFLiCTiONx) account. I work hard on these projects.
 
 [![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD)
 
