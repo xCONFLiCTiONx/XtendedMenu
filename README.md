@@ -11,7 +11,7 @@ Feel free to donate to my [PayPal](https://www.paypal.com/donate/?business=GKLE6
 
 [![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD)
 
-![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QR%20Code.png](QR Code.png)
+!["https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QR%20Code.png"]("QR Code.png")
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD)
 
