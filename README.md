@@ -1,11 +1,13 @@
 # XtendedMenu
 
 Extended context menu tools Pro  
-This project is similar to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTools) (deprecated) but supports custom entries, a few optimizations and bug fixes.
+This project is the upgrade to [xMenuTools](https://github.com/xCONFLiCTiONx/xMenuTools) (no longer supported) which now has custom entries and a better installer.
 
-## How do I download XtendedMenu
+## Download
 
-You can compile it yourself for free or you can donate $10.00 USD into my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account and I'll compile it myself. Contact me if you would like to donate.
+[https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)
+
+Feel free to donate $10.00 USD into my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account. I work hard on these projects.
 
 [![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate?business=GKLE6HYQE46SA&no_recurring=0&item_name=i%21i%21i%21+NOTE+WHAT+THIS+DONATION+IS+FOR+i%21i%21i%21&currency_code=USD)
 
@@ -27,7 +29,7 @@ You can compile it yourself for free or you can donate $10.00 USD into my [PayPa
 
 ## Support
 
-*Window 10 is the only operating system that I will provide support for. If you install this on anything less than Windows 10 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
+*Window 10/11 is the only operating system that I will provide support for. If you install this on anything less than Windows 10/11 and it doesn't work you're on your own. Too many people are installing this on Windows 7 which is no longer supported by Microsoft.*
 
 ![Attributes](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/ContextMenu.png)  
 ![All_Files](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/AllFiles.png) ![Directories](https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/Screenshots/Directories.png)  

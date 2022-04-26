@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyLogger</name>
+    </assembly>
+    <members>
+        <member name="T:EasyLogger">
+            <summary>
+            EasyLogger Entry Point
+            </summary>
+        </member>
+        <member name="F:EasyLogger.LogDirectory">
+            <summary>
+            The default directory used to store log files
+            CommonApplicationData\\EasyLogger\\Name of your App\\User Name\\
+            </summary>
+        </member>
+        <member name="F:EasyLogger.LogFile">
+            <summary>
+            The default file path to the log file used
+            </summary>
+        </member>
+        <member name="F:EasyLogger.LogFileBak">
+            <summary>
+            The default file path to the log file used
+            </summary>
+        </member>
+        <member name="M:EasyLogger.BackupLogs(System.String,System.Int32)">
+            <summary>
+            Backup log files to [FileName].bak; this is to prevent huge log files
+            </summary>
+            <param name="LogFilePath">Path to the log file</param>
+            <param name="timeSpanInDays">Days until backed up; uses file creation time</param>
+        </member>
+        <member name="M:EasyLogger.AddListener(System.String)">
+            <summary>
+            Start the logging service
+            </summary>
+            <param name="LogFilePath">Path to the log file</param>
+        </member>
+        <member name="M:EasyLogger.RemoveListener">
+            <summary>
+            Stops and disposes of the logging service
+            </summary>
+        </member>
+        <member name="M:EasyLogger.Error(System.String)">
+            <summary>
+            Insert [error] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:EasyLogger.Error(System.Exception)">
+            <summary>
+            Insert [error] in the line
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:EasyLogger.Warning(System.String)">
+            <summary>
+            Insert [warning] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:EasyLogger.Info(System.String)">
+            <summary>
+            Insert [info] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:LogBase">
+            <summary>
+            LogBase: Secondary entry point
+            </summary>
+        </member>
+        <member name="M:LogBase.AddListener(System.String)">
+            <summary>
+            Start the logging service
+            </summary>
+            <param name="LogFilePath">Path to the log file</param>
+        </member>
+        <member name="M:LogBase.RemoveListener">
+            <summary>
+            Stops and disposes of the logging service
+            </summary>
+        </member>
+        <member name="M:LogBase.BackupLogs(System.String,System.Int32)">
+            <summary>
+            Backup log files to [FileName].bak; this is to prevent huge log files
+            </summary>
+            <param name="LogFilePath">Path to the log file</param>
+            <param name="timeSpanInDays">Days until backed up; uses file creation time</param>
+        </member>
+        <member name="M:LogBase.Error(System.String)">
+            <summary>
+            Insert [error] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:LogBase.Error(System.Exception)">
+            <summary>
+            Insert [error] in the line
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:LogBase.Warning(System.String)">
+            <summary>
+            Insert [warning] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:LogBase.Info(System.String)">
+            <summary>
+            Insert [info] in the line
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:FileLogger">
+            <summary>
+            FileLoger Class : LogBase
+            </summary>
+        </member>
+        <member name="M:FileLogger.BackupLogs(System.String,System.Int32)">
+            <summary>
+            Backup log files to [FileName].bak; this is to prevent huge log files
+            </summary>
+            <param name="LogFilePath">Path to the log file</param>
+            <param name="timeSpanInDays">Days until backed up; uses file creation time</param>
+        </member>
+        <member name="M:FileLogger.Error(System.String)">
+            <summary>
+            Insert [error] in the line for error logging
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:FileLogger.Error(System.Exception)">
+            <summary>
+            Insert [error] in the line for specific error logging
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:FileLogger.Warning(System.String)">
+            <summary>
+            Insert [warning] in the line for warning logging
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:FileLogger.Info(System.String)">
+            <summary>
+            Insert [info] in the line for information logging
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:FileLogger.AddListener(System.String)">
+            <summary>
+            Start the logging service
+            </summary>
+        </member>
+        <member name="M:FileLogger.RemoveListener">
+            <summary>
+            Stops and disposes of the logging service
+            </summary>
+        </member>
+    </members>
+</doc>
