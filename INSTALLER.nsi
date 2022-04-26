@@ -5,24 +5,28 @@
 !include "WinVer.nsh"
 !include "x64.nsh"
 
+Function .onInit
+  Exec "$INSTDIR\Uninstall.exe"
+FunctionEnd
+
 ;-------------------------------------------------------------------------------
 ; Constants
+SetCompressor "bzip2"
 !define PRODUCT_NAME "XtendedMenu"
 !define PRODUCT_DESCRIPTION "XtendedMenu for Windows"
 !define COMPANYNAME "xCONFLiCTiONx"
 !define COPYRIGHT "Copyright © 2022 ${COMPANYNAME}"
-!define PRODUCT_VERSION "1.1.0.0"
-!define SETUP_VERSION 1.1.0.0
+!define PRODUCT_VERSION "1.4.0.0"
+!define SETUP_VERSION 1.4.0.0
 !define /date MyTIMESTAMP "%Y%m%d"
-SetCompressor "bzip2"
 
 ;-------------------------------------------------------------------------------
 ; Attributes
 Name "XtendedMenu"
 OutFile "XtendedMenu_Setup.exe"
-InstallDir "$LOCALAPPDATA\XtendedMenu"
-InstallDirRegKey HKCU "Software\xCONFLiCTiONx\XtendedMenu" ""
-RequestExecutionLevel user ; user|highest|admin
+InstallDir "$PROGRAMFILES64\XtendedMenu" ; LOCALAPPDATA|APPDATA|$PROGRAMFILES|$PROGRAMFILES32|$PROGRAMFILES64
+InstallDirRegKey HKLM "Software\xCONFLiCTiONx\XtendedMenu" ""
+RequestExecutionLevel admin ; user|highest|admin
 
 ;-------------------------------------------------------------------------------
 ; Version Info
@@ -40,7 +44,6 @@ VIAddVersionKey "FileVersion" "${SETUP_VERSION}"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\orange.bmp"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange.bmp"
-!define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;-------------------------------------------------------------------------------
 ; Installer Pages
@@ -49,6 +52,9 @@ VIAddVersionKey "FileVersion" "${SETUP_VERSION}"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Start XtendedMenu Settings"
+!define MUI_FINISHPAGE_RUN_FUNCTION "LaunchSettings"
 !insertmacro MUI_PAGE_FINISH
 
 ;-------------------------------------------------------------------------------
@@ -64,45 +70,56 @@ VIAddVersionKey "FileVersion" "${SETUP_VERSION}"
 
 ;-------------------------------------------------------------------------------
 ; Installer Sections
-Section "${PRODUCT_NAME}" MyApp
+Section "${PRODUCT_NAME}"
 	SetOutPath $INSTDIR
 	File "${PRODUCT_NAME}.exe"
-  File "${PRODUCT_NAME}.exe.config"
-  
-  Deleter.exe
-EasyLogger.dll
-EasyLogger.xml
-SharpShell.dll
-SharpShell.xml
-TAFactory.IconPack.dll
-XtendedMenu.dll
-XtendedMenu.exe
-  
+	File "${PRODUCT_NAME}.dll"
+  File "Deleter.exe"
+  File "EasyLogger.dll"
+  File "EasyLogger.xml"
+  File "SharpShell.dll"
+  File "SharpShell.xml"
+  File "TAFactory.IconPack.dll"  
   File "LICENSE"
 ;write uninstall information to the registry
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName" "${PRODUCT_NAME}"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayIcon" "$INSTDIR\${PRODUCT_NAME}.exe"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"  
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayVersion" "${PRODUCT_VERSION}"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "InstallDate" "${MyTIMESTAMP}"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "InstallLocation" "$INSTDIR"
-  WriteRegDword HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "Language" 0x00000409
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "Publisher" "${COMPANYNAME}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName" "${PRODUCT_NAME}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayIcon" "$INSTDIR\${PRODUCT_NAME}.exe"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"  
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayVersion" "${PRODUCT_VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "InstallDate" "${MyTIMESTAMP}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "InstallLocation" "$INSTDIR"
+  WriteRegDword HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "Language" 0x00000409
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "Publisher" "${COMPANYNAME}"
 	WriteUninstaller "$INSTDIR\Uninstall.exe"
   ;create desktop shortcut
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
-  !define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
-  !insertmacro MUI_PAGE_FINISH
+  SetShellVarContext all
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME} Settings.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  SetOutPath "$INSTDIR"
+  nsExec::Exec '"$WINDIR\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe" "$INSTDIR\XtendedMenu.dll" "-codebase"'
 SectionEnd
+
+Function LaunchSettings
+  SetOutPath "$INSTDIR"
+  Exec '"$INSTDIR\${PRODUCT_NAME}.exe" "/settings"'
+  Sleep 1000
+FunctionEnd
 
 ;-------------------------------------------------------------------------------
 ; Uninstaller Sections
 Section "Uninstall"
-  Delete "$DESKTOP\${PRODUCT_NAME}.lnk"
-  Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
-	Delete "$INSTDIR\*"
+  SetShellVarContext all
+  nsExec::Exec '"$WINDIR\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe" "-unregister" "$INSTDIR\XtendedMenu.dll"'
+  Delete "$SMPROGRAMS\${PRODUCT_NAME} Settings.lnk"
+	DeleteRegKey HKLM "Software\xCONFLiCTiONx\${PRODUCT_NAME}"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+  MessageBox MB_YESNO "Would you like to restart explorer.exe? You will need to reboot or manually restart explorer yourself to completely remove the shell extension." IDYES true IDNO false
+true:
+  FindWindow $R0 "Shell_TrayWnd"
+  nsExec::Exec '"taskkill" "/F" "/im" "explorer.exe"'
+  nsRestartExplorer::nsRestartExplorer start ignore
+  Goto next
+false:
+next:
+  Delete "$INSTDIR\*"
 	RMDir "$INSTDIR"
-	DeleteRegKey HKCU "Software\xCONFLiCTiONx\${PRODUCT_NAME}"
-  DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 SectionEnd
