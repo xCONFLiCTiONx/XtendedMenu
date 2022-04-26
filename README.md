@@ -7,13 +7,13 @@ This project is the upgrade to [xMenuTools](https://github.com/xCONFLiCTiONx/xMe
 
 [https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)
 
-Feel free to donate to my [PayPal](https://www.paypal.com/donate?business=FBGPD9E4Z4B9W&amount=10&no_recurring=1&item_name=XtendedMenu&currency_code=USD) account. I work hard on these projects.
+Feel free to donate to my [PayPal](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD) account. I work hard on these projects.
 
-[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate?business=GKLE6HYQE46SA&no_recurring=0&item_name=i%21i%21i%21+NOTE+WHAT+THIS+DONATION+IS+FOR+i%21i%21i%21&currency_code=USD)
+[![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/PayPalButton.png](PayPalButton.png)](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD)
 
-![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QRCode.png](QRCode.png)
+![https://raw.githubusercontent.com/xCONFLiCTiONx/XtendedMenu/master/QR%20Code.png](QR Code.png)
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=GKLE6HYQE46SA&no_recurring=0&item_name=i%21i%21i%21+NOTE+WHAT+THIS+DONATION+IS+FOR+i%21i%21i%21&currency_code=USD)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?business=GKLE6HYQE46SA&no_recurring=0&item_name=xCONFLiCTiONx&currency_code=USD)
 
 ## Requirements
 
