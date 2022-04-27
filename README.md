@@ -7,7 +7,7 @@ This project is the upgrade to [xMenuTools](https://github.com/xCONFLiCTiONx/xMe
 
 [https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)  
 
-![GitHub all releases](https://img.shields.io/github/downloads/xCONFLiCTiONx/XtendedMenu/total)  
+![GitHub all releases](https://img.shields.io/github/downloads/xCONFLiCTiONx/XtendedMenu/total)  [![GitHub stars](https://img.shields.io/github/stars/xCONFLiCTiONx/XtendedMenu)](https://github.com/xCONFLiCTiONx/XtendedMenu/stargazers)
 
 ## Donations
 
