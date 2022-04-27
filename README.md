@@ -5,7 +5,11 @@ This project is the upgrade to [xMenuTools](https://github.com/xCONFLiCTiONx/xMe
 
 ## Download
 
-[https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)
+[https://github.com/xCONFLiCTiONx/XtendedMenu/releases](https://github.com/xCONFLiCTiONx/XtendedMenu/releases)  
+
+![GitHub all releases](https://img.shields.io/github/downloads/xCONFLiCTiONx/XtendedMenu/total)  
+
+## Donations
 
 Feel free to donate to my [PayPal.Me/xCONFLiCTiONx](https://PayPal.Me/xCONFLiCTiONx) account. I work hard on these projects.
 
