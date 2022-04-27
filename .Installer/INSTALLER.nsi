@@ -16,7 +16,7 @@ SetCompressor "bzip2"
 !define PRODUCT_DESCRIPTION "XtendedMenu for Windows"
 !define COMPANYNAME "xCONFLiCTiONx"
 !define COPYRIGHT "Copyright © 2022 ${COMPANYNAME}"
-!define PRODUCT_VERSION "1.4.0.0"
+!define PRODUCT_VERSION 1.4.0.0
 !define SETUP_VERSION 1.4.0.0
 !define /date MyTIMESTAMP "%Y%m%d"
 
@@ -80,7 +80,7 @@ Section "${PRODUCT_NAME}"
   File "SharpShell.dll"
   File "SharpShell.xml"
   File "TAFactory.IconPack.dll"  
-  File "LICENSE"
+  File "LICENSE.rtf"
 ;write uninstall information to the registry
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName" "${PRODUCT_NAME}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayIcon" "$INSTDIR\${PRODUCT_NAME}.exe"
