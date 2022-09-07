@@ -39,92 +39,68 @@ namespace XtendedMenu
                 InitializeComponent();
 
                 Shown += Main_Shown;
-
-                RegistryKey InstallInfo = Registry.CurrentUser.OpenSubKey("SOFTWARE\\XtendedMenu\\Settings", false);
-
-                if (InstallInfo == null)
+                if (args.Length == 0)
                 {
-                    if (args.Length > 0)
+                    using (new Settings())
                     {
-                        if (args[0].ToLower() == "-install" || args[0].ToLower() == "-i" || args[0].ToLower() == "/install" || args[0].ToLower() == "/i")
-                        {
-                            Installation.InstallerClass("-install");
-                        }
-                        if (args[0].ToLower() == "-uninstall" || args[0].ToLower() == "-u" || args[0].ToLower() == "/uninstall" || args[0].ToLower() == "/u")
-                        {
-                            Installation.InstallerClass("-uninstall");
-                        }
+                        new Settings().ShowDialog();
                     }
-                    else
+                }
+                if (args.Length > 0)
+                {
+                    if (args[0].ToLower() == "-install" || args[0].ToLower() == "-i" || args[0].ToLower() == "/install" || args[0].ToLower() == "/i")
                     {
                         Installation.InstallerClass("-install");
                     }
-                }
-                else
-                {
-                    if (args.Length == 0)
+                    if (args[0].ToLower() == "-uninstall" || args[0].ToLower() == "-u" || args[0].ToLower() == "/uninstall" || args[0].ToLower() == "/u")
+                    {
+                        Installation.InstallerClass("-uninstall");
+                    }
+                    // Settings
+                    if (args[0].ToLower() == "-settings" || args[0].ToLower() == "-s" || args[0].ToLower() == "/settings" || args[0].ToLower() == "/s")
                     {
                         using (new Settings())
                         {
                             new Settings().ShowDialog();
                         }
                     }
-                    if (args.Length > 0)
+                    // Custom Entries
+                    if (args[0].ToLower() == "-customentries" || args[0].ToLower() == "/customentries" || args[0].ToLower() == "-c" || args[0].ToLower() == "/c")
                     {
-                        if (args[0].ToLower() == "-install" || args[0].ToLower() == "-i" || args[0].ToLower() == "/install" || args[0].ToLower() == "/i")
+                        if (IsElevated)
                         {
-                            Installation.InstallerClass("-install");
-                        }
-                        if (args[0].ToLower() == "-uninstall" || args[0].ToLower() == "-u" || args[0].ToLower() == "/uninstall" || args[0].ToLower() == "/u")
-                        {
-                            Installation.InstallerClass("-uninstall");
-                        }
-                        // Settings
-                        if (args[0].ToLower() == "-settings" || args[0].ToLower() == "-s" || args[0].ToLower() == "/settings" || args[0].ToLower() == "/s")
-                        {
-                            using (new Settings())
+                            using (new Settings("customEntries"))
                             {
                                 new Settings().ShowDialog();
                             }
                         }
-                        // Custom Entries
-                        if (args[0].ToLower() == "-customentries" || args[0].ToLower() == "/customentries" || args[0].ToLower() == "-c" || args[0].ToLower() == "/c")
+                        else
                         {
-                            if (IsElevated)
+                            using (Process proc = new Process())
                             {
-                                using (new Settings("customEntries"))
-                                {
-                                    new Settings().ShowDialog();
-                                }
-                            }
-                            else
-                            {
-                                using (Process proc = new Process())
-                                {
-                                    proc.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
-                                    proc.StartInfo.Arguments = "-CustomEntries";
-                                    proc.StartInfo.UseShellExecute = true;
-                                    proc.StartInfo.Verb = "runas";
-                                    proc.Start();
-                                };
+                                proc.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
+                                proc.StartInfo.Arguments = "-CustomEntries";
+                                proc.StartInfo.UseShellExecute = true;
+                                proc.StartInfo.Verb = "runas";
+                                proc.Start();
+                            };
 
-                                Environment.Exit(0);
-                            }
-                        }
-                        // Refresh Explorer
-                        if (args[0].ToLower() == "-refresh" || args[0].ToLower() == "/refresh" || args[0].ToLower() == "-r" || args[0].ToLower() == "/r")
-                        {
-                            ExplorerRefresh.RefreshWindowsExplorer();
+                            Environment.Exit(0);
                         }
                     }
-                    if (args.Length > 1)
+                    // Refresh Explorer
+                    if (args[0].ToLower() == "-refresh" || args[0].ToLower() == "/refresh" || args[0].ToLower() == "-r" || args[0].ToLower() == "/r")
                     {
-                        ExecuteCommands(args);
+                        ExplorerRefresh.RefreshWindowsExplorer();
                     }
-                    if (!KeepAlive)
-                    {
-                        Environment.Exit(0);
-                    }
+                }
+                if (args.Length > 1)
+                {
+                    ExecuteCommands(args);
+                }
+                if (!KeepAlive)
+                {
+                    Environment.Exit(0);
                 }
             }
             catch (Exception ex)

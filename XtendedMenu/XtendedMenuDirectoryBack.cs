@@ -675,7 +675,7 @@ namespace XtendedMenu
         {
             if (!string.IsNullOrEmpty(Clipboard.GetText()))
             {
-                File.AppendAllText(FolderPath + "\\ClipboardContents.txt", Clipboard.GetText());
+                File.AppendAllText(FolderPath + "\\ClipboardContents.txt", Clipboard.GetText() + Environment.NewLine);
             }
         }
 

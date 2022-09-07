@@ -100,7 +100,7 @@ SectionEnd
 
 Function LaunchSettings
   SetOutPath "$INSTDIR"
-  Exec '"$INSTDIR\${PRODUCT_NAME}.exe" "/settings"'
+  Exec '"$INSTDIR\${PRODUCT_NAME}.exe" "/install"'
   Sleep 1000
 FunctionEnd
 

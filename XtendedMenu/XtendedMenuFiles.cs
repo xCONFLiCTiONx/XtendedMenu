@@ -478,7 +478,7 @@ namespace XtendedMenu
             {
                 Clipboard.Clear();
                 string[] array = SelectedItemPaths.Cast<string>().ToArray();
-                Clipboard.SetText(array.ToStringArray(true));
+                Clipboard.SetDataObject(array.ToStringArray(true), true, 2, 100);
             }
             catch (Exception ex)
             {
@@ -492,7 +492,7 @@ namespace XtendedMenu
             {
                 Clipboard.Clear();
                 string[] array = SelectedItemPaths.Cast<string>().ToArray();
-                Clipboard.SetText(array.ToStringArray(false));
+                Clipboard.SetDataObject(array.ToStringArray(false), true, 2, 100);
             }
             catch (Exception ex)
             {
@@ -506,7 +506,7 @@ namespace XtendedMenu
             {
                 Clipboard.Clear();
                 string[] array = SelectedItemPaths.Cast<string>().ToArray();
-                Clipboard.SetText(new Uri(array.ToStringArray(false)).AbsoluteUri);
+                Clipboard.SetDataObject(new Uri(array.ToStringArray(false)).AbsoluteUri, true, 2, 100);
             }
             catch (Exception ex)
             {
@@ -520,7 +520,7 @@ namespace XtendedMenu
             {
                 Clipboard.Clear();
                 string[] array = SelectedItemPaths.Cast<string>().ToArray();
-                Clipboard.SetText(@"\\?\" + array.ToStringArray(false));
+                Clipboard.SetDataObject(@"\\?\" + array.ToStringArray(false), true, 2, 100);
             }
             catch (Exception ex)
             {
